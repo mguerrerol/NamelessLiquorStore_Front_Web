@@ -15,10 +15,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class TestJSON {
+public class UsuariosJSON {
 	
 	private static URL url;
-	private static String sitio = "http://localhost:8080/";
+	private static String sitio = "http://localhost:5000/";
 
 	public static ArrayList<Usuarios> parsingUsuarios(String json) throws ParseException {
 		

@@ -65,7 +65,7 @@ td
 
 .tablaventas
 {
-	margin-left: 525px;
+	margin-left: 320px;
 }
 
 .tdventas
@@ -79,10 +79,10 @@ input[type=text]
   	padding: 0.5em;
 	font-size:1em;
 	border-radius:5px;
-	border:1px solid black;
+	border:1px solid blue;
 	color:black;
 	text-align:left;
-	box-shadow: 5px 5px 5px #999;
+	box-shadow: 5px 5px 5px #071D47;
 }
 
 img

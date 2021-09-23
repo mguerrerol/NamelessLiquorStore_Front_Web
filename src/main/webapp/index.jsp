@@ -13,7 +13,7 @@
 				<img class= "header" src="IMG/titulo.png" alt="Nameless Liquor Store">
 		</header>
 		<div>
-			<form class="formulario" method="get" action="./indexServlet">
+			<form class="formulario" method="get" action="./IndexServlet">
 				<br><br>
 				<br>
 				<center>

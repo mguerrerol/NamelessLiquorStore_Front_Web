@@ -21,7 +21,7 @@
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
 		</ul>
-		<form class="formulario" method="get" action="./usuariosServlet">
+		<form class="formulario" method="get" action="./UsuariosServlet">
 		<div>
 			<br><br>
 			<br><br>

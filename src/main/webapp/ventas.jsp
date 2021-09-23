@@ -21,7 +21,7 @@
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
 		</ul>
-		<form class=formulario method="get" action="./ventasServlet">
+		<form class=formulario method="get" action="./VentasServlet">
 			<div>
 			<br>
 				<table class="tablaventas1">

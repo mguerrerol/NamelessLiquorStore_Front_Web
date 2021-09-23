@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ProductosServlet
+ * Servlet implementation class ReportesServlet
  */
-@WebServlet("/ProductosServlet")
-public class ProductosServlet extends HttpServlet {
+@WebServlet("/ReportesServlet")
+public class ReportesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductosServlet() {
+    public ReportesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,24 @@ public class ProductosServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String btnListadoUsuarios = request.getParameter("btnListadoUsuarios");
+		String btnListadoClientes = request.getParameter("btnListadoClientes");
+		String btnVentasCliente = request.getParameter("btnVentasCliente");
+
+		if (btnListadoUsuarios != null) {
+			request.getRequestDispatcher("/listadousuarios.jsp").forward(request, response);
+		}
+		
+		if (btnListadoClientes != null) {
+			request.getRequestDispatcher("/listadoclientes.jsp").forward(request, response);
+		}
+		
+		if (btnVentasCliente != null) {
+			request.getRequestDispatcher("/ventascliente.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class usuariosServlet
+ * Servlet implementation class UsuariosServlet
  */
-@WebServlet("/usuariosServlet")
-public class usuariosServlet extends HttpServlet {
+@WebServlet("/UsuariosServlet")
+public class UsuariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public usuariosServlet() {
+    public UsuariosServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,7 @@ public class usuariosServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		/*String cedula_usuarios = request.getParameter("txtCedula");
 		String usuario_usuarios = request.getParameter("txtUsuario");
@@ -44,19 +44,15 @@ public class usuariosServlet extends HttpServlet {
 		String btnActualizar = request.getParameter("btnActualizar");	
 		String btnBorrar = request.getParameter("btnBorrar");
 		
-		PrintWriter writer = response.getWriter();
-		writer.println("=======================");
-		writer.println("Entre al Servlet");
+
 		
 		if(btnConsultar != null)
 		{
-			writer.println("Entre al consultar");
 			listarUsuarios(request,response);
 		}
 		
 		if(btnCrear != null)
 		{
-			writer.println("Entre al crear");
 			crearUsuario(request,response);
 		}
 		
@@ -82,25 +78,25 @@ public class usuariosServlet extends HttpServlet {
 		int respuesta = 0;
 		
 		try {
-			respuesta = TestJSON.postJSON(usuario);
+			respuesta = UsuariosJSON.postJSON(usuario);
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				writer.println("Registro Agreado!");
+				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
 			}
 			else 
 			{
 				writer.println("Error: " + respuesta);
 			}
 			writer.close();
-		}catch(IOException e){
+		}catch(IOException | ServletException e){
 			e.printStackTrace();
 		}
 	}
 	
 	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ArrayList<Usuarios> lista = TestJSON.getJSON();
+			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
 			String pagina = "/listadousuarios.jsp";
 			request.setAttribute("lista",lista);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

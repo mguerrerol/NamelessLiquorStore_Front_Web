@@ -1,7 +1,7 @@
 package co.edu.unbosque.nameless;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class indexServlet
+ * Servlet implementation class IndexServlet
  */
-@WebServlet("/indexServlet")
-public class indexServlet extends HttpServlet {
+@WebServlet("/IndexServlet")
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public indexServlet() {
+    public IndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,37 +27,45 @@ public class indexServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		PrintWriter writer = response.getWriter(); 
-		
-		String usuario_usuarios = request.getParameter("txtUsuario");
-		String password_usuarios = request.getParameter("txtPassword");
-		String btnAceptar = request.getParameter("btnAceptar");	
-	
-		if (btnAceptar != null) 
-		{
-			if(usuario_usuarios != null &&  password_usuarios != null) 
-			{
-				if (usuario_usuarios == "ale" &&  password_usuarios == "123") 
-				{
-					writer.println("Bienvenido al sistema " + usuario_usuarios);
+    public void validarUsuarios(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
+			request.setAttribute("lista", lista);
+			String usua = request.getParameter("txtUsuario");
+			String pass = request.getParameter("txtPassword");
+			int respuesta = 0;
+			for (Usuarios usuario : lista) {
+				if (usuario.getUsuario_usuarios().equals(usua) && usuario.getPassword_usuarios().equals(pass)) {
+					request.setAttribute("usuario", usuario);
+					request.getRequestDispatcher("/menu.jsp").forward(request, response);
+					respuesta = 1;
 				}
-				else
-				{
-					writer.println("Crendeciales invalidas para el ingreso al sistema " + usuario_usuarios +  password_usuarios);
-				}
+
 			}
-			else
-			{
-				writer.println("Los campos usuario y Constraseña no puede estar vacios");
+
+			if (respuesta == 0) {
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				System.out.println("No se encontraron datos");
 			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		
 	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		String btnAceptar = request.getParameter("btnAceptar");
+
+		if (btnAceptar.equals("Aceptar")) {
+			this.validarUsuarios(request, response);
+		}
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

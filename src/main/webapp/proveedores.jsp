@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<td><label>Nombre del Proveedor </label></td>
-					<td><input type="text" name="txtNombreProveedor" id="txtNombreProveedor" maxlength="50" size ="50" placeholder="Digite el nombre del proveedor"></td>
+					<td><input type="text" name="txtNombre" id="txtNombre" maxlength="50" size ="50" placeholder="Digite el nombre del proveedor"></td>
  	
  		            <td><label>Ciudad </label></td>
 					<td><input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size ="50" placeholder="Digite la ciudad"></td>

@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<td><label>Nombre Completo </label></td>
-					<td><input type="text" name="txNnombre" id="txNnombre" maxlength="50" size ="50" placeholder="Digite el nombre completo" required></td>
+					<td><input type="text" name="txtNombre" id="txtNombre" maxlength="50" size ="50" placeholder="Digite el nombre completo" required></td>
 
 		            <td><label>Correo Electrónico </label></td>
 					<td><input type="email" name="txtCorreo" id="txtCorreo"  maxlength="50" size ="50" placeholder="Digite el correo electrónico" required></td>

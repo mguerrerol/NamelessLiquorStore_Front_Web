@@ -4,7 +4,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-    	<title>Nameless Liquor Store</title>
+    	<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Ventas</title>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estiloventas.css">
 	</head>
@@ -56,7 +57,7 @@
 
 					<tr>
 						<td><input type="text" name="txtCodProd2" id="txtCodProd2" maxlength="20" size ="20" placeholder="Codigo del Producto"></td>
-						<td><input type="submit" name="btnConsultar2" id="btnConsultar2" class="button"></td>
+						<td><input type="submit" name="btnConsultar2" id="btnConsultar2" value="Consultar" class="button" ></td>
 						<td><input type="text" name="txtNomProd2" id="txtNomProd2" maxlength="50" size ="30" disabled></td>
 						<td><input type="text" name="txtCantidad2" id="txtCantidad2" maxlength="8" size ="6" placeholder="Cantidad"></td>
 						<td><input type="text" name="txtValorTotal2" id="txtValorTotal2" maxlength="50" size ="10"  disabled></td>
@@ -64,7 +65,7 @@
 
 					<tr>
 						<td><input type="text" name="txtCodProd3" id="txtCodProd3" maxlength="20" size ="20" placeholder="Codigo del Producto"></td>
-						<td><input type="submit" name="btnConsultar3" id="btnConsultar3" class="button"></td>
+						<td><input type="submit" name="btnConsultar3" id="btnConsultar3" value="Consultar" class="button"></td>
 						<td><input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size ="30" disabled></td>
 						<td><input type="text" name="txtCantidad3" id="txtCantidad3" maxlength="8" size ="6" placeholder="Cantidad"></td>
 						<td><input type="text" name="txtValorTotal3" id="txtValorTotal3" maxlength="50" size ="10" disabled></td>
@@ -84,7 +85,7 @@
 
 				<table class="tablaventas4">
 				<tr>
-					<td><input type="submit" name="confirmar" value="Confirmar" class="button"></td>
+					<td><input type="submit" name="btnConfirmar" value="Confirmar" class="button"></td>
 					<td><label></label></td>
 					<td><label>Total con IVA </label></td>
 					<td><input type="text" name="txttotalconiva" value="" maxlength="20" size ="10" disabled></td>

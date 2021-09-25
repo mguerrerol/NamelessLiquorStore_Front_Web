@@ -4,7 +4,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nameless Liquor Store</title>
+		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Usuarios</title>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 	</head>
@@ -23,22 +24,23 @@
 		</ul>
 		<form class="formulario" method="get" action="./UsuariosServlet">
 		<div>
-			<br><br>
-			<br><br>
+			<br>
+			<h2>Usuarios</h2>
+			<br>
 			<center>
 		      <table border = "0">
 		        <tr><td><label>Cedula </label></td>
 					<td><input type="text" maxlength="20" id="txtCedula" name="txtCedula" size ="50" placeholder="Digite la cedula" required></td>
 
 					<td><label>Usuario </label></td>
-					<td><input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size ="50" placeholder="Digite el usuario" required></td>
+					<td><input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size ="50" placeholder="Digite el usuario"></td>
 				</tr>
 				<tr>
 					<td><label>Nombre Completo </label></td>
-					<td><input type="text" id="txtNombre" name="txtNombre" maxlength="50" size ="50" placeholder="Digite el nombre" required></td>
+					<td><input type="text" id="txtNombre" name="txtNombre" maxlength="50" size ="50" placeholder="Digite el nombre"></td>
 
        				 <td><label>Contraseña </label></td>
-		  			 <td><input type="password" id="txtPassword" name="txtPassword"  maxlength="50" size ="50"  placeholder="Digite la contraseña" required></td>
+		  			 <td><input type="password" id="txtPassword" name="txtPassword"  maxlength="50" size ="50"  placeholder="Digite la contraseña"></td>
 				</tr>
 		        <tr>
 					<td><label>Correo Electrónico </label></td>

@@ -7,7 +7,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nameless Liquor Store</title>	
+		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Listado Usuarios</title>	
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 	</head>
@@ -26,17 +27,17 @@
 		</ul>
 		<form class="formulario">
 		<br><br>
-			<center>
+			
 		    <h2>Listado de Usuarios</h2>
 		    <h4>Hora servidor: <%= new Date() %></h4>
 				<br>
-				<table border="5">
+				<table border=4>
 					<tr>
-						<td>Cedula</td><td>Nombre</td><td>Correo Electronico</td><td>Usuario</td><td>Contraseña</td>
-					</tr>
+						<td>Cedula</td><td>Nombre</td><td>Correo Electrónico</td><td>Usuario</td><td>Contraseña</td>
+					</tr>				
 				
 				</table>
-			</center>
+		
 		<br><br>
 	</form>
 	<footer>

@@ -45,8 +45,7 @@ public class IndexServlet extends HttpServlet {
 			}
 
 			if (respuesta == 0) {
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-				System.out.println("No se encontraron datos");
+				request.getRequestDispatcher("/indexError.jsp").forward(request, response);
 			}
 
 		} catch (Exception e) {

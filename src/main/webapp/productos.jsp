@@ -4,7 +4,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nameless Liquor Store</title>
+		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Productos</title>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 	</head>
@@ -24,12 +25,12 @@
 		<form class="formulario" method="get" action="./ProductosServlet">
 			<div>
 				<br><br>
-				<br><br>
+				<h2>Productos</h2>
 				<br><br>
 				<br>
 				<center>
-					<td><label><b>Nombre del Archivo </b></label> </td>
-					<td><input class="texto1" type="text" maxlength="200" name="txtArchivo" id="txtArchivo" size ="100" placeholder="Digite la ruta del archivo"></td>
+					<td><label><b class="nprod">Nombre del Archivo </b></label> </td>
+					<td><input class="texto1" type="text" maxlength="200" name="txtArchivo" id="txtArchivo" size ="100" placeholder="Digite la ruta del archivo" required></td>
 					<td><input class="button" type="submit" name="btnExaminar" id="btnExaminar" value="Examinar"></td>
 				</center>
 				<br><br>

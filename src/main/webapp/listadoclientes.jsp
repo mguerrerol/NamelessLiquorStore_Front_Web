@@ -7,7 +7,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nameless Liquor Store</title>
+		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Listado Clientes</title>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 	</head>
@@ -34,6 +35,7 @@
 					<tr>
 						<td>Cedula</td><td>Nombre</td><td>Correo Electronico</td><td>Direccion</td><td>Telefono</td>
 					</tr>
+					
 					
 				</table>
 			</center>

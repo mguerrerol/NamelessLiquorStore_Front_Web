@@ -32,7 +32,7 @@
 						<td><input type="checkbox" onclick=verPassword()><label>Mostrar Contraseña</label></td>
 					</tr>
 		    	</table>
-				<p class="indexError"> .</p>
+				<p><b>Credenciales invalidas,</b> por favor contactar con el administrador del sistema.</p>
 				<td><input type="submit" name="btnAceptar" id="btnAceptar" value="Aceptar" class="button"></td>
 				<td><input type="reset" name="btnCancelar" id="btnCancelar" value="Cancelar" class="button"></td>
 				</center>

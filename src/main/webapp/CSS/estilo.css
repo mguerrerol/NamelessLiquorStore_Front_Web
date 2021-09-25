@@ -269,3 +269,23 @@ label
 	margin-right: 30px;
 	padding: 0;
 }
+
+b
+{
+	color: red;
+}
+
+p
+{
+	color: white;
+}
+
+.nprod
+{
+	color: white;
+}
+
+.indexError
+{
+	color: #1C6EA4
+}

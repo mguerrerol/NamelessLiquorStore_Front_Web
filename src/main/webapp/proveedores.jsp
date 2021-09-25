@@ -4,7 +4,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nameless Liquor Store</title>
+		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
+		<title>Nameless LS - Proveedores</title>
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 	</head>
@@ -23,12 +24,13 @@
 		</ul>
 		<form class="formulario" method="get" action="./ProveedoresServlet">
 		<div>
-			<br><br>
-			<br><br>
+			<br>
+			<h2>Proveedores</h2>
+			<br>
 			<center>
 		      <table border = "0">
 		        <tr><td><label>NIT </label></td>
-				    <td><input type="text" name="txtNit" id="txtNit" maxlength="20" size ="50" placeholder="Digite el NIT"></td>
+				    <td><input type="text" name="txtNit" id="txtNit" maxlength="20" size ="50" placeholder="Digite el NIT" required></td>
 
 					<td><label>Teléfono</label></td>
 					<td><input type="text" name="txtTelefono" id="txtTelefono" maxlength="50" size ="50" placeholder="Digite el teléfono"></td>

@@ -82,7 +82,7 @@ public class VentasJSON {
 		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
-		+ "\"ccodigo_ventas\":\""+ venta.getCodigo_ventas()
+		+ "\"codigo_ventas\":\""+ venta.getCodigo_ventas()
 		+"\",\"cedula_clientes\": \""+venta.getCedula_clientes()
 		+"\",\"cedula_usuarios\": \""+venta.getCedula_usuarios()
 		+"\",\"ivaventa_ventas\":\""+venta.getIvaventa_ventas()

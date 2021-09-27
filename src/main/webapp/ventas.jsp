@@ -92,7 +92,7 @@
 					<td><input type="reset" name="btnCancelar" id="btnCancelar" value="Cancelar" class="button"></td><td><input type="submit" name="btnConfirmar" value="Confirmar" class="button"></td>
 					<td><label></label></td>
 					<td><label>Total con IVA </label></td>
-					<td><input type="text" name="txtTotalConIva" id="txttotalconiva" value="0"  maxlength="20" size ="10" "disabled"></td>
+					<td><input type="text" name="txtTotalConIva" id="txtTotalConIva" value="0"  maxlength="20" size ="10" "disabled"></td>
 				</tr>
 				</table>
 				<br>

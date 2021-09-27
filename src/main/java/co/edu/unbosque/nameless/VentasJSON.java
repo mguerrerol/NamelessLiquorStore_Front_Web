@@ -16,35 +16,36 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class ProveedoresJSON {
+public class VentasJSON {
 	
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
 
-	public static ArrayList<Proveedores> parsingProveedores (String json) throws ParseException {
+	public static ArrayList<Ventas> parsingVentas(String json) throws ParseException {
 		
 		JSONParser jsonParser = new JSONParser();
-		ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
+		ArrayList<Ventas> lista = new ArrayList<Ventas>();
 		
-		JSONArray proveedores = (JSONArray) jsonParser.parse(json);
-		Iterator i = proveedores.iterator();
+		JSONArray ventas = (JSONArray) jsonParser.parse(json);
+		Iterator i = ventas.iterator();
 		
 		while (i.hasNext()) {
 			JSONObject innerObj = (JSONObject) i.next();
-			Proveedores proveedor = new Proveedores();
-			proveedor.setNitproveedor_proveedores(Long.parseLong(innerObj.get("nitproveedor_proveedores").toString()));
-			proveedor.setNombre_proveedores(innerObj.get("nombre_proveedores").toString());
-			proveedor.setCiudad_proveedores(innerObj.get("ciudad_proveedores").toString());
-			proveedor.setDireccion_proveedores(innerObj.get("direccion_proveedores").toString());
-			proveedor.setTelefono_proveedores(innerObj.get("telefono_proveedores").toString());
-			lista.add(proveedor);
+			Ventas venta = new Ventas();
+			venta.setCodigo_ventas(Long.parseLong(innerObj.get("codigo_ventas").toString()));
+			venta.setCedula_usuarios(Long.parseLong(innerObj.get("cedula_usuarios").toString()));
+			venta.setCedula_clientes(Long.parseLong(innerObj.get("cedula_clientes").toString()));
+			venta.setIvaventa_ventas(Double.parseDouble(innerObj.get("ivaventa_ventas").toString()));
+			venta.setTotal_venta_ventas(Double.parseDouble(innerObj.get("total_venta_ventas").toString()));
+			venta.setValor_venta_ventas(Double.parseDouble(innerObj.get("valor_venta_ventas").toString()));
+			lista.add(venta);
 		}
 		return lista;
 	}
 
-	public static ArrayList<Proveedores> getJSON() throws IOException, ParseException{
+	public static ArrayList<Ventas> getJSON() throws IOException, ParseException{
 		
-		url = new URL(sitio+"proveedores/listar");
+		url = new URL(sitio+"ventas/listar");
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();
 		http.setRequestMethod("GET");
@@ -58,14 +59,14 @@ public class ProveedoresJSON {
 			json += (char)inp[i];
 		}
 		
-		ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
-		lista = parsingProveedores(json);
+		ArrayList<Ventas> lista = new ArrayList<Ventas>();
+		lista = parsingVentas(json);
 		http.disconnect();
 		return lista;
 	}
 	
-	public static int postJSON(Proveedores proveedor) throws IOException {
-		url = new URL(sitio+"proveedores/guardar");
+	public static int postJSON(Ventas venta) throws IOException {
+		url = new URL(sitio+"ventas/guardar");
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
@@ -81,11 +82,12 @@ public class ProveedoresJSON {
 		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
-		+ "\"nitproveedor_proveedores\":\""+ proveedor.getNitproveedor_proveedores()
-		+"\",\"nombre_proveedores\": \""+proveedor.getNombre_proveedores()
-		+"\",\"telefono_proveedores\": \""+proveedor.getTelefono_proveedores()
-		+"\",\"direccion_proveedores\":\""+proveedor.getDireccion_proveedores()
-		+"\",\"ciudad_proveedores\":\""+proveedor.getCiudad_proveedores()
+		+ "\"ccodigo_ventas\":\""+ venta.getCodigo_ventas()
+		+"\",\"cedula_clientes\": \""+venta.getCedula_clientes()
+		+"\",\"cedula_usuarios\": \""+venta.getCedula_usuarios()
+		+"\",\"ivaventa_ventas\":\""+venta.getIvaventa_ventas()
+		+"\",\"total_venta_ventas\":\""+venta.getTotal_venta_ventas()
+		+"\",\"valor_venta_ventas\":\""+venta.getValor_venta_ventas()
 		+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();

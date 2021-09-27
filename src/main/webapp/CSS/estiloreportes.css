@@ -121,3 +121,8 @@ img
 	height: 150px;
 	padding:0px;
 }
+
+.active
+{
+	background: #1C6EA4;
+}

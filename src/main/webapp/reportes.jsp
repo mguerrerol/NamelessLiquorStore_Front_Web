@@ -19,12 +19,12 @@
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
 			<li><a href="ventas.jsp">Ventas</a></li>
-			<li><a href="reportes.jsp">Reportes</a></li>
+			<li><a href="reportes.jsp" class="active">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
 		</ul>
 		<form class=formulario method="get" action="./ReportesServlet">
-		<br><br>
-		<br><br>
+		<br>
+		<h2>Reportes</h2>
 			<center>
 		    <input type="submit" name="btnListadoUsuarios" id="btnListadoUsuarios" value="Listado de Usuarios" class="button"></a>
 				 <br><br>

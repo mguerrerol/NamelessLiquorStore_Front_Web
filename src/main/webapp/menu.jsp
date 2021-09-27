@@ -29,7 +29,7 @@
 				<center>
 				<label>En el sistema usted podrá realizar las siguientes tareas.</label>
 				<br><br>
-				<table class="tablaMenu" font-color=white>
+				<table class="tablaMenu">
 					<tr>
 						<td><label>Usuarios</label></td><td><label>Permite ingresar, eliminar, modificar y consultar los usuarios que tienen acceso al sistema.</label></td>
 					</tr>

@@ -17,7 +17,7 @@
 			<li><a href="usuarios.jsp">Usuarios</a></li>
 			<li><a href="clientes.jsp">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
-			<li><a href="productos.jsp">Productos</a></li>
+			<li><a href="productos.jsp" class="active">Productos</a></li>
 			<li><a href="ventas.jsp">Ventas</a></li>
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
@@ -26,8 +26,7 @@
 			<div>
 				<br><br>
 				<h2>Productos</h2>
-				<br><br>
-				<br>
+				<br><br>	
 				<center>
 					<td><label><b class="nprod">Nombre del Archivo </b></label> </td>
 					<td><input class="texto1" type="text" maxlength="200" name="txtArchivo" id="txtArchivo" size ="100" placeholder="Digite la ruta del archivo" required></td>

@@ -33,12 +33,6 @@ public class UsuariosServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		/*String cedula_usuarios = request.getParameter("txtCedula");
-		String usuario_usuarios = request.getParameter("txtUsuario");
-		String nombre_usuarios = request.getParameter("txtNombre");
-		String password_usuarios = request.getParameter("txtPassword");
-		String email_usuarios = request.getParameter("txtCorreo");
-		*/
 		String btnConsultar = request.getParameter("btnConsultar");	
 		String btnCrear = request.getParameter("btnCrear");	
 		String btnActualizar = request.getParameter("btnActualizar");	
@@ -62,8 +56,8 @@ public class UsuariosServlet extends HttpServlet {
 		}
 		
 		if(btnBorrar != null)
-		{
-			
+		{	
+
 		}
 		
 	}
@@ -93,6 +87,7 @@ public class UsuariosServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
 		try {

@@ -8,6 +8,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Iterator;
 
 import org.json.simple.JSONArray;
@@ -44,9 +45,11 @@ public class ClientesJSON {
 	public static ArrayList<Clientes> getJSON() throws IOException, ParseException{
 		
 		url = new URL(sitio+"clientes/listar");
-		HttpURLConnection http = (HttpURLConnection)url.openConnection();
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
+		HttpURLConnection http = (HttpURLConnection)url.openConnection();		
 		http.setRequestMethod("GET");
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		InputStream respuesta = http.getInputStream();
 		byte[] inp = respuesta.readAllBytes();
 		String json = "";
@@ -63,8 +66,10 @@ public class ClientesJSON {
 	
 	public static int postJSON(Clientes cliente) throws IOException {
 		url = new URL(sitio+"clientes/guardar");
+		
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		
 		try {
 			http.setRequestMethod("POST");
@@ -74,6 +79,7 @@ public class ClientesJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
 		+ "\"cedula_clientes\":\""+ cliente.getCedula_clientes()

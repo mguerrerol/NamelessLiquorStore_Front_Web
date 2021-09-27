@@ -15,7 +15,7 @@
 		</header>
 		<ul class="menu">
  			<li><a href="usuarios.jsp">Usuarios</a></li>
-			<li><a href="clientes.jsp">Clientes</a></li>
+			<li><a href="clientes.jsp" class="active">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
 			<li><a href="ventas.jsp">Ventas</a></li>

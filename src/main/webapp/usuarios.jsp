@@ -14,7 +14,7 @@
 				<img class= "header" src="IMG/titulo.png" alt="Nameless Liquor Store">
 		</header>
 		<ul class="menu">
-			<li><a href="usuarios.jsp">Usuarios</a></li>
+			<li><a href="usuarios.jsp" class="active">Usuarios</a></li>
 			<li><a href="clientes.jsp">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
@@ -22,7 +22,7 @@
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
 		</ul>
-		<form class="formulario" method="get" action="./UsuariosServlet">
+		<form class="formulario" method="post" action="./UsuariosServlet">
 		<div>
 			<br>
 			<h2>Usuarios</h2>

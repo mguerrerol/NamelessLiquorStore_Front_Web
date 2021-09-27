@@ -29,6 +29,7 @@
 		<br><br>
 			
 		    <h2>Listado de Usuarios</h2>
+		    <center>
 		    <h4>Hora servidor: <%= new Date() %></h4>
 				<br>
 				<table border=4>
@@ -37,7 +38,7 @@
 					</tr>				
 				
 				</table>
-		
+			</center>	
 		<br><br>
 	</form>
 	<footer>

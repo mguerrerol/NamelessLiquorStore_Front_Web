@@ -95,6 +95,61 @@ public class ProveedoresJSON {
 		return respuesta;
 	}
 	
+	public static int putJSON(Proveedores proveedor, Long id) throws IOException {
+		
+		url = new URL(sitio+"proveedores/actualizar");
+		HttpURLConnection http;
+		http = (HttpURLConnection)url.openConnection();
+		
+		try {
+		  http.setRequestMethod("PUT");
+		} catch (ProtocolException e) {
+		  e.printStackTrace();
+		}
+		
+		http.setDoOutput(true);
+		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Content-Type", "application/json");
+		
+		String data = "{"
+				+ "\"nitproveedor_proveedores\":\""+ proveedor.getNitproveedor_proveedores()
+				+"\",\"nombre_proveedores\": \""+proveedor.getNombre_proveedores()
+				+"\",\"telefono_proveedores\": \""+proveedor.getTelefono_proveedores()
+				+"\",\"direccion_proveedores\":\""+proveedor.getDireccion_proveedores()
+				+"\",\"ciudad_proveedores\":\""+proveedor.getCiudad_proveedores()
+				+ "\"}";
+		byte[] out = data.getBytes(StandardCharsets.UTF_8);
+		OutputStream stream = http.getOutputStream();
+		stream.write(out);
+		
+		int respuesta = http.getResponseCode();
+		http.disconnect();
+		return respuesta;
+	}
+
+
+	public static int deleteJSON(Long id) throws IOException {
+	
+		url = new URL(sitio+"proveedores/eliminar/" + id);
+		HttpURLConnection http;
+		http = (HttpURLConnection)url.openConnection();
+	
+		try {
+			http.setRequestMethod("DELETE");
+		} catch (ProtocolException e) {
+			e.printStackTrace();
+		}
+	
+		http.setDoOutput(true);
+		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Content-Type", "application/json");
+	
+		int respuesta = http.getResponseCode();
+		http.disconnect();
+		return respuesta;
+	}
+	
+	
 }
 
 

@@ -57,12 +57,12 @@ public class ProveedoresServlet extends HttpServlet {
 		
 		if(btnActualizar != null)
 		{
-			
+			actualizarProveedor(request,response);
 		}
 		
 		if(btnBorrar != null)
 		{
-			
+			eliminarProveedor(request,response);
 		}
 	
 	}
@@ -93,6 +93,48 @@ public class ProveedoresServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	public void eliminarProveedor(HttpServletRequest request, HttpServletResponse response) {
+		Long id= Long.parseLong(request.getParameter("txtNit"));			
+		int respuesta=0;
+		try {
+		   respuesta = ProveedoresJSON.deleteJSON(id);
+		   PrintWriter write = response.getWriter();
+		   if (respuesta==200) {
+			   request.getRequestDispatcher("/proveedores.jsp").forward(request, response);
+		   } else {
+			write.println("Error: " +  respuesta);
+		   }
+		      write.close();
+		   } catch (Exception e) {
+			e.printStackTrace();
+		   }	
+		}
+		
+	public void actualizarProveedor(HttpServletRequest request, HttpServletResponse response) {
+			
+		Proveedores proveedor = new Proveedores();
+		proveedor.setNombre_proveedores(request.getParameter("txtNombre"));
+		proveedor.setNitproveedor_proveedores(Long.parseLong(request.getParameter("txtNit")));
+		proveedor.setTelefono_proveedores(request.getParameter("txtTelefono"));
+		proveedor.setDireccion_proveedores(request.getParameter("txtDireccion"));
+		proveedor.setCiudad_proveedores(request.getParameter("txtCiudad"));
+		int respuesta = 0;
+			
+		try {
+			respuesta = ProveedoresJSON.putJSON(proveedor,proveedor.getNitproveedor_proveedores());
+			PrintWriter write = response.getWriter();
+					
+			if (respuesta==200) {
+				request.getRequestDispatcher("/proveedores.jsp").forward(request, response);
+			} else {
+				write.println("Error: " +  respuesta);
+			}
+			write.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	public void listarProveedores(HttpServletRequest request, HttpServletResponse response) {
 		try {

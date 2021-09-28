@@ -96,6 +96,58 @@ public class ClientesJSON {
 		return respuesta;
 	}
 	
+	public static int putJSON(Clientes cliente, Long id) throws IOException {
+		
+		url = new URL(sitio+"clientes/actualizar");
+		HttpURLConnection http;
+		http = (HttpURLConnection)url.openConnection();
+		
+		try {
+		  http.setRequestMethod("PUT");
+		} catch (ProtocolException e) {
+		  e.printStackTrace();
+		}
+		
+		http.setDoOutput(true);
+		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Content-Type", "application/json");
+		
+		String data = "{"
+				+ "\"cedula_clientes\":\""+ cliente.getCedula_clientes()
+				+"\",\"email_clientes\": \""+cliente.getEmail_clientes()
+				+"\",\"nombre_clientes\": \""+cliente.getNombre_clientes()
+				+"\",\"telefono_clientes\":\""+cliente.getTelefono_clientes()
+				+"\",\"direccion_clientes\":\""+cliente.getDireccion_clientes()
+				+ "\"}";
+		byte[] out = data.getBytes(StandardCharsets.UTF_8);
+		OutputStream stream = http.getOutputStream();
+		stream.write(out);
+		
+		int respuesta = http.getResponseCode();
+		http.disconnect();
+		return respuesta;
+	}
+
+
+	public static int deleteJSON(Long id) throws IOException {
+	
+		url = new URL(sitio+"clientes/eliminar/" + id);
+		HttpURLConnection http;
+		http = (HttpURLConnection)url.openConnection();
+	
+		try {
+			http.setRequestMethod("DELETE");
+		} catch (ProtocolException e) {
+			e.printStackTrace();
+		}
+	
+		http.setDoOutput(true);
+		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Content-Type", "application/json");
+	
+		int respuesta = http.getResponseCode();
+		http.disconnect();
+		return respuesta;
+	}
+	
 }
-
-

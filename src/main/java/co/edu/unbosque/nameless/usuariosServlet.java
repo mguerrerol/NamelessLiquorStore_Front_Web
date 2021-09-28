@@ -52,12 +52,12 @@ public class UsuariosServlet extends HttpServlet {
 		
 		if(btnActualizar != null)
 		{
-			
+			actualizarUsuario(request,response);
 		}
 		
 		if(btnBorrar != null)
 		{	
-
+			eliminarUsuario(request,response);
 		}
 		
 	}
@@ -88,6 +88,48 @@ public class UsuariosServlet extends HttpServlet {
 		}
 	}
 	
+	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
+	Long id= Long.parseLong(request.getParameter("txtCedula"));			
+	int respuesta=0;
+	try {
+	   respuesta = UsuariosJSON.deleteJSON(id);
+	   PrintWriter write = response.getWriter();
+	   if (respuesta==200) {
+		   request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+	   } else {
+		write.println("Error: " +  respuesta);
+	   }
+	      write.close();
+	   } catch (Exception e) {
+		e.printStackTrace();
+	   }	
+	}
+	
+	public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
+		
+		Usuarios usuario = new Usuarios();
+		usuario.setNombre_usuarios(request.getParameter("txtNombre"));
+		usuario.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
+		usuario.setEmail_usuarios(request.getParameter("txtCorreo"));
+		usuario.setUsuario_usuarios(request.getParameter("txtUsuario"));
+		usuario.setPassword_usuarios(request.getParameter("txtPassword"));
+
+		int respuesta=0;
+		try {
+			respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
+			PrintWriter write = response.getWriter();
+				
+			if (respuesta==200) {
+				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+			} else {
+				write.println("Error: " +  respuesta);
+			}
+			write.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+
 	
 	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -107,6 +149,8 @@ public class UsuariosServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
 	}
 
 }

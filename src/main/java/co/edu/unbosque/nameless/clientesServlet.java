@@ -57,12 +57,12 @@ public class ClientesServlet extends HttpServlet {
 		
 		if(btnActualizar != null)
 		{
-			
+			actualizarUsuario(request,response);
 		}
 		
 		if(btnBorrar != null)
 		{
-			
+			eliminarCliente(request,response);
 		}
 		
 	}
@@ -92,6 +92,48 @@ public class ClientesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	public void eliminarCliente(HttpServletRequest request, HttpServletResponse response) {
+		Long id= Long.parseLong(request.getParameter("txtCedula"));			
+		int respuesta=0;
+		try {
+		   respuesta = ClientesJSON.deleteJSON(id);
+		   PrintWriter write = response.getWriter();
+		   if (respuesta==200) {
+			   request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+		   } else {
+			write.println("Error: " +  respuesta);
+		   }
+		      write.close();
+		   } catch (Exception e) {
+			e.printStackTrace();
+		   }	
+		}
+		
+		public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
+			
+			Clientes cliente = new Clientes();
+			cliente.setNombre_clientes(request.getParameter("txtNombre"));
+			cliente.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));
+			cliente.setEmail_clientes(request.getParameter("txtCorreo"));
+			cliente.setTelefono_clientes(request.getParameter("txtTelefono"));
+			cliente.setDireccion_clientes(request.getParameter("txtDireccion"));
+			int respuesta = 0;
+			
+			try {
+				respuesta = ClientesJSON.putJSON(cliente,cliente.getCedula_clientes());
+				PrintWriter write = response.getWriter();
+					
+				if (respuesta==200) {
+					request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+				} else {
+					write.println("Error: " +  respuesta);
+				}
+				write.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
 	
 	public void listarClientes(HttpServletRequest request, HttpServletResponse response) {
 		try {

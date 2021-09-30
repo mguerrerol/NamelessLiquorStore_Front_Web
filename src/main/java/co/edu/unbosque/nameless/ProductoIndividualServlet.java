@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UsuariosServlet
  */
-@WebServlet("/UsuariosServlet")
-public class UsuariosServlet extends HttpServlet {
+@WebServlet("/ProductoIndividualServlet")
+public class ProductoIndividualServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsuariosServlet() {
+    public ProductoIndividualServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,41 +40,42 @@ public class UsuariosServlet extends HttpServlet {
 		
 		if(btnConsultar != null)
 		{
-			listarUsuarios(request,response);
+			listarProductos(request,response);
 		}
 		
 		if(btnCrear != null)
 		{
-			crearUsuario(request,response);
+			crearProductoIndividual(request,response);
 		}
 		
 		if(btnActualizar != null)
 		{
-			actualizarUsuario(request,response);
+			actualizarProductoIndividual(request,response);
 		}
 		
 		if(btnBorrar != null)
 		{	
-			eliminarUsuario(request,response);
+			eliminarProductoIndividual(request,response);
 		}
 		
 	}
 	
-	public void crearUsuario(HttpServletRequest request, HttpServletResponse response) {
-		Usuarios usuario = new Usuarios();
-		usuario.setNombre_usuarios(request.getParameter("txtNombre"));
-		usuario.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
-		usuario.setEmail_usuarios(request.getParameter("txtCorreo"));
-		usuario.setUsuario_usuarios(request.getParameter("txtUsuario"));
-		usuario.setPassword_usuarios(request.getParameter("txtPassword"));
+	public void crearProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
+		Productos producto = new Productos();
+		producto.setCodigo_productos(Long.parseLong(request.getParameter("txtCodigo")));
+		producto.setNombre_productos(request.getParameter("txtNombre"));
+		producto.setNitproveedor_proveedores(Long.parseLong(request.getParameter("txtNIT")));
+		producto.setIvacompra_productos(Double.parseDouble(request.getParameter("txtIVA")));
+		producto.setPrecio_compra_productos(Double.parseDouble(request.getParameter("txtValorCompra")));
+		producto.setPrecio_venta_productos(Double.parseDouble(request.getParameter("txtValorVenta")));
 		int respuesta = 0;
 		
 		try {
-			respuesta = UsuariosJSON.postJSON(usuario);
+			respuesta = ProductoIndividualJSON.postJSON(producto);
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/productosindividual.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -86,14 +87,14 @@ public class UsuariosServlet extends HttpServlet {
 		}
 	}
 	
-	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
-		Long id= Long.parseLong(request.getParameter("txtCedula"));			
+	public void eliminarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
+		Long id= Long.parseLong(request.getParameter("txtCodigo"));			
 		int respuesta=0;
 		try {
-			respuesta = UsuariosJSON.deleteJSON(id);
+			respuesta = ProductoIndividualJSON.deleteJSON(id);
 			PrintWriter write = response.getWriter();
 			if (respuesta==200) {
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/productos.jsp").forward(request, response);
 				} else {
 				write.println("Error: " +  respuesta);
 				}
@@ -103,22 +104,22 @@ public class UsuariosServlet extends HttpServlet {
 		}	
 	}
 	
-	public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
+	public void actualizarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
 		
-		Usuarios usuario = new Usuarios();
-		usuario.setNombre_usuarios(request.getParameter("txtNombre"));
-		usuario.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
-		usuario.setEmail_usuarios(request.getParameter("txtCorreo"));
-		usuario.setUsuario_usuarios(request.getParameter("txtUsuario"));
-		usuario.setPassword_usuarios(request.getParameter("txtPassword"));
-
-		int respuesta=0;
+		Productos producto = new Productos();
+		producto.setCodigo_productos(Long.parseLong(request.getParameter("txtCodigo")));
+		producto.setNombre_productos(request.getParameter("txtNombre"));
+		producto.setNitproveedor_proveedores(Long.parseLong(request.getParameter("txtNIT")));
+		producto.setIvacompra_productos(Double.parseDouble(request.getParameter("txtIVA")));
+		producto.setPrecio_compra_productos(Double.parseDouble(request.getParameter("txtValorCompra")));
+		producto.setPrecio_venta_productos(Double.parseDouble(request.getParameter("txtValorVenta")));
+		int respuesta = 0;
 		try {
-			respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
+			respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
 			PrintWriter write = response.getWriter();
 				
 			if (respuesta==200) {
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/productoindividual.jsp").forward(request, response);
 			} else {
 				write.println("Error: " +  respuesta);
 			}
@@ -129,10 +130,10 @@ public class UsuariosServlet extends HttpServlet {
 	}
 
 	
-	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
+	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
-			String pagina = "/listadousuarios.jsp";
+			ArrayList<Productos> lista = ProductosJSON.getJSON();
+			String pagina = "/listadoproductos.jsp";
 			request.setAttribute("lista",lista);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);

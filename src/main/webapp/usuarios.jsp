@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="co.edu.unbosque.nameless.Usuarios"%>
+<%@page import="java.util.ArrayList"%>
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,6 +21,7 @@
 			<li><a href="clientes.jsp">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
+			<li><a href="productoindividual.jsp">Producto Individual</a></li>
 			<li><a href="ventas.jsp">Ventas</a></li>
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
@@ -57,7 +61,7 @@
 		     <td><input type="submit" name="btnActualizar" id="btnActualizar" value="Actualizar" class="button"></td>
 		     <td><input type="submit" name="btnBorrar" id="btnBorrar" value="Borrar" class="button"></td>
 			</center>
-		</div>
+		</div>		
 		</form>
 		<footer>
 				<img class="footer" src="IMG/footer.png" alt="Nameless Liquor Store">

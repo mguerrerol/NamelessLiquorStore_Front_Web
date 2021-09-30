@@ -18,6 +18,7 @@
 			<li><a href="clientes.jsp">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
+			<li><a href="productoindividual.jsp">Producto Individual</a></li>
 			<li><a href="ventas.jsp" class="active">Ventas</a></li>
 			<li><a href="reportes.jsp">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>

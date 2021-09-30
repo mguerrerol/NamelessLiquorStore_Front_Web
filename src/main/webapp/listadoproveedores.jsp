@@ -2,13 +2,13 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <%@ page import = 'java.util.Date' %>
-<%@ page import = 'co.edu.unbosque.nameless.Clientes' %>
+<%@ page import = 'co.edu.unbosque.nameless.Proveedores' %>
 <%@ page import = 'java.util.ArrayList' %>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
-		<title>Nameless LS - Listado Clientes</title>
+		<title>Nameless LS - Listado Usuarios</title>	
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 	</head>
@@ -29,25 +29,25 @@
 		<form class="formulario">
 		<br>
 			<center>
-		    <h1>Listado de Clientes</h1>
+		    <h1>Listado de Proveedores</h1>
 		    <h4>Hora servidor: <%= new Date() %></h4>
 				<table border="5">
 					<tr>
-						<td>Cedula</td><td>Nombre</td><td>Correo Electronico</td><td>Direccion</td><td>Telefono</td>
-					</tr>
-					<% ArrayList<Clientes> lista= (ArrayList<Clientes>) request.getAttribute("lista");
-					for (Clientes cliente:lista){
+						<td>NIT</td><td>Nombre</td><td>Telefono</td><td>Direccion</td><td>Ciudad</td>
+					</tr>	
+					<% ArrayList<Proveedores> lista= (ArrayList<Proveedores>) request.getAttribute("lista");
+					for (Proveedores proveedor:lista){
 					%>
 					<tr>
-						<td><%=cliente.getCedula_clientes()%></td>
-						<td><%=cliente.getNombre_clientes()%></td>
-						<td><%=cliente.getEmail_clientes()%></td>
-						<td><%=cliente.getDireccion_clientes()%></td>
-						<td><%=cliente.getTelefono_clientes()%></td>
+						<td><%=proveedor.getNitproveedor_proveedores()%></td>
+						<td><%=proveedor.getNombre_proveedores()%></td>
+						<td><%=proveedor.getTelefono_proveedores()%></td>
+						<td><%=proveedor.getDireccion_proveedores()%></td>
+						<td><%=proveedor.getCiudad_proveedores()%></td>
         		    </tr>
             		<%}%>			
 				</table>
-			</center>
+			</center>	
 		<br><br>
 	</form>
 	<footer>

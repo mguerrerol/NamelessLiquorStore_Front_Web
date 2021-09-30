@@ -9,7 +9,7 @@ body{
 	padding: 0;
 }
 
-h2
+h1, h4
 {
 	font-weight: bold;
 	font-style: italic;
@@ -23,10 +23,9 @@ h2
 	padding: 0;
 	background: #00075f;
 	width: 100%;
-	max-width: 1000px;
-	margin-left: 177px;
-	margin-bottom:0px;
-	margin-top: 0px;
+	max-width: 1100px;
+	display:block;
+	margin:0 auto 0 auto;
 }
 
 .menu li a{
@@ -94,30 +93,22 @@ img
 	padding:0px;
 }
 
-.formulario
-{
-	background: #1C6EA4;
-	padding: 0px;
-	margin-left: 177px;
-	width: 1000px;
-	height: 450px;
-}
+
 
 .header
 {
-	margin-left: 177px;
-	margin-bottom: 0px;
-	align: center;
-	width: 1000px;
+	display:block;
+	margin:0 auto 0 auto;
+	width: 1100px;
 	height: 100px;
 	padding:0px;
 }
 
 .footer
 {
-	margin-left: 177px;
-	align: center;
-	width: 1000px;
+	display:block;
+	margin:0 auto 0 auto;
+	width: 1100px;
 	height: 150px;
 	padding:0px;
 }
@@ -125,4 +116,15 @@ img
 .active
 {
 	background: #1C6EA4;
+}
+
+.formulario
+{
+	background: #1C6EA4;
+	padding: 0px;
+	display:block;
+	margin:0 auto 0 auto;
+	width: 1100px;
+	height: 0 auto;
+	border-radius: 0px;
 }

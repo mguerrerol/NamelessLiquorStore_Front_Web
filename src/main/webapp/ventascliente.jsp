@@ -21,16 +21,16 @@
 			<li><a href="clientes.jsp">Clientes</a></li>
 			<li><a href="proveedores.jsp">Proveedores</a></li>
 			<li><a href="productos.jsp">Productos</a></li>
+			<li><a href="productoindividual.jsp">Producto Individual</a></li>
 			<li><a href="ventas.jsp">Ventas</a></li>
-			<li><a href="reportes.jsp">Reportes</a></li>
+			<li><a href="reportes.jsp" class="active">Reportes</a></li>
 			<li><a href="index.jsp">Salir</a></li>
 		</ul>
 		<form class="formulario">
-		<br><br>
+		<br>
 			<center>
-		    <h2>Total de Ventas por Cliente</h2>
+		    <h1>Total de Ventas por Cliente</h1>
 		    <h4>Hora servidor: <%= new Date() %></h4>
-				<br>
 				<table border="5">
 					<tr>
 						<td>Cedula</td><td>Nombre</td><td>Valor Total Ventas</td>

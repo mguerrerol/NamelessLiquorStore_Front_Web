@@ -1,6 +1,9 @@
 package co.edu.unbosque.nameless;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,21 +34,84 @@ public class ReportesServlet extends HttpServlet {
 		
 		String btnListadoUsuarios = request.getParameter("btnListadoUsuarios");
 		String btnListadoClientes = request.getParameter("btnListadoClientes");
+		String btnlistadoProveedores= request.getParameter("btnlistadoProveedores");
+		String btnlistadoProductos = request.getParameter("btnlistadoProductos");
 		String btnVentasCliente = request.getParameter("btnVentasCliente");
+		
 
 		if (btnListadoUsuarios != null) {
-			request.getRequestDispatcher("/listadousuarios.jsp").forward(request, response);
+			listarUsuarios(request,response);
 		}
 		
 		if (btnListadoClientes != null) {
-			request.getRequestDispatcher("/listadoclientes.jsp").forward(request, response);
+			listarClientes(request,response);
 		}
 		
-		if (btnVentasCliente != null) {
+		if (btnlistadoProveedores != null) 
+		{
+			listarProveedores(request,response);
+		}
+
+		if (btnlistadoProductos != null) 
+		{
+			listarProductos(request,response);
+		}
+		
+		if (btnVentasCliente != null)
+		{
 			request.getRequestDispatcher("/ventascliente.jsp").forward(request, response);
 		}
 		
 	}
+	
+	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
+			String pagina = "/listadousuarios.jsp";
+			request.setAttribute("lista",lista);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void listarClientes(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Clientes> lista = ClientesJSON.getJSON();
+			String pagina = "/listadoclientes.jsp";
+			request.setAttribute("lista",lista);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void listarProveedores(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Proveedores> lista = ProveedoresJSON.getJSON();
+			String pagina = "/listadoproveedores.jsp";
+			request.setAttribute("lista",lista);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Productos> lista = ProductosJSON.getJSON();
+			String pagina = "/listadoproductos.jsp";
+			request.setAttribute("lista",lista);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

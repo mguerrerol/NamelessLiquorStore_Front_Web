@@ -2,13 +2,13 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <%@ page import = 'java.util.Date' %>
-<%@ page import = 'co.edu.unbosque.nameless.Clientes' %>
+<%@ page import = 'co.edu.unbosque.nameless.Productos' %>
 <%@ page import = 'java.util.ArrayList' %>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="ISO-8859-1">
 		<link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon"/>
-		<title>Nameless LS - Listado Clientes</title>
+		<title>Nameless LS - Listado Productos</title>	
 		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 	</head>
@@ -29,29 +29,27 @@
 		<form class="formulario">
 		<br>
 			<center>
-		    <h1>Listado de Clientes</h1>
+		    <h1>Listado de Productos</h1>
 		    <h4>Hora servidor: <%= new Date() %></h4>
 				<table border="5">
 					<tr>
-						<td>Cedula</td><td>Nombre</td><td>Correo Electronico</td><td>Direccion</td><td>Telefono</td>
-					</tr>
-					<% ArrayList<Clientes> lista= (ArrayList<Clientes>) request.getAttribute("lista");
-					for (Clientes cliente:lista){
+						<td>Codigo</td><td>Nombre</td><td>Precio Venta</td>
+					</tr>	
+					<% ArrayList<Productos> lista= (ArrayList<Productos>) request.getAttribute("lista");
+					for (Productos producto:lista){
 					%>
 					<tr>
-						<td><%=cliente.getCedula_clientes()%></td>
-						<td><%=cliente.getNombre_clientes()%></td>
-						<td><%=cliente.getEmail_clientes()%></td>
-						<td><%=cliente.getDireccion_clientes()%></td>
-						<td><%=cliente.getTelefono_clientes()%></td>
+						<td><%=producto.getCodigo_productos()%></td>
+						<td><%=producto.getNombre_productos()%></td>
+						<td><%=producto.getPrecio_venta_productos()%></td>
         		    </tr>
             		<%}%>			
 				</table>
-			</center>
+			</center>	
 		<br><br>
-	</form>
-	<footer>
+		<footer>
 			<img class="footer" src="IMG/footer.png" alt="Nameless Liquor Store">
-	</footer>
+		</footer>
+	</form>
 	</body>
 </html>

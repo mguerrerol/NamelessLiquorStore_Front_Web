@@ -31,15 +31,7 @@ public class ClientesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		/*
-		long cedula_clientes = Long.parseLong(request.getParameter("txtCedula"));
-		String telefono_clientes = request.getParameter("txtTelefono");
-		String nombre_clientes = request.getParameter("txtNombre");
-		String email_clientes = request.getParameter("txtCorreo");
-		String direccion_clientes = request.getParameter("txtDireccion");
-		*/
-		
+				
 		String btnConsultar = request.getParameter("btnConsultar");	
 		String btnCrear = request.getParameter("btnCrear");	
 		String btnActualizar = request.getParameter("btnActualizar");	
@@ -146,11 +138,6 @@ public class ClientesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

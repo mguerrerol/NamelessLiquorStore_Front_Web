@@ -16,35 +16,36 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class ProveedoresJSON {
+public class ProductoIndividualJSON {
 	
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
 
-	public static ArrayList<Proveedores> parsingProveedores (String json) throws ParseException {
+	public static ArrayList<Productos> parsingProductos (String json) throws ParseException {
 		
 		JSONParser jsonParser = new JSONParser();
-		ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
+		ArrayList<Productos> lista = new ArrayList<Productos>();
 		
-		JSONArray proveedores = (JSONArray) jsonParser.parse(json);
-		Iterator i = proveedores.iterator();
+		JSONArray productos = (JSONArray) jsonParser.parse(json);
+		Iterator i = productos.iterator();
 		
 		while (i.hasNext()) {
 			JSONObject innerObj = (JSONObject) i.next();
-			Proveedores proveedor = new Proveedores();
-			proveedor.setNitproveedor_proveedores(Long.parseLong(innerObj.get("nitproveedor_proveedores").toString()));
-			proveedor.setNombre_proveedores(innerObj.get("nombre_proveedores").toString());
-			proveedor.setCiudad_proveedores(innerObj.get("ciudad_proveedores").toString());
-			proveedor.setDireccion_proveedores(innerObj.get("direccion_proveedores").toString());
-			proveedor.setTelefono_proveedores(innerObj.get("telefono_proveedores").toString());
-			lista.add(proveedor);
+			Productos producto = new Productos();
+			producto.setNitproveedor_proveedores(Long.parseLong(innerObj.get("nitproveedor_proveedores").toString()));
+			producto.setCodigo_productos(Long.parseLong(innerObj.get("codigo_productos").toString()));
+			producto.setNombre_productos(innerObj.get("nombre_productos").toString());
+			producto.setPrecio_compra_productos(Double.parseDouble(innerObj.get("precio_compra_productos").toString()));
+			producto.setPrecio_venta_productos(Double.parseDouble(innerObj.get("precio_venta_productos").toString()));
+			producto.setIvacompra_productos(Double.parseDouble(innerObj.get("ivacompra_productos").toString()));
+			lista.add(producto);
 		}
 		return lista;
 	}
 
-	public static ArrayList<Proveedores> getJSON() throws IOException, ParseException{
+	public static ArrayList<Productos> getJSON() throws IOException, ParseException{
 		
-		url = new URL(sitio+"proveedores/listar");
+		url = new URL(sitio+"productos/listar");
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();
 		http.setRequestMethod("GET");
@@ -58,14 +59,14 @@ public class ProveedoresJSON {
 			json += (char)inp[i];
 		}
 		
-		ArrayList<Proveedores> lista = new ArrayList<Proveedores>();
-		lista = parsingProveedores(json);
+		ArrayList<Productos> lista = new ArrayList<Productos>();
+		lista = parsingProductos(json);
 		http.disconnect();
 		return lista;
 	}
 	
-	public static int postJSON(Proveedores proveedor) throws IOException {
-		url = new URL(sitio+"proveedores/guardar");
+	public static int postJSON(Productos producto) throws IOException {
+		url = new URL(sitio+"productos/guardar");
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
@@ -81,11 +82,12 @@ public class ProveedoresJSON {
 		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
-		+ "\"nitproveedor_proveedores\":\""+ proveedor.getNitproveedor_proveedores()
-		+"\",\"nombre_proveedores\": \""+proveedor.getNombre_proveedores()
-		+"\",\"telefono_proveedores\": \""+proveedor.getTelefono_proveedores()
-		+"\",\"direccion_proveedores\":\""+proveedor.getDireccion_proveedores()
-		+"\",\"ciudad_proveedores\":\""+proveedor.getCiudad_proveedores()
+		+ "\"codigo_productos\":\""+ producto.getCodigo_productos()
+		+"\",\"nombre_productos\": \""+producto.getNombre_productos()
+		+"\",\"nitproveedor_proveedores\": \""+producto.getNitproveedor_proveedores()
+		+"\",\"ivacompra_productos\":\""+producto.getIvacompra_productos()
+		+"\",\"precio_compra_productos\":\""+producto.getPrecio_compra_productos()
+		+"\",\"precio_venta_productos\":\""+producto.getPrecio_venta_productos()
 		+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();
@@ -95,12 +97,13 @@ public class ProveedoresJSON {
 		return respuesta;
 	}
 	
-	public static int putJSON(Proveedores proveedor, Long id) throws IOException {
+	public static int putJSON(Productos producto, Long id) throws IOException {
 		
-		url = new URL(sitio+"proveedores/actualizar");
+		url = new URL(sitio+"productos/actualizar");
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
+		
 		try {
 		  http.setRequestMethod("PUT");
 		} catch (ProtocolException e) {
@@ -113,11 +116,12 @@ public class ProveedoresJSON {
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
-				+ "\"nitproveedor_proveedores\":\""+ proveedor.getNitproveedor_proveedores()
-				+"\",\"nombre_proveedores\": \""+proveedor.getNombre_proveedores()
-				+"\",\"telefono_proveedores\": \""+proveedor.getTelefono_proveedores()
-				+"\",\"direccion_proveedores\":\""+proveedor.getDireccion_proveedores()
-				+"\",\"ciudad_proveedores\":\""+proveedor.getCiudad_proveedores()
+				+ "\"codigo_productos\":\""+ producto.getCodigo_productos()
+				+"\",\"nombre_productos\": \""+producto.getNombre_productos()
+				+"\",\"nitproveedor_proveedores\": \""+producto.getNitproveedor_proveedores()
+				+"\",\"ivacompra_productos\":\""+producto.getIvacompra_productos()
+				+"\",\"precio_compra_productos\":\""+producto.getPrecio_compra_productos()
+				+"\",\"precio_venta_productos\":\""+producto.getPrecio_venta_productos()
 				+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();
@@ -131,7 +135,7 @@ public class ProveedoresJSON {
 
 	public static int deleteJSON(Long id) throws IOException {
 	
-		url = new URL(sitio+"proveedores/eliminar/" + id);
+		url = new URL(sitio+"productos/eliminar/" + id);
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();

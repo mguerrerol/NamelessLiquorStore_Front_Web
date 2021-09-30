@@ -99,6 +99,7 @@ public class UsuariosJSON {
 	public static int putJSON(Usuarios usuario, Long id) throws IOException {
 		
 		url = new URL(sitio+"usuarios/actualizar");
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		
@@ -110,6 +111,7 @@ public class UsuariosJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
@@ -132,6 +134,7 @@ public class UsuariosJSON {
 	public static int deleteJSON(Long id) throws IOException {
 	
 		url = new URL(sitio+"usuarios/eliminar/" + id);
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 	
@@ -143,6 +146,7 @@ public class UsuariosJSON {
 	
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 	
 		int respuesta = http.getResponseCode();

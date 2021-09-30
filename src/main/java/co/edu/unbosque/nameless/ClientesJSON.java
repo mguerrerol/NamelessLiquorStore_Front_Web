@@ -34,8 +34,8 @@ public class ClientesJSON {
 			Clientes cliente = new Clientes();
 			cliente.setCedula_clientes(Long.parseLong(innerObj.get("cedula_clientes").toString()));
 			cliente.setEmail_clientes(innerObj.get("email_clientes").toString());
-			cliente.setNombre_clientes(innerObj.get("nombre_cliente").toString());
-			cliente.setTelefono_clientes(innerObj.get("telefono_cliente").toString());
+			cliente.setNombre_clientes(innerObj.get("nombre_clientes").toString());
+			cliente.setTelefono_clientes(innerObj.get("telefono_clientes").toString());
 			cliente.setDireccion_clientes(innerObj.get("direccion_clientes").toString());
 			lista.add(cliente);
 		}
@@ -99,6 +99,7 @@ public class ClientesJSON {
 	public static int putJSON(Clientes cliente, Long id) throws IOException {
 		
 		url = new URL(sitio+"clientes/actualizar");
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		
@@ -110,6 +111,7 @@ public class ClientesJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
@@ -132,6 +134,7 @@ public class ClientesJSON {
 	public static int deleteJSON(Long id) throws IOException {
 	
 		url = new URL(sitio+"clientes/eliminar/" + id);
+		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 	
@@ -143,6 +146,7 @@ public class ClientesJSON {
 	
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
+		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 	
 		int respuesta = http.getResponseCode();

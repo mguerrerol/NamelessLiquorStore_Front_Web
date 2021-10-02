@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/UsuariosServlet")
 public class UsuariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +32,8 @@ public class UsuariosServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		
 		String btnConsultar = request.getParameter("btnConsultar");	
 		String btnCrear = request.getParameter("btnCrear");	
@@ -131,9 +134,11 @@ public class UsuariosServlet extends HttpServlet {
 	
 	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
 			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
-			String pagina = "/listadousuarios.jsp";
+			String pagina = "/usuariosconsulta.jsp";
 			request.setAttribute("lista",lista);
+			request.setAttribute("txtCedula",txtCedula);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

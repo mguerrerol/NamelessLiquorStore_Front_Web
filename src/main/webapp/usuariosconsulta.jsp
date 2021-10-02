@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="co.edu.unbosque.nameless.Usuarios"%>
 <%@page import="java.util.ArrayList"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +31,68 @@
 			<h2>Usuarios</h2>
 			<br>
 			<center>
+				<table border="0">
+					<% ArrayList<Usuarios> lista = (ArrayList<Usuarios>) request.getAttribute("lista");
+		      		long txtCedula = (Long) request.getAttribute("txtCedula");
+		      		int error = 0;
+					for (Usuarios usuario:lista){
+						if (txtCedula == usuario.getCedula_usuarios())
+						{%>
+					<tr>
+						<td>
+							<label>Cedula </label>
+						</td>
+						<td>
+							<input type="text" maxlength="20" id="txtCedula" name="txtCedula" size="50" value=<%=usuario.getCedula_usuarios()%> required>
+						</td>
+						<td>
+							<label>Usuario </label>
+						</td>
+						<td>
+							<input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size="50" value=<%=usuario.getUsuario_usuarios()%>>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Nombre Completo </label>
+						</td>
+						<td>
+							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" value=<%=usuario.getNombre_usuarios()%>>
+						</td>
+
+						<td>
+							<label>Contraseña </label>
+						</td>
+						<td>
+							<input type="password" id="txtPassword"	name="txtPassword" maxlength="50" size="50"	value=<%=usuario.getPassword_usuarios()%>>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Correo Electrónico </label>
+						</td>
+						<td>
+							<input type="email" maxlength="50" id="txtCorreo" name="txtCorreo" size="50" value=<%=usuario.getEmail_usuarios()%>>
+						</td>
+						<td>
+						</td>
+						<td>
+							<input type="checkbox" onclick="verPassword()" class="checkbox">
+							<label>Mostrar Contraseña</label>
+						</td>
+					</tr>
+				</table>
+				<h3>
+					<b class="consultas">|</b>
+				</h3>
+				<%
+					error = 1;
+					break;
+					}
+				}
+				%>
+				<%if(error == 0)
+				{%>
 				<table border="0">
 					<tr>
 						<td>
@@ -75,9 +136,13 @@
 						</td>
 					</tr>
 				</table>
+				<h3>
+					<b>Cliente no encontrado en la base de datos</b>
+				</h3>
+				<%
+				}
+				%>
 			</center>
-			<br>
-			<br> <br>
 			<center>
 				<td>
 					<input type="submit" name="btnConsultar" id="btnConsultar" value="Consultar" class="button">

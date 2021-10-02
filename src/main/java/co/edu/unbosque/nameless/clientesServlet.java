@@ -129,9 +129,11 @@ public class ClientesServlet extends HttpServlet {
 	
 	public void listarClientes(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
 			ArrayList<Clientes> lista = ClientesJSON.getJSON();
-			String pagina = "/listadoclientes.jsp";
+			String pagina = "/clientesconsulta.jsp";
 			request.setAttribute("lista",lista);
+			request.setAttribute("txtCedula",txtCedula);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

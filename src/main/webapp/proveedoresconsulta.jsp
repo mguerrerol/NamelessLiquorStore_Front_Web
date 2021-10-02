@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="co.edu.unbosque.nameless.Proveedores"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,14 +31,72 @@
 			<h2>Proveedores</h2>
 			<br>
 			<center>
+
+				<% ArrayList<Proveedores> lista = (ArrayList<Proveedores>) request.getAttribute("lista");
+		      long txtNit = (Long) request.getAttribute("txtNit");
+		      int error = 0;
+					for (Proveedores proveedor:lista){
+						if (txtNit == proveedor.getNitproveedor_proveedores())
+							System.out.println("nombre preveedor" + proveedor.getNombre_proveedores());
+						{%>
 				<table border="0">
 					<tr>
 						<td>
-							<label>NIT</label>
+							<label>NIT </label>
+						</td>
+						<td>
+							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50"	value=<%=proveedor.getNitproveedor_proveedores()%> required>
+						</td>
+						<td>
+							<label>Teléfono</label>
+						</td>
+						<td>
+							<input type="text" name="txtTelefono" id="txtTelefono" maxlength="50" size="50" value=<%=proveedor.getTelefono_proveedores()%>>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Nombre del Proveedor </label>
+						</td>
+						<td>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=proveedor.getNombre_proveedores()%>>
+						</td>
+						<td>
+							<label>Ciudad </label>
+						</td>
+						<td>
+							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" value=<%=proveedor.getCiudad_proveedores()%>>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Dirección </label>
+						</td>
+						<td>
+							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=proveedor.getDireccion_proveedores()%>>
+						</td>
+					</tr>
+				</table>
+				<h3>
+					<b class="consultas">|</b>
+				</h3>
+				<%
+		        		error = 1;
+						break;
+						}
+					}
+					%>
+				<%if(error == 0)
+					{%>
+				<table border="0">
+					<tr>
+						<td>
+							<label>NIT </label>
 						</td>
 						<td>
 							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50" placeholder="Digite el NIT" required>
 						</td>
+
 						<td>
 							<label>Teléfono</label>
 						</td>
@@ -46,13 +106,12 @@
 					</tr>
 					<tr>
 						<td>
-							<label>Nombre del Proveedor </label>
+							<label>Nombre del Proveedor</label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre del proveedor">
-						</td>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre del proveedor"></td>
 						<td>
-							<label>Ciudad</label>
+							<label>Ciudad </label>
 						</td>
 						<td>
 							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" placeholder="Digite la ciudad">
@@ -68,8 +127,11 @@
 					</tr>
 				</table>
 				<h3>
-					<b class="consultas">|</b>
+					<b>Proveedor no encontrado en la base de datos</b>
 				</h3>
+				<%
+					}
+					%>
 			</center>
 			<center>
 				<td>

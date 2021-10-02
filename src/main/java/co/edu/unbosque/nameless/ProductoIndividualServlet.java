@@ -133,8 +133,10 @@ public class ProductoIndividualServlet extends HttpServlet {
 	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			ArrayList<Productos> lista = ProductosJSON.getJSON();
-			String pagina = "/listadoproductos.jsp";
+			long txtCodigo = Long.parseLong(request.getParameter("txtCodigo"));
+			String pagina = "/productoindividualconsulta.jsp";
 			request.setAttribute("lista",lista);
+			request.setAttribute("txtCodigo",txtCodigo);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

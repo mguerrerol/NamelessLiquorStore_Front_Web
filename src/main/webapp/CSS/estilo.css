@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-body{
+body {
 	font-family: 'Ubuntu', sans-serif;
 	background: url(../IMG/fondo.jpg);
 	background-size: cover;
@@ -9,189 +9,175 @@ body{
 	padding: 0;
 }
 
-.menu{
+.menu {
 	list-style: none;
 	padding: 0;
 	background: #00075f;
 	width: 100%;
 	max-width: 1100px;
-	display:block;
-	margin:0 auto 0 auto;
+	display: block;
+	margin: 0 auto 0 auto;
 }
 
-.menu li a{
+.menu li a {
 	text-decoration: none;
 	color: white;
 	padding: 20px;
 	display: block;
-  	transition: all .9s ease;
+	transition: all .9s ease;
 }
 
-.menu li{
+.menu li {
 	display: inline-block;
 	text-align: center;
 	font-weight: bold;
 	font-style: italic;
 }
 
-.menu li a:hover{
+.menu li a:hover {
 	background: #5662ff;
 }
 
-h2
-{
+h2 {
 	font-weight: bold;
 	font-style: italic;
 	text-align: center;
 	color: white;
 }
 
-input[type=submit]
-{
+input[type=submit] {
 	margin-top: 1.5em;
 	width: 18%;
-	text-align:center;
-	cursor:pointer;
+	text-align: center;
+	cursor: pointer;
 	padding: 0.5em;
-	font-size:1em;
-	border:1px solid darkblue;
-	border-radius:5px;
-	background-color:#030063;
+	font-size: 1em;
+	border: 1px solid darkblue;
+	border-radius: 5px;
+	background-color: #030063;
 	color: white;
 	box-shadow: 5px 5px 5px #071D47;
 	font-weight: bold;
 	transition: all .9s ease;
 }
 
-input[type=reset]
-{
+input[type=reset] {
 	margin-top: 1.5em;
 	width: 18%;
-	text-align:center;
-	cursor:pointer;
+	text-align: center;
+	cursor: pointer;
 	padding: 0.5em;
-	font-size:1em;
-	border:1px solid darkblue;
-	border-radius:5px;
-	background-color:#092327;
+	font-size: 1em;
+	border: 1px solid darkblue;
+	border-radius: 5px;
+	background-color: #092327;
 	color: white;
 	box-shadow: 5px 5px 5px #071D47;
 	font-weight: bold;
 	transition: all .9s ease;
 }
 
-input[type=reset]:hover{
+input[type=reset]:hover {
 	background: #5662ff;
 }
 
-td
-{
-	padding:0.5em 0.4em;
+td {
+	padding: 0.5em 0.4em;
 	border: 0;
-	text-align: left ;
+	text-align: left;
 	background: #1C6EA4;
 	font-weight: bold;
 }
 
-table
-{
+table {
 	margin-left: 120px;
 }
 
-input[type=text]
-{
+input[type=text] {
 	width: 65%;
-  	padding: 0.5em;
-	font-size:1em;
-	border-radius:5px;
-	border:1px solid blue;
-	color:black;
-	text-align:left;
+	padding: 0.5em;
+	font-size: 1em;
+	border-radius: 5px;
+	border: 1px solid blue;
+	color: black;
+	text-align: left;
 	box-shadow: 5px 5px 5px #071D47;
 }
 
-input[type=number]
-{
+input[type=number] {
 	width: 65%;
- 	padding: 0.5em;
-	font-size:1em;
-	border-radius:5px;
-	border:1px solid blue;
-	color:black;
-	text-align:left;
+	padding: 0.5em;
+	font-size: 1em;
+	border-radius: 5px;
+	border: 1px solid blue;
+	color: black;
+	text-align: left;
 	box-shadow: 5px 5px 5px #071D47;
 	-webkit-appearance: textfield !important;
 	margin: 0;
-	-moz-appearance:textfield !important;
-
+	-moz-appearance: textfield !important;
 }
 
 #number {
 	width: 3em;
 }
 
-
-.boton1[type=submit]
-{
+.boton1[type=submit] {
 	margin-top: 0;
 	width: 20%;
-	text-align:center;
-	cursor:pointer;
+	text-align: center;
+	cursor: pointer;
 	padding: 0.5em;
-	font-size:1em;
-	border:1px solid black;
-	border-radius:5px;
-	background-color:#003B5D;
+	font-size: 1em;
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: #003B5D;
 	color: white;
 	box-shadow: 5px 5px 5px #071D47;
 	font-weight: bold;
 	transition: all .9s ease;
 }
 
-input[type=submit]:hover{
+input[type=submit]:hover {
 	background: #5662ff;
 }
 
-.texto1[type=text]
-{
+.texto1[type=text] {
 	width: 37%;
 	padding: 0.5em;
-	font-size:1em;
-	border-radius:5px;
-	border:1px solid blue;
-	color:black;
-	text-align:left;
+	font-size: 1em;
+	border-radius: 5px;
+	border: 1px solid blue;
+	color: black;
+	text-align: left;
 	margin-left: 15px;
 	margin-right: 15px;
 	box-shadow: 5px 5px 5px #071D47;
 }
 
-input[type=password]
-{
+input[type=password] {
 	width: 65%;
-  	padding: 0.5em;
-	font-size:1em;
-	border-radius:5px;
-	border:1px solid blue;
-	color:black;
-	text-align:left;
+	padding: 0.5em;
+	font-size: 1em;
+	border-radius: 5px;
+	border: 1px solid blue;
+	color: black;
+	text-align: left;
 	box-shadow: 5px 5px 5px #071D47;
 }
 
-input[type=email]
-{
+input[type=email] {
 	width: 65%;
-  padding: 0.5em;
-	font-size:1em;
-	border-radius:5px;
-	border:1px solid blue;
-	color:black;
-	text-align:left;
+	padding: 0.5em;
+	font-size: 1em;
+	border-radius: 5px;
+	border: 1px solid blue;
+	color: black;
+	text-align: left;
 	box-shadow: 5px 5px 5px #071D47;
 }
 
-label
-{
+label {
 	font-weight: bold;
 	font-style: italic;
 	color: white;
@@ -199,148 +185,94 @@ label
 }
 
 .button {
-    display: inline-block;
-    text-align: center;
-    vertical-align: upper;
-    padding: 12px 24px;
-    border: 1px solid #065066;
-    border-radius: 8px;
-    background: #030063;
-    background: -webkit-gradient(linear, left top, left bottom, from(#030063), to(#0f1bff));
-    background: -moz-linear-gradient(top, #030063, #0f1bff);
-    background: linear-gradient(to bottom, #030063, #0f1bff);
-    text-shadow: #042f3c 1px 1px 2px;
-    font: italic normal bold 20px 'Ubuntu';
-    color: #ffffff;
-    text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	vertical-align: upper;
+	padding: 12px 24px;
+	border: 1px solid #065066;
+	border-radius: 8px;
+	background: #030063;
+	background: -webkit-gradient(linear, left top, left bottom, from(#030063),
+		to(#0f1bff));
+	background: -moz-linear-gradient(top, #030063, #0f1bff);
+	background: linear-gradient(to bottom, #030063, #0f1bff);
+	text-shadow: #042f3c 1px 1px 2px;
+	font: italic normal bold 20px 'Ubuntu';
+	color: #ffffff;
+	text-decoration: none;
 }
 
-.button:hover,
-.button:focus {
-    border: 1px solid #075e78;
-    background: #040077;
-    background: -webkit-gradient(linear, left top, left bottom, from(#040077), to(#1220ff));
-    background: -moz-linear-gradient(top, #040077, #1220ff);
-    background: linear-gradient(to bottom, #040077, #1220ff);
-    color: #ffffff;
-    text-decoration: none;
+.button:hover, .button:focus {
+	border: 1px solid #075e78;
+	background: #040077;
+	background: -webkit-gradient(linear, left top, left bottom, from(#040077),
+		to(#1220ff));
+	background: -moz-linear-gradient(top, #040077, #1220ff);
+	background: linear-gradient(to bottom, #040077, #1220ff);
+	color: #ffffff;
+	text-decoration: none;
 }
 
 .button:active {
-    background: #02003b;
-    background: -webkit-gradient(linear, left top, left bottom, from(#02003b), to(#0f1bff));
-    background: -moz-linear-gradient(top, #02003b, #0f1bff);
-    background: linear-gradient(to bottom, #02003b, #0f1bff);
+	background: #02003b;
+	background: -webkit-gradient(linear, left top, left bottom, from(#02003b),
+		to(#0f1bff));
+	background: -moz-linear-gradient(top, #02003b, #0f1bff);
+	background: linear-gradient(to bottom, #02003b, #0f1bff);
 }
 
-.formulario
-{
+.formulario {
 	background: #1C6EA4;
 	padding: 0px;
-	display:block;
-	margin:0 auto 0 auto;
+	display: block;
+	margin: 0 auto 0 auto;
 	width: 1100px;
 	height: 450px;
 }
 
-.header
-{
-	display:block;
-	margin:0 auto 0 auto;
+.header {
+	display: block;
+	margin: 0 auto 0 auto;
 	width: 1100px;
 	height: 100px;
-	padding:0px;
+	padding: 0px;
 }
 
-.footer
-{
-	display:block;
-	margin:0 auto 0 auto;
+.footer {
+	display: block;
+	margin: 0 auto 0 auto;
 	width: 1100px;
 	height: 150px;
-	padding:0px;
+	padding: 0px;
 }
 
-.tablaMenu
-{
+.tablaMenu {
 	margin-left: 30px;
 	align: center;
 	margin-right: 30px;
 	padding: 0;
 }
 
-b
-{
-	color: red;
+b {
+	color: #00075f;
 }
 
-p
-{
+p {
 	color: white;
 }
 
-.nprod
-{
+.nprod {
 	color: white;
 }
 
-.indexError
-{
-	color: #1C6EA4
+.indexError {
+	color: #1C6EA4;
 }
 
-.active
-{
+.active {
 	background: #1C6EA4;
 }
 
-.inputfile-7 + label {
-    color: #c39f77;
-}
-
-.inputfile-7 + label {
-    border: 1px solid #c39f77;
-    font-size: 1rem;
-    background-color: #fff;
-    padding: 0;
-}
-
-.inputfile-7:focus + label,
-.inputfile-7.has-focus + label,
-.inputfile-7 + label:hover {
-    border-color: #9f8465;
-}
-
-.inputfile-7 + label span,
-.inputfile-7 + label strong {
-    padding: 0.625rem 1.25rem;
-}
-
-.inputfile-7 + label span {
-    width: 200px;
-    min-height: 1em;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    vertical-align: top;
-}
-
-.inputfile-7 + label strong {
-    height: 100%;
-    color: #fff;
-    background-color: #c39f77;
-    display: inline-block;
-}
-
-.inputfile-7:focus + label strong,
-.inputfile-7.has-focus + label strong,
-.inputfile-7 + label:hover strong {
-    background-color: #9f8465;
-}
-
-@media screen and (max-width: 50em) {
-	.inputfile-7 + label strong {
-		display: block;
-	}
+.consultas {
+	color: #1C6EA4;
 }

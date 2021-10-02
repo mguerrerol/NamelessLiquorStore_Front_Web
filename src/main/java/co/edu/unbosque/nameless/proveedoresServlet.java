@@ -138,9 +138,11 @@ public class ProveedoresServlet extends HttpServlet {
 	
 	public void listarProveedores(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			long txtNIT = Long.parseLong(request.getParameter("txtNit"));
 			ArrayList<Proveedores> lista = ProveedoresJSON.getJSON();
-			String pagina = "/listadoclientes.jsp";
+			String pagina = "/proveedoresconsulta.jsp";
 			request.setAttribute("lista",lista);
+			request.setAttribute("txtNit",txtNIT);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,48 +32,34 @@ public class VentasServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: Entre al servlet").append(request.getContextPath());
+			
+		String btnConsultarCliente = request.getParameter("btnConsultarCliente");
 		
-		//String nombre_clientes = request.getParameter("txtCliente");
-		
-		
-		long codigo_productos1 = Long.parseLong(request.getParameter("txtCodProd1"));
-		String nombre_productos1 = request.getParameter("txtNomProd1");
-		
-		long codigo_productos2 = Long.parseLong(request.getParameter("txtCodProd2"));
-		String nombre_productos2 = request.getParameter("txtNomProd2");
+		String btnConsultarProducto1 = request.getParameter("btnConsultarProducto1");
+		String btnConsultarProducto2 = request.getParameter("btnConsultarProducto2");
+		String btnConsultarProducto3 = request.getParameter("btnConsultarProducto3");
 	
-		
-		long codigo_productos3 = Long.parseLong(request.getParameter("txtCodProd3"));
-		String nombre_productos3 = request.getParameter("txtNomProd3");
-
-		
-		double venta_total = Double.parseDouble(request.getParameter("txtTotalVenta"));
-		double total_iva = Double.parseDouble(request.getParameter("txtTotalIva"));
-		double total_venta = Double.parseDouble(request.getParameter("txtTotalConIva"));
-		
-		String btnConsultar_clientes = request.getParameter("btnConsultar");
-		
-		String btnConsultar1_productos = request.getParameter("btnConsultar1");
-		String btnConsultar2_productos = request.getParameter("btnConsultar2");
-		String btnConsultar3_productos = request.getParameter("btnConsultar3");
-		
 		String btnConfirmar_ventas = request.getParameter("btnConfirmar");
 		
-		if(btnConsultar1_productos != null)
+		if(btnConsultarCliente  != null)
 		{
-			
+			consultaClientes(request,response);
 		}
 		
-		if(btnConsultar2_productos != null)
+		if(btnConsultarProducto1 != null)
 		{
-	
+			consultaProductos(request,response); 
 		}
 		
-		if(btnConsultar3_productos != null)
+		if(btnConsultarProducto2 != null)
 		{
-
+			consultaProductos(request, response);
 		}
 		
+		if(btnConsultarProducto3 != null)
+		{
+			consultaProductos(request, response);
+		}
 		if(btnConfirmar_ventas != null)
 		{
 			registrarVenta(request,response);
@@ -169,6 +156,188 @@ public class VentasServlet extends HttpServlet {
 			}
 			writer.close();
 		}catch(IOException | ServletException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void consultaClientes(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
+			String txtNombre = "";
+			
+			long txtCodProd1 = 0;
+			String txtNomProd1 = " ";
+			double txtValProd1 = 0;
+	    	int txtCantidad1 = 0;
+	    	double txtValorTotal1 = 0;
+			
+	    	long txtCodProd2 = 0;
+			String txtNomProd2 = " ";
+			double txtValProd2 = 0;
+	    	int txtCantidad2 = 0;
+	    	double txtValorTotal2 = 0;
+	    	
+	    	long txtCodProd3 = 0;
+			String txtNomProd3 = " ";
+			double txtValProd3 = 0;
+	    	int txtCantidad3 = 0;
+	    	double txtValorTotal3 = 0;
+	    	
+	    	double txtTotalIva = 0;
+	    	double txtTotalVenta = 0;
+	    	double txtTotalConIva = 0;
+			
+			ArrayList<Clientes> lista = ClientesJSON.getJSON();
+			String pagina = "/ventasconsultas.jsp";
+			
+			for (Clientes cliente: lista){
+				if (txtCedula == cliente.getCedula_clientes())
+				{
+					txtCedula = cliente.getCedula_clientes();
+					txtNombre = (String) cliente.getNombre_clientes();
+					break;
+				}
+			}
+			
+			request.setAttribute("txtCedula",txtCedula);
+			request.setAttribute("txtNombre",txtNombre);
+			
+			request.setAttribute("txtCodProd1",txtCodProd1);
+			request.setAttribute("txtNomProd1",txtNomProd1);
+			request.setAttribute("txtValProd1",txtValProd1);
+			request.setAttribute("txtCantidad1",txtCantidad1);
+			request.setAttribute("txtValorTotal1",txtValorTotal1);
+			
+			request.setAttribute("txtCodProd2",txtCodProd2);
+			request.setAttribute("txtNomProd2",txtNomProd2);
+			request.setAttribute("txtValProd2",txtValProd2);
+			request.setAttribute("txtCantidad2",txtCantidad2);
+			request.setAttribute("txtValorTotal2",txtValorTotal2);
+			
+			request.setAttribute("txtCodProd3",txtCodProd3);
+			request.setAttribute("txtNomProd3",txtNomProd3);
+			request.setAttribute("txtValProd3",txtValProd3);
+			request.setAttribute("txtCantidad3",txtCantidad3);
+			request.setAttribute("txtValorTotal3",txtValorTotal3);
+			
+			request.setAttribute("txtTotalIva",txtTotalIva);
+			request.setAttribute("txtTotalVenta",txtTotalVenta);
+			request.setAttribute("txtTotalConIva",txtTotalConIva);
+			
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void consultaProductos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.getWriter().append("Served at: Entre al metodo de consultas").append(request.getContextPath());
+		try {
+			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
+			String txtNombre = request.getParameter("txtNombre");
+			
+			long txtCodProd1 = Long.parseLong(request.getParameter("txtCodProd1"));
+			String txtNomProd1 = request.getParameter("txtNomProd1");
+			double txtValProd1 = 0;
+	    	int txtCantidad1 = Integer.parseInt(request.getParameter("txtCantidad1"));
+	    	double txtValorTotal1 = 0;
+			
+	    	long txtCodProd2 = Long.parseLong(request.getParameter("txtCodProd2"));
+			String txtNomProd2 = "";
+			double txtValProd2 = 0;
+	    	int txtCantidad2 = Integer.parseInt(request.getParameter("txtCantidad2"));
+	    	double txtValorTotal2 = 0;
+	    	
+	    	long txtCodProd3 = Long.parseLong(request.getParameter("txtCodProd3"));
+			String txtNomProd3 = "";
+			double txtValProd3 = 0;
+	    	int txtCantidad3 = Integer.parseInt(request.getParameter("txtCantidad3"));
+	    	double txtValorTotal3 = 0;
+	    	
+	    	double txtTotalIva = 0;
+	    	double txtTotalVenta = 0;
+	    	double txtTotalConIva = 0;
+	    	
+	    	double iva = 0.19;
+	    	
+			
+			ArrayList<Clientes> listaClientes = ClientesJSON.getJSON();
+			ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
+			String pagina = "/ventasconsultas.jsp";
+			
+			for (Clientes cliente:listaClientes){
+				if (cliente.getCedula_clientes() == txtCedula)
+				{
+					txtCedula = cliente.getCedula_clientes();
+					txtNombre = cliente.getNombre_clientes();
+					break;
+				}
+			}
+			
+			for (Productos producto:listaProductos){
+				if (producto.getCodigo_productos() == txtCodProd1)
+				{
+					txtValProd1 = producto.getPrecio_venta_productos();
+					txtNomProd1 = producto.getNombre_productos();
+					break;
+				}
+			}
+			
+			for (Productos producto:listaProductos){
+				if (producto.getCodigo_productos() == txtCodProd2)
+				{
+					txtValProd2 = producto.getPrecio_venta_productos();
+					txtNomProd2 = producto.getNombre_productos();
+					break;
+				}
+			}
+			
+			for (Productos producto:listaProductos){
+				if (producto.getCodigo_productos() == txtCodProd3)
+				{
+					txtValProd3 = producto.getPrecio_venta_productos();
+					txtNomProd3 = producto.getNombre_productos();
+					break;
+				}
+			}
+			
+			txtValorTotal1 = txtCantidad1 * txtValProd1;
+			txtValorTotal2 = txtCantidad2 * txtValProd2;
+			txtValorTotal3 = txtCantidad3 * txtValProd3;
+			txtTotalVenta = txtValorTotal1 + txtValorTotal2 + txtValorTotal3;
+			txtTotalIva = txtTotalVenta * iva;
+			txtTotalConIva = txtTotalVenta + txtTotalIva;
+			
+			request.setAttribute("txtCedula",txtCedula);
+			request.setAttribute("txtNombre",txtNombre);
+			
+			request.setAttribute("txtCodProd1",txtCodProd1);
+			request.setAttribute("txtNomProd1",txtNomProd1);
+			request.setAttribute("txtValProd1",txtValProd1);
+			request.setAttribute("txtCantidad1",txtCantidad1);
+			request.setAttribute("txtValorTotal1",txtValorTotal1);
+			
+			request.setAttribute("txtCodProd2",txtCodProd2);
+			request.setAttribute("txtNomProd2",txtNomProd2);
+			request.setAttribute("txtValProd2",txtValProd2);
+			request.setAttribute("txtCantidad2",txtCantidad2);
+			request.setAttribute("txtValorTotal2",txtValorTotal2);
+			
+			request.setAttribute("txtCodProd3",txtCodProd3);
+			request.setAttribute("txtNomProd3",txtNomProd3);
+			request.setAttribute("txtValProd3",txtValProd3);
+			request.setAttribute("txtCantidad3",txtCantidad3);
+			request.setAttribute("txtValorTotal3",txtValorTotal3);
+			
+			request.setAttribute("txtTotalIva",txtTotalIva);
+			request.setAttribute("txtTotalVenta",txtTotalVenta);
+			request.setAttribute("txtTotalConIva",txtTotalConIva);
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

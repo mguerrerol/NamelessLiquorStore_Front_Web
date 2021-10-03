@@ -139,10 +139,33 @@ public class ProveedoresServlet extends HttpServlet {
 	public void listarProveedores(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			long txtNIT = Long.parseLong(request.getParameter("txtNit"));
+			String txtNombre = request.getParameter("txtNombre");
+			String txtTelefono = request.getParameter("txtTelefono");
+			String txtCiudad = request.getParameter("txtCiudad");
+			String txtDireccion = request.getParameter("txtDireccion");
+			int error = 0;
 			ArrayList<Proveedores> lista = ProveedoresJSON.getJSON();
 			String pagina = "/proveedoresconsulta.jsp";
-			request.setAttribute("lista",lista);
+			
+			for (Proveedores proveedor:lista){
+				if (proveedor.getNitproveedor_proveedores() == txtNIT)
+				{
+					txtNIT  = proveedor.getNitproveedor_proveedores();
+					txtNombre = proveedor.getNombre_proveedores();
+					txtTelefono = proveedor.getTelefono_proveedores();
+					txtCiudad = proveedor.getCiudad_proveedores();
+					txtDireccion = proveedor.getDireccion_proveedores();
+					error = 1;
+					break;
+				}
+			}
+			
 			request.setAttribute("txtNit",txtNIT);
+			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtTelefono",txtTelefono);
+			request.setAttribute("txtCiudad",txtCiudad);
+			request.setAttribute("txtDireccion",txtDireccion);
+			request.setAttribute("error",error);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

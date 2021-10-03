@@ -28,28 +28,34 @@
 	<form class="formulario" method="get" action="./ClientesServlet">
 		<div>
 			<br>
-			<h2>Clientes</h2>
+				<h2>
+					Clientes
+				</h2>
 			<br>
 			<center>
 				<table border="0">
-					<% ArrayList<Clientes> lista = (ArrayList<Clientes>) request.getAttribute("lista");
+					<% 
 		      		long txtCedula = (Long) request.getAttribute("txtCedula");
-		      		int error = 0;
-					for (Clientes cliente:lista){
-						if (txtCedula == cliente.getCedula_clientes())
-						{%>
+					String txtNombre = (String) request.getAttribute("txtNombre");
+		      		String txtCorreo = (String) request.getAttribute("txtCorreo");
+		      		String txtTelefono = (String) request.getAttribute("txtTelefono");
+		      		String txtDireccion = (String) request.getAttribute("txtDireccion");
+		      		int error = (int) request.getAttribute("error");
+
+		      		if (error == 1)
+					{%>
 					<tr>
 						<td>
-							<label>Cedula </label>
+							<label>Cedula</label>
 						</td>
 						<td>
-							<input type="number" name="txtCedula" id="txtCedula" maxlength="20" size="50" value=<%=cliente.getCedula_clientes()%> required>
+							<input type="number" name="txtCedula" id="txtCedula" maxlength="20" size="50" value=<%=txtCedula%> required>
 						</td>
 						<td>
-							<label>Teléfono </label>
+							<label>Teléfono</label>
 						</td>
 						<td>
-							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" value=<%=cliente.getTelefono_clientes()%>>
+							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" value=<%=txtTelefono%>>
 						</td>
 					</tr>
 					<tr>
@@ -57,46 +63,40 @@
 							<label>Nombre Completo</label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=cliente.getNombre_clientes()%>>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=txtNombre%>>
 						</td>
 						<td>
-							<label>Correo Electrónico </label>
+							<label>Correo Electrónico</label>
 						</td>
 						<td>
-							<input type="email" name="txtCorreo" id="txtCorreo"	maxlength="50" size="50" value=<%=cliente.getEmail_clientes()%>>
+							<input type="email" name="txtCorreo" id="txtCorreo"	maxlength="50" size="50" value=<%=txtCorreo%>>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<label>Dirección </label>
+							<label>Dirección</label>
 						</td>
 						<td>
-							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=cliente.getDireccion_clientes()%>>
+							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=txtDireccion%>>
 						</td>
 					</tr>
 					</table>
 					<h3>
 						<b class="consultas">|</b>
 					</h3>
-
-					<%
-						error = 1;
-						break;
-						}
-					}
-					%>
-					<%if(error == 0)
-					{%>
-				<table border="0">
+					<%}
+		     		else
+		     		{%>
+					<table border="0">
 					<tr>
 						<td>
-							<label>Cedula </label>
+							<label>Cedula</label>
 						</td>
 						<td>
 							<input type="number" name="txtCedula" id="txtCedula" maxlength="20" size="50" placeholder="Digite la cedula" required>
 						</td>
 						<td>
-							<label>Teléfono </label>
+							<label>Teléfono</label>
 						</td>
 						<td>
 							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" placeholder="Digite el teléfono">
@@ -104,13 +104,13 @@
 						</tr>
 						<tr>
 						<td>
-							<label>Nombre Completo </label>
+							<label>Nombre Completo</label>
 						</td>
 						<td>
 							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre completo">
 						</td>
 						<td>
-							<label>Correo Electrónico </label>
+							<label>Correo Electrónico</label>
 						</td>
 						<td>
 							<input type="email" name="txtCorreo" id="txtCorreo" maxlength="50" size="50" placeholder="Digite el correo electrónico">
@@ -118,7 +118,7 @@
 						</tr>
 						<tr>
 						<td>
-							<label>Dirección </label>
+							<label>Dirección</label>
 						</td>
 						<td>
 							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" placeholder="Digite la dirección">

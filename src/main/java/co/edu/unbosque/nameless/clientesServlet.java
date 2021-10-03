@@ -130,10 +130,34 @@ public class ClientesServlet extends HttpServlet {
 	public void listarClientes(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
+			String txtNombre = request.getParameter("txtNombre");
+			String txtTelefono = request.getParameter("txtTelefono");
+			String txtCorreo = request.getParameter("txtCorreo");
+			String txtDireccion = request.getParameter("txtDireccion");
+			int error = 0;
 			ArrayList<Clientes> lista = ClientesJSON.getJSON();
 			String pagina = "/clientesconsulta.jsp";
-			request.setAttribute("lista",lista);
+			
+			for (Clientes cliente:lista){
+				if (cliente.getCedula_clientes() == txtCedula)
+				{
+					txtCedula = cliente.getCedula_clientes();
+					txtNombre = cliente.getNombre_clientes();
+					txtCorreo = cliente.getEmail_clientes();
+					txtTelefono = cliente.getTelefono_clientes();
+					txtDireccion = cliente.getDireccion_clientes();
+					error = 1;
+					break;
+				}
+			}
+			
 			request.setAttribute("txtCedula",txtCedula);
+			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtCorreo",txtCorreo);
+			request.setAttribute("txtTelefono",txtTelefono);
+			request.setAttribute("txtDireccion",txtDireccion);
+			request.setAttribute("error",error);
+		
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

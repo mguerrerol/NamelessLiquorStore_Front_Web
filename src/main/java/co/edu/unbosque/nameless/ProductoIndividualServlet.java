@@ -114,6 +114,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 		producto.setPrecio_compra_productos(Double.parseDouble(request.getParameter("txtValorCompra")));
 		producto.setPrecio_venta_productos(Double.parseDouble(request.getParameter("txtValorVenta")));
 		int respuesta = 0;
+		
 		try {
 			respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
 			PrintWriter write = response.getWriter();
@@ -132,11 +133,38 @@ public class ProductoIndividualServlet extends HttpServlet {
 	
 	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ArrayList<Productos> lista = ProductosJSON.getJSON();
 			long txtCodigo = Long.parseLong(request.getParameter("txtCodigo"));
+			long txtNIT = Long.parseLong(request.getParameter("txtNIT"));
+			String txtNombre = request.getParameter("txtNombre");
+			double txtValorCompra = Double.parseDouble(request.getParameter("txtValorCompra"));
+			double txtValorVenta = Double.parseDouble(request.getParameter("txtValorVenta"));
+			double txtIVA = Double.parseDouble(request.getParameter("txtIVA"));
+			int error = 0;
+			ArrayList<Productos> lista = ProductosJSON.getJSON();
 			String pagina = "/productoindividualconsulta.jsp";
-			request.setAttribute("lista",lista);
+			
+			for (Productos producto:lista){
+				if (producto.getCodigo_productos() == txtCodigo)
+				{
+					txtCodigo = producto.getCodigo_productos();
+					txtNIT  = producto.getNitproveedor_proveedores();
+					txtNombre = producto.getNombre_productos();
+					txtValorCompra = producto.getPrecio_compra_productos();
+					txtValorVenta = producto.getPrecio_venta_productos();
+					txtIVA = producto.getIvacompra_productos();
+					error = 1;
+					break;
+				}
+			}
+			
 			request.setAttribute("txtCodigo",txtCodigo);
+			request.setAttribute("txtNIT",txtNIT);
+			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtValorCompra",txtValorCompra);
+			request.setAttribute("txtValorVenta",txtValorVenta);
+			request.setAttribute("txtIVA",txtIVA);
+			request.setAttribute("error",error);
+			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

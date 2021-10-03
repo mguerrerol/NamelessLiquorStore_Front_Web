@@ -28,30 +28,34 @@
 	<form class="formulario" method="get" action="./ProveedoresServlet">
 		<div>
 			<br>
-			<h2>Proveedores</h2>
+			<h2>
+				Proveedores
+			</h2>
 			<br>
 			<center>
-
-				<% ArrayList<Proveedores> lista = (ArrayList<Proveedores>) request.getAttribute("lista");
-		      long txtNit = (Long) request.getAttribute("txtNit");
-		      int error = 0;
-					for (Proveedores proveedor:lista){
-						if (txtNit == proveedor.getNitproveedor_proveedores())
-							System.out.println("nombre preveedor" + proveedor.getNombre_proveedores());
-						{%>
 				<table border="0">
+					<% 
+					long txtNit = (Long) request.getAttribute("txtNit");
+					String txtNombre = (String) request.getAttribute("txtNombre");
+	      			String txtCiudad = (String) request.getAttribute("txtCiudad");
+	      			String txtTelefono = (String) request.getAttribute("txtTelefono");
+	      			String txtDireccion = (String) request.getAttribute("txtDireccion");
+	      			int error = (int) request.getAttribute("error");
+
+		      		if (error == 1)
+					{%>
 					<tr>
 						<td>
-							<label>NIT </label>
+							<label>NIT</label>
 						</td>
 						<td>
-							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50"	value=<%=proveedor.getNitproveedor_proveedores()%> required>
+							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50"	value=<%=txtNit%> required>
 						</td>
 						<td>
-							<label>Teléfono</label>
+							<label>Teléfono </label>
 						</td>
 						<td>
-							<input type="text" name="txtTelefono" id="txtTelefono" maxlength="50" size="50" value=<%=proveedor.getTelefono_proveedores()%>>
+							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" value=<%=txtTelefono%>>
 						</td>
 					</tr>
 					<tr>
@@ -59,13 +63,13 @@
 							<label>Nombre del Proveedor </label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=proveedor.getNombre_proveedores()%>>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=txtNombre%>>
 						</td>
 						<td>
-							<label>Ciudad </label>
+							<label>Ciudad</label>
 						</td>
 						<td>
-							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" value=<%=proveedor.getCiudad_proveedores()%>>
+							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" value=<%=txtCiudad%>>
 						</td>
 					</tr>
 					<tr>
@@ -73,30 +77,24 @@
 							<label>Dirección </label>
 						</td>
 						<td>
-							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=proveedor.getDireccion_proveedores()%>>
+							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=txtDireccion%>>
 						</td>
 					</tr>
-				</table>
-				<h3>
-					<b class="consultas">|</b>
-				</h3>
-				<%
-		        		error = 1;
-						break;
-						}
-					}
-					%>
-				<%if(error == 0)
-					{%>
-				<table border="0">
+					</table>
+					<h3>
+						<b class="consultas">|</b>
+					</h3>
+					<%}
+		     		else
+		     		{%>
+					<table border="0">
 					<tr>
 						<td>
-							<label>NIT </label>
+							<label>NIT</label>
 						</td>
 						<td>
 							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50" placeholder="Digite el NIT" required>
 						</td>
-
 						<td>
 							<label>Teléfono</label>
 						</td>
@@ -106,12 +104,13 @@
 					</tr>
 					<tr>
 						<td>
-							<label>Nombre del Proveedor</label>
+							<label>Nombre del Proveedor </label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre del proveedor"></td>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre del proveedor">
+						</td>
 						<td>
-							<label>Ciudad </label>
+							<label>Ciudad</label>
 						</td>
 						<td>
 							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" placeholder="Digite la ciudad">
@@ -130,8 +129,8 @@
 					<b>Proveedor no encontrado en la base de datos</b>
 				</h3>
 				<%
-					}
-					%>
+				}
+				%>
 			</center>
 			<center>
 				<td>

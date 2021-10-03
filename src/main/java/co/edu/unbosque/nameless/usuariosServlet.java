@@ -135,10 +135,33 @@ public class UsuariosServlet extends HttpServlet {
 	public void listarUsuarios(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
+			String txtUsuario = request.getParameter("txtUsuario");
+			String txtNombre = request.getParameter("txtNombre");
+			String txtPassword = request.getParameter("txtPassword");
+			String txtCorreo = request.getParameter("txtCorreo");
+			int error = 0;
 			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
 			String pagina = "/usuariosconsulta.jsp";
-			request.setAttribute("lista",lista);
+			
+			for (Usuarios usuario:lista){
+				if (usuario.getCedula_usuarios() == txtCedula)
+				{
+					txtCedula = usuario.getCedula_usuarios();
+					txtNombre = usuario.getNombre_usuarios();
+					txtCorreo = usuario.getEmail_usuarios();
+					txtUsuario = usuario.getUsuario_usuarios();
+					txtPassword = usuario.getPassword_usuarios();
+					error = 1;
+					break;
+				}
+			}
+			
 			request.setAttribute("txtCedula",txtCedula);
+			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtCorreo",txtCorreo);
+			request.setAttribute("txtUsuario",txtUsuario);
+			request.setAttribute("txtPassword",txtPassword);
+			request.setAttribute("error",error);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);
 		}catch(Exception e) {

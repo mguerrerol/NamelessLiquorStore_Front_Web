@@ -32,24 +32,28 @@
 			<br>
 			<center>
 				<table border="0">
-					<% ArrayList<Usuarios> lista = (ArrayList<Usuarios>) request.getAttribute("lista");
+				<%
 		      		long txtCedula = (Long) request.getAttribute("txtCedula");
-		      		int error = 0;
-					for (Usuarios usuario:lista){
-						if (txtCedula == usuario.getCedula_usuarios())
-						{%>
+		      		String txtNombre = (String) request.getAttribute("txtNombre");
+		      		String txtCorreo = (String) request.getAttribute("txtCorreo");
+		      		String txtUsuario = (String) request.getAttribute("txtUsuario");
+		      		String txtPassword = (String) request.getAttribute("txtPassword");
+		      		int error = (int) request.getAttribute("error");
+		      		
+		     		if (error==1)
+					{%>
 					<tr>
 						<td>
 							<label>Cedula </label>
 						</td>
 						<td>
-							<input type="text" maxlength="20" id="txtCedula" name="txtCedula" size="50" value=<%=usuario.getCedula_usuarios()%> required>
+							<input type="number" maxlength="20" id="txtCedula" name="txtCedula" size="50" value=<%=txtCedula%> required>
 						</td>
 						<td>
 							<label>Usuario </label>
 						</td>
 						<td>
-							<input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size="50" value=<%=usuario.getUsuario_usuarios()%>>
+							<input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size="50" value=<%=txtUsuario%>>
 						</td>
 					</tr>
 					<tr>
@@ -57,14 +61,14 @@
 							<label>Nombre Completo </label>
 						</td>
 						<td>
-							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" value=<%=usuario.getNombre_usuarios()%>>
+							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" value=<%=txtNombre%>>
 						</td>
 
 						<td>
 							<label>Contraseña </label>
 						</td>
 						<td>
-							<input type="password" id="txtPassword"	name="txtPassword" maxlength="50" size="50"	value=<%=usuario.getPassword_usuarios()%>>
+							<input type="password" id="txtPassword"	name="txtPassword" maxlength="50" size="50"	value=<%=txtPassword%>>
 						</td>
 					</tr>
 					<tr>
@@ -72,7 +76,7 @@
 							<label>Correo Electrónico </label>
 						</td>
 						<td>
-							<input type="email" maxlength="50" id="txtCorreo" name="txtCorreo" size="50" value=<%=usuario.getEmail_usuarios()%>>
+							<input type="email" maxlength="50" id="txtCorreo" name="txtCorreo" size="50" value=<%=txtCorreo%>>
 						</td>
 						<td>
 						</td>
@@ -85,14 +89,9 @@
 				<h3>
 					<b class="consultas">|</b>
 				</h3>
-				<%
-					error = 1;
-					break;
-					}
-				}
-				%>
-				<%if(error == 0)
-				{%>
+				<%}
+		     	else
+		     	{%>
 				<table border="0">
 					<tr>
 						<td>

@@ -34,24 +34,29 @@
 			<br>
 			<center>
 				<table border="0">
-					<%ArrayList<Productos> lista = (ArrayList<Productos>) request.getAttribute("lista");
-		      		long txtCodigo = (Long) request.getAttribute("txtCodigo");
-		      		int error = 0;
-					for (Productos producto:lista){
-						if (txtCodigo == producto.getCodigo_productos())
-						{%>
+					<%
+					long txtCodigo = (Long) request.getAttribute("txtCodigo");
+					long txtNIT = (Long) request.getAttribute("txtNIT");
+					String txtNombre = (String) request.getAttribute("txtNombre");
+					double txtValorCompra = (Double) request.getAttribute("txtValorCompra");
+					double txtValorVenta = (Double) request.getAttribute("txtValorVenta");
+					double txtIVA = (Double) request.getAttribute("txtIVA");
+					int error = (int) request.getAttribute("error");
+		
+					if (error == 1)
+					{%>
 					<tr>
 						<td>
 							<label>Codigo del Producto </label>
 						</td>
 						<td>
-							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" value=<%=producto.getCodigo_productos()%>>
+							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" value=<%=txtCodigo%>>
 						</td>
 						<td>
 							<label>IVA</label>
 						</td>
 						<td>
-							<input type="number" name="txtIVA" id="txtIVA" maxlength="50" size="50" value=<%=producto.getIvacompra_productos()%>>
+							<input type="number" name="txtIVA" id="txtIVA" maxlength="50" size="50" value=<%=txtIVA%>>
 						</td>
 					</tr>
 					<tr>
@@ -59,13 +64,13 @@
 							<label>Nombre del Producto </label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre" value=<%=producto.getNombre_productos()%>>
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre" value=<%=txtNombre%>>
 						</td>
 						<td>
 							<label>Valor Compra </label>
 						</td>
 						<td>
-							<input type="number" name="txtValorCompra" id="txtValorCompra" maxlength="50" size="50"	value=<%=producto.getPrecio_compra_productos()%>>
+							<input type="number" name="txtValorCompra" id="txtValorCompra" maxlength="50" size="50"	value=<%=txtValorCompra%>>
 						</td>
 					</tr>
 					<tr>
@@ -73,27 +78,22 @@
 							<label>NIT Proveedor </label>
 						</td>
 						<td>
-							<input type="number" name="txtNIT" id="txtNIT" maxlength="50" size="50" placeholder="NIT Proveedor" value=<%=producto.getNitproveedor_proveedores()%>>
+							<input type="number" name="txtNIT" id="txtNIT" maxlength="50" size="50" placeholder="NIT Proveedor" value=<%=txtNIT%>>
 						</td>
 						<td>
 							<label>Valor Venta </label>
 						</td>
 						<td>
-							<input type="number" name="txtValorVenta" id="txtValorVenta" maxlength="50" size="50" value=<%=producto.getPrecio_venta_productos()%>>
+							<input type="number" name="txtValorVenta" id="txtValorVenta" maxlength="50" size="50" value=<%=txtValorVenta%>>
 						</td>
 					</tr>
 				</table>
 				<h3>
 					<b class="consultas">|</b>
 				</h3>
-				<%
-					error = 1;
-					break;
-					}
-				}
-				%>
-				<%if(error == 0)
-				{%>
+				<%}
+		     	else
+		     	{%>
 					<table border="0">
 						<tr>
 							<td>

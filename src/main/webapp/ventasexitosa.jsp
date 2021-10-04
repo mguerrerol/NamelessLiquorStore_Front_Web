@@ -29,7 +29,7 @@
 			<% 
 		      	long txtCedula = (Long) request.getAttribute("txtCedula");
 				String txtCliente = (String) request.getAttribute("txtCliente");
-				Long txtConsecutivo = (Long) request.getAttribute("txtConsecutivo");
+				long txtConsecutivo = (Long) request.getAttribute("txtConsecutivo");
 				
 				long txtCodProd1 = (Long) request.getAttribute("txtCodProd1");
 				String txtNomProd1 = (String) request.getAttribute("txtNomProd1");
@@ -54,22 +54,20 @@
 		    	double txtTotalConIva = (Double) request.getAttribute("txtTotalConIva");
 		    	
 			%>
+			<center>
 			<table class="tablaventas1">
 				<tr>
 					<td>
 						<label>Cedula</label>
 					</td>
 					<td>
-						<input type="text" maxlength="20" name="txtCedula" id="txtCedula" size="10" value=<%=txtCedula%>>
-					</td>
-					<td>
-						<input type="submit" name="btnConsultarClientes" id="btnConsultarClientes" value="Consultar" class="button" disabled>
+						<input type="text" maxlength="20" name="txtCedula" id="txtCedula" size="10" disabled value=<%=txtCedula%> >
 					</td>
 					<td>
 						<label>Cliente</label>
 					</td>
 					<td>
-						<input type="text" name="txtCliente" id="txtCliente" maxlength="200" size="25" value=<%=txtCliente%> disabled>
+						<input type="text" name="txtCliente" id="txtCliente" maxlength="200" size="25" disabled value=<%=txtCliente%> >
 					</td>
 					<td>
 						<label>Consec.</label>
@@ -87,9 +85,6 @@
 						<label>Cod. Producto</label>
 					</td>
 					<td>
-						<label></label>
-					</td>
-					<td>
 						<label>Nombre Producto</label>
 					</td>
 					<td>
@@ -105,10 +100,7 @@
 
 				<tr>
 					<td>
-						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd1%>>
-					</td>
-					<td>
-						<input type="submit" name="btnConsultarProducto1" id="btnConsultarProducto1" value="Consultar" class="button">
+						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" disabled value=<%=txtCodProd1%>>
 					</td>
 					<td>
 						<input type="text" name="txtNomProd1" id="txtNomProd1" maxlength="50" size="30" disabled placeholder="Nombre del Producto" value=<%=txtNomProd1%>>
@@ -117,7 +109,7 @@
 						<input type="number" name="txtValProd1" id="txtValProd1" maxlength="50" size="6" disabled value=<%=txtValProd1%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" value=<%=txtCantidad1%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" disabled value=<%=txtCantidad1%> placeholder="Cantidad">
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal1" id="txtValorTotal1" maxlength="50" size="10" disabled value=<%=txtValorTotal1%>>
@@ -126,10 +118,7 @@
 
 				<tr>
 					<td>
-						<input type="number" name="txtCodProd2" id="txtCodProd2" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd2%>>
-					</td>
-					<td>
-						<input type="submit" name="btnConsultarProducto2" id="btnConsultarProducto2" value="Consultar" class="button">
+						<input type="number" name="txtCodProd2" id="txtCodProd2" maxlength="20" size="20" placeholder="Codigo del Producto" disabled value=<%=txtCodProd2%>>
 					</td>
 					<td>
 						<input type="text" name="txtNomProd2" id="txtNomProd2" maxlength="50" size="30" disabled placeholder="Nombre del Producto" value=<%=txtNomProd2%>>
@@ -138,7 +127,7 @@
 						<input type="number" name="txtValProd2" id="txtValProd2" maxlength="50" size="6" disabled value=<%=txtValProd2%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6"  value=<%=txtCantidad2%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6" disabled value=<%=txtCantidad2%> placeholder="Cantidad">
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal2" id="txtValorTotal2" maxlength="50" size="10" disabled value=<%=txtValorTotal2%>>
@@ -147,19 +136,16 @@
 
 				<tr>
 					<td>
-						<input type="number" name="txtCodProd3" id="txtCodProd3" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd3%>>
+						<input type="number" name="txtCodProd3" id="txtCodProd3" maxlength="20" size="20" placeholder="Codigo del Producto" disabled value=<%=txtCodProd3%>>
 					</td>
 					<td>
-						<input type="submit" name="btnConsultarProducto3" id="btnConsultarProducto3" value="Consultar" class="button">
-					</td>
-					<td>
-						<input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size="30" disabled placeholder="Nombre del Producto" value=<%=txtNomProd3%>>
+						<input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size="30" disabled placeholder="Nombre del Producto"  value=<%=txtNomProd3%>>
 					</td>
 					<td>
 						<input type="number" name="txtValProd3" id="txtValProd3" maxlength="50" size="6" disabled value=<%=txtValProd3%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" value=<%=txtCantidad3%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" disabled value=<%=txtCantidad3%> placeholder="Cantidad">
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal3" id="txtValorTotal3" maxlength="50" size="10" disabled value=<%=txtValorTotal3%>>
@@ -167,45 +153,35 @@
 				</tr>
 			</table>
 			<br>
-			<table class="tablaventas3">
+			<table class="tablafinal">
 				<tr>
 					<td>
 						<label>Total Venta </label>
 					</td>
 					<td>
-						<input type="number" name="txtTotalVenta" id="txtTotalVenta" maxlength="20" size="10" disabled value=<%=txtTotalVenta%>>
+						<label>Total IVA</label>
+					</td>
+					<td>
+						<label>Total con IVA</label>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label>Total IVA </label>
+						<input type="number" name="txtTotalVenta" id="txtTotalVenta" maxlength="20" size="10" disabled value=<%=txtTotalVenta%>>
 					</td>
 					<td>
 						<input type="number" name="txtTotalIva" id="txtTotalIva" maxlength="20" size="10" disabled value=<%=txtTotalIva%>>
-					</td>
-				</tr>
-			</table>
-
-			<table class="tablaventas4">
-				<tr>
-					<td>
-						<input type="submit" name="btnCancelar" id="btnCancelar"	value="Cancelar" class="button">
-					</td>
-					<td>
-						<input type="submit" name="btnConfirmar" value="Confirmar" class="button">
-					</td>
-					<td>
-						<label></label>
-					</td>
-					<td>
-						<label>Total con IVA </label>
 					</td>
 					<td>
 						<input type="number" name="txtTotalConIva" id="txtTotalConIva" maxlength="20" size="10" disabled value=<%=txtTotalConIva%>>
 					</td>
 				</tr>
 			</table>
+			<h2>
+				<b>Venta realizada con exito</b>
+			</h2>		
 			<br>
+			</center>
 		</div>
 	</form>
 	<footer>

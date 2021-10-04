@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ page import='java.util.Date'%>
+<%@ page import='co.edu.unbosque.nameless.Ventas'%>
+<%@ page import='java.util.ArrayList'%>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon" />
-<title>Nameless LS - Reportes</title>
+<title>Nameless LS - Listado Clientes</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
+<link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 </head>
 <body>
 	<header>
@@ -23,24 +26,38 @@
 		<li><a href="reportes.jsp" class="active">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
 	</ul>
-	<form class=formulario method="get" action="./ReportesServlet">
+	<form class="formulario">
 		<br>
-		<h2>Reportes</h2>
 		<center>
-			<input type="submit" name="btnListadoUsuarios" id="btnListadoUsuarios" value="Listado de Usuarios" class="button">
-			<br> 
-			<input type="submit" name="btnListadoClientes" id="btnListadoClientes" value="Listado de Clientes" class="button">
-			<br> 
-			<input type="submit" name="btnlistadoProveedores" id="btnlistadoProveedores" value="Listado de Proveedores" class="button"> 
-			<br>
-			<input type="submit" name="btnlistadoProductos" id="btnlistadoProductos" value="Listado de Productos" class="button">
-			<br>
-			<input type="submit" name="btnVentasCliente" id="btnVentasCliente" value="Ventas por Cliente" class="button">
-			<br>
-			<input type="submit" name="btnVentas" id="btnVentas" value="Listado de Ventas" class="button">
+			<h1>Listado de Ventas</h1>
+			<h4>
+				Hora servidor:
+				<%= new Date() %></h4>
+			<table border="5">
+				<tr>
+					<td>Codigo</td>
+					<td>Cedula cliente</td>
+					<td>cedula Usuario</td>
+					<td>Valor IVA</td>
+					<td>Valor Venta</td>
+					<td>Total Venta</td>
+				</tr>
+				<% ArrayList<Ventas> lista= (ArrayList<Ventas>) request.getAttribute("lista");
+					for (Ventas venta:lista){
+					%>
+				<tr>
+					<td><%=venta.getCodigo_ventas()%></td>
+					<td><%=venta.getCedula_clientes()%></td>
+					<td><%=venta.getCedula_usuarios()%></td>
+					<td><%=venta.getIvaventa_ventas()%></td>
+					<td><%=venta.getValor_venta_ventas()%></td>
+					<td><%=venta.getTotal_venta_ventas()%></td>
+				</tr>
+				<%}%>
+			</table>
 		</center>
 		<br>
-		<br> <br>
+		<br>
 	</form>
 	<footer>
 		<img class="footer" src="IMG/footer.png" alt="Nameless Liquor Store">

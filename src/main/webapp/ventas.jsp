@@ -26,7 +26,8 @@
 	<form class=formulario method="get" action="./VentasServlet">
 		<div>
 			<br>
-			<table class="tablaventas1">
+			<center>
+			<table>
 				<tr>
 					<td>
 						<label>Cedula</label>
@@ -53,13 +54,10 @@
 			</table>
 			<br>
 
-			<table class="tablaventas2">
+			<table>
 				<tr>
 					<td>
 						<label>Cod. Producto</label>
-					</td>
-					<td>
-						<label></label>
 					</td>
 					<td>
 						<label>Nombre Producto</label>
@@ -80,9 +78,6 @@
 						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
 					</td>
 					<td>
-						<input type="submit" name="btnConsultarProducto1" id="btnConsultarProducto1" value="Consultar" class="button" disabled>
-					</td>
-					<td>
 						<input type="text" name="txtNomProd1" id="txtNomProd1" maxlength="50" size="30" disabled>
 					</td>
 					<td>
@@ -99,9 +94,6 @@
 				<tr>
 					<td>
 						<input type="number" name="txtCodProd2" id="txtCodProd2" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
-					</td>
-					<td>
-						<input type="submit" name="btnConsultarProducto2" id="btnConsultarProducto2" value="Consultar" class="button" disabled>
 					</td>
 					<td>
 						<input type="text" name="txtNomProd2" id="txtNomProd2" maxlength="50" size="30" disabled>
@@ -122,9 +114,6 @@
 						<input type="number" name="txtCodProd3" id="txtCodProd3" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
 					</td>
 					<td>
-						<input type="submit" name="btnConsultarProducto3" id="btnConsultarProducto3" value="Consultar" class="button" disabled>
-					</td>
-					<td>
 						<input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size="30" disabled>
 					</td>
 					<td>
@@ -139,6 +128,7 @@
 				</tr>
 			</table>
 			<br>
+			</center>
 			<table class="tablaventas3">
 				<tr>
 					<td>
@@ -156,19 +146,7 @@
 						<input type="number" name="txtTotalIva" id="txtTotalIva" maxlength="20" size="10" disabled>
 					</td>
 				</tr>
-			</table>
-
-			<table class="tablaventas4">
 				<tr>
-					<td>
-						<input type="reset" name="btnCancelar" id="btnCancelar"	value="Cancelar" class="button">
-					</td>
-					<td>
-						<input type="submit" name="btnConfirmar" value="Confirmar" class="button" disabled>
-					</td>
-					<td>
-						<label></label>
-					</td>
 					<td>
 						<label>Total con IVA </label>
 					</td>

@@ -37,6 +37,7 @@ public class ReportesServlet extends HttpServlet {
 		String btnlistadoProveedores= request.getParameter("btnlistadoProveedores");
 		String btnlistadoProductos = request.getParameter("btnlistadoProductos");
 		String btnVentasCliente = request.getParameter("btnVentasCliente");
+		String btnVentas = request.getParameter("btnVentas");
 		
 
 		if (btnListadoUsuarios != null) {
@@ -59,7 +60,12 @@ public class ReportesServlet extends HttpServlet {
 		
 		if (btnVentasCliente != null)
 		{
-			request.getRequestDispatcher("/ventascliente.jsp").forward(request, response);
+			listarVentasCliente(request,response);
+		}
+		
+		if (btnVentas != null)
+		{
+			listarVentas(request,response);
 		}
 		
 	}
@@ -111,8 +117,33 @@ public class ReportesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	public void listarVentas(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Ventas> lista = VentasJSON.getJSON();
+			String pagina = "/listadoventasprueba.jsp";
+			request.setAttribute("lista",lista);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-
+	public void listarVentasCliente(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			ArrayList<Ventas> listaVentas = VentasJSON.getJSON();
+			ArrayList<Clientes> listaClientes = ClientesJSON.getJSON();
+			String pagina = "/ventascliente.jsp";
+			request.setAttribute("listaVentas",listaVentas);
+			request.setAttribute("listaClientes",listaClientes);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <%@ page import='java.util.Date'%>
 <%@ page import='co.edu.unbosque.nameless.Ventas'%>
+<%@ page import='co.edu.unbosque.nameless.Clientes'%>
 <%@ page import='java.util.ArrayList'%>
 <html>
 <head>
@@ -35,8 +36,7 @@
 			<h4>
 				Hora servidor: <%= new Date() %>
 			</h4>
-			<table border="5">
-				<tr>
+			
 					<td>
 						Cedula
 					</td>
@@ -47,8 +47,28 @@
 						Valor Total Ventas
 					</td>
 				</tr>
-
-			</table>
+				<table border="5">
+					<tr><% ArrayList<Ventas> listaVentas = (ArrayList<Ventas>) request.getAttribute("listaVentas");
+						double txtTotalVentas = 0;	
+						for (Ventas venta : listaVentas)
+						{%>
+							<tr>
+								<td><%=venta.getCedula_clientes()%></td>
+								<%ArrayList<Clientes> listaClientes = (ArrayList<Clientes>) request.getAttribute("listaClientes");
+									for (Clientes cliente : listaClientes)
+									{
+										if (cliente.getCedula_clientes() == venta.getCedula_clientes())
+										{%>
+								<td><%=cliente.getNombre_clientes()%></td>
+										<%break;
+										}
+									}%>
+								<td><%=venta.getTotal_venta_ventas()%></td>
+							</tr>
+						<%
+						txtTotalVentas = txtTotalVentas + venta.getTotal_venta_ventas();
+						}%>
+				</table>
 		</center>
 		<table class="tablaventas">
 			<tr>
@@ -56,7 +76,7 @@
 					Total Ventas $
 				</td>
 				<td>
-					<input type="text" name="txtTotalVentas" id="txtTotalVentas" value="0" maxlength="20" size="40" disabled>
+					<input type="text" name="txtTotalVentas" id="txtTotalVentas" value=<%=txtTotalVentas%> maxlength="20" size="40" disabled>
 				</td>
 			</tr>
 		</table>

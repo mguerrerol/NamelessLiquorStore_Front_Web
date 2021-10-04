@@ -136,7 +136,7 @@
 					</tr>
 				</table>
 				<h3>
-					<b>Cliente no encontrado en la base de datos</b>
+					<b>Usuario no encontrado en la base de datos</b>
 				</h3>
 				<%
 				}

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.parser.ParseException;
+
 /**
  * Servlet implementation class VentaServlet
  */
@@ -39,7 +41,8 @@ public class VentasServlet extends HttpServlet {
 		String btnConsultarProducto2 = request.getParameter("btnConsultarProducto2");
 		String btnConsultarProducto3 = request.getParameter("btnConsultarProducto3");
 	
-		String btnConfirmar_ventas = request.getParameter("btnConfirmar");
+		String btnConfirmar = request.getParameter("btnConfirmar");
+		String btnCancelar = request.getParameter("btnCancelarr");
 		
 		if(btnConsultarCliente  != null)
 		{
@@ -60,110 +63,30 @@ public class VentasServlet extends HttpServlet {
 		{
 			consultaProductos(request, response);
 		}
-		if(btnConfirmar_ventas != null)
+		
+		if(btnCancelar != null)
 		{
-			registrarVenta(request,response);
+			request.getRequestDispatcher("/ventas.jsp").forward(request, response);
 		}
 		
+		if(btnConfirmar != null)
+		{
+			try {
+				registrarVenta(request,response);
+			} catch (IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
-	public void registrarVenta(HttpServletRequest request, HttpServletResponse response) {
 		
-		long codigo_ventas = Long.parseLong(request.getParameter("txtConsecutivo"));
-		
-		double iva = 0.19;
-		
-		//int cantidad_detalle1 = Integer.parseInt(request.getParameter("txtCantidad1"));
-		//double valor_producto1 = Double.parseDouble(request.getParameter("txtValProd1"));
-		long codigo_productos1 = Long.parseLong(request.getParameter("txtCodProd1"));
-		int cantidad_producto_detalle_ventas1 = Integer.parseInt(request.getParameter("txtCantidad1"));	
-		double valor_total1 = Integer.parseInt(request.getParameter("txtCantidad1")) * Double.parseDouble(request.getParameter("txtValProd1"));
-		double valoriva_detalle_ventas1 = valor_total1 * iva;
-		double valor_total_detalle_ventas1 = valor_total1 + valoriva_detalle_ventas1;
-		
-		DetalleVentas detalleVenta1 = new DetalleVentas();
-		detalleVenta1.setCodigo_ventas(codigo_ventas);
-		detalleVenta1.setCodigo_productos(codigo_productos1);
-		detalleVenta1.setCantidad_producto_detalle_ventas(cantidad_producto_detalle_ventas1);
-		detalleVenta1.setValor_venta_detalle_ventas(valoriva_detalle_ventas1);
-		detalleVenta1.setValor_total_detalle_ventas(valor_total_detalle_ventas1);
-		int respuestaDetalleVenta1 = 0;
-		
-		
-		//int cantidad_detalle2 = Integer.parseInt(request.getParameter("txtCantidad2"));
-		//double valor_producto2 = ;
-		long codigo_productos2 = Long.parseLong(request.getParameter("txtCodProd2"));
-		int cantidad_producto_detalle_ventas2 = Integer.parseInt(request.getParameter("txtCantidad2"));
-		double valor_total2 = Integer.parseInt(request.getParameter("txtCantidad2"))* Double.parseDouble(request.getParameter("txtValProd2"));
-		double valoriva_detalle_ventas2 = valor_total2 * iva;
-		double valor_total_detalle_ventas2 = valor_total2 + valoriva_detalle_ventas2;
-		
-		DetalleVentas detalleVenta2 = new DetalleVentas();
-		detalleVenta2.setCodigo_ventas(codigo_ventas);
-		detalleVenta2.setCodigo_productos(codigo_productos2);
-		detalleVenta2.setCantidad_producto_detalle_ventas(cantidad_producto_detalle_ventas2);
-		detalleVenta2.setValor_venta_detalle_ventas(valoriva_detalle_ventas2);
-		detalleVenta2.setValor_total_detalle_ventas(valor_total_detalle_ventas2);
-		int respuestaDetalleVenta2 = 0;
-		
-		
-		//int cantidad_detalle3 = Integer.parseInt(request.getParameter("txtCantidad3"));
-		//double valor_producto3 = Double.parseDouble(request.getParameter("txtValProd3"));
-		long codigo_productos3 = Long.parseLong(request.getParameter("txtCodProd3"));
-		int cantidad_producto_detalle_ventas3 = Integer.parseInt(request.getParameter("txtCantidad3"));
-		double valor_total3 = Integer.parseInt(request.getParameter("txtCantidad3")) * Double.parseDouble(request.getParameter("txtValProd3"));
-		double valoriva_detalle_ventas3 = valor_total3 * iva;
-		double valor_total_detalle_ventas3 = valor_total3 + valoriva_detalle_ventas3;
-		
-		DetalleVentas detalleVenta3 = new DetalleVentas();
-		detalleVenta3.setCodigo_ventas(codigo_ventas);
-		detalleVenta3.setCodigo_productos(codigo_productos3);
-		detalleVenta3.setCantidad_producto_detalle_ventas(cantidad_producto_detalle_ventas3);
-		detalleVenta3.setValor_venta_detalle_ventas(valoriva_detalle_ventas3);
-		detalleVenta3.setValor_total_detalle_ventas(valor_total_detalle_ventas3);
-		int respuestaDetalleVenta3 = 0;
-		
-		
-		double subtotal = valor_total1 + valor_total2 + valor_total3 ;
-		double valor_iva = subtotal * iva;
-		double total_final = subtotal + valor_iva;
- 			
-		Ventas venta = new Ventas();
-		venta.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));
-		venta.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
-		venta.setIvaventa_ventas(valor_iva);
-		venta.setValor_venta_ventas(subtotal);
-		venta.setTotal_venta_ventas(total_final);
-		int respuestaVentas = 0;
-		
-		
-		try {
-			respuestaVentas = VentasJSON.postJSON(venta);
-			//respuestaDetalleVenta1 = DetalleVentasJSON.postJSON(detalleVenta1);
-			//respuestaDetalleVenta2 = DetalleVentasJSON.postJSON(detalleVenta2);
-			//respuestaDetalleVenta3 = DetalleVentasJSON.postJSON(detalleVenta3);
-			
-			PrintWriter writer = response.getWriter();
-			//if (respuestaVentas == 200 && respuestaDetalleVenta1 == 200 && respuestaDetalleVenta2 == 200 && respuestaDetalleVenta3 == 200)
-			if (respuestaVentas == 200)
-			{
-				request.getRequestDispatcher("/ventas.jsp").forward(request, response);
-			}
-			else 
-			{
-				writer.println("Error: " + respuestaVentas);
-			}
-			writer.close();
-		}catch(IOException | ServletException e){
-			e.printStackTrace();
-		}
-	}
-	
 	public void consultaClientes(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
-			String txtNombre = "";
+			String txtCliente= "";
+			long txtConsecutivo =  0;
 			
 			long txtCodProd1 = 0;
 			String txtNomProd1 = " ";
@@ -191,16 +114,28 @@ public class VentasServlet extends HttpServlet {
 			String pagina = "/ventasconsultas.jsp";
 			
 			for (Clientes cliente: lista){
-				if (txtCedula == cliente.getCedula_clientes())
+				if (cliente.getCedula_clientes() == txtCedula)
 				{
 					txtCedula = cliente.getCedula_clientes();
-					txtNombre = (String) cliente.getNombre_clientes();
-					break;
+					txtCliente = cliente.getNombre_clientes();
 				}
 			}
-			
+
+			ArrayList<Ventas> listaVentas = VentasJSON.getJSON();
+			int i = 0;
+
+			for (Ventas venta: listaVentas){
+				i++;
+				if (i == (listaVentas.size()))
+				{
+					txtConsecutivo = venta.getCodigo_ventas()+1;
+				}
+				
+			} 
+				
 			request.setAttribute("txtCedula",txtCedula);
-			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtCliente",txtCliente);
+			request.setAttribute("txtConsecutivo",txtConsecutivo);
 			
 			request.setAttribute("txtCodProd1",txtCodProd1);
 			request.setAttribute("txtNomProd1",txtNomProd1);
@@ -233,10 +168,11 @@ public class VentasServlet extends HttpServlet {
 	}
 	
 	public void consultaProductos(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getWriter().append("Served at: Entre al metodo de consultas").append(request.getContextPath());
 		try {
+			String pagina = "/ventasconsultas.jsp";
 			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
-			String txtNombre = request.getParameter("txtNombre");
+			String txtCliente = "";
+			long txtConsecutivo = 0;
 			
 			long txtCodProd1 = Long.parseLong(request.getParameter("txtCodProd1"));
 			String txtNomProd1 = request.getParameter("txtNomProd1");
@@ -262,20 +198,18 @@ public class VentasServlet extends HttpServlet {
 	    	
 	    	double iva = 0.19;
 	    	
+	    	ArrayList<Clientes> lista = ClientesJSON.getJSON();
 			
-			ArrayList<Clientes> listaClientes = ClientesJSON.getJSON();
-			ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
-			String pagina = "/ventasconsultas.jsp";
-			
-			for (Clientes cliente:listaClientes){
+			for (Clientes cliente: lista){
 				if (cliente.getCedula_clientes() == txtCedula)
 				{
 					txtCedula = cliente.getCedula_clientes();
-					txtNombre = cliente.getNombre_clientes();
-					break;
+					txtCliente = cliente.getNombre_clientes();
 				}
 			}
-			
+	    	
+			ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
+						
 			for (Productos producto:listaProductos){
 				if (producto.getCodigo_productos() == txtCodProd1)
 				{
@@ -303,6 +237,18 @@ public class VentasServlet extends HttpServlet {
 				}
 			}
 			
+			ArrayList<Ventas> listaVentas = VentasJSON.getJSON();
+			int i = 0;
+
+			for (Ventas venta: listaVentas){
+				i++;
+				if (i == (listaVentas.size()))
+				{
+					txtConsecutivo = venta.getCodigo_ventas()+1;
+				}
+				
+			} 
+			
 			txtValorTotal1 = txtCantidad1 * txtValProd1;
 			txtValorTotal2 = txtCantidad2 * txtValProd2;
 			txtValorTotal3 = txtCantidad3 * txtValProd3;
@@ -311,7 +257,8 @@ public class VentasServlet extends HttpServlet {
 			txtTotalConIva = txtTotalVenta + txtTotalIva;
 			
 			request.setAttribute("txtCedula",txtCedula);
-			request.setAttribute("txtNombre",txtNombre);
+			request.setAttribute("txtCliente",txtCliente);
+			request.setAttribute("txtConsecutivo",txtConsecutivo);
 			
 			request.setAttribute("txtCodProd1",txtCodProd1);
 			request.setAttribute("txtNomProd1",txtNomProd1);
@@ -342,6 +289,174 @@ public class VentasServlet extends HttpServlet {
 		}
 	}
 
+	public void registrarVenta(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+		String pagina = "/ventasconsultas.jsp";
+		long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
+		String txtCliente = "";
+		long txtConsecutivo = 0;
+		
+		
+		long txtCodProd1 = Long.parseLong(request.getParameter("txtCodProd1"));
+		String txtNomProd1 = request.getParameter("txtNomProd1");
+		double txtValProd1 = 0;
+    	int txtCantidad1 = Integer.parseInt(request.getParameter("txtCantidad1"));
+    	double txtValorTotal1 = 0;
+    	double iva1 = 0;
+    	double totalDetalleVenta1 = 0;
+		
+    	long txtCodProd2 = Long.parseLong(request.getParameter("txtCodProd2"));
+		String txtNomProd2 = "";
+		double txtValProd2 = 0;
+    	int txtCantidad2 = Integer.parseInt(request.getParameter("txtCantidad2"));
+    	double txtValorTotal2 = 0;
+    	double iva2 = 0;
+    	double totalDetalleVenta2 = 0;
+    	
+    	long txtCodProd3 = Long.parseLong(request.getParameter("txtCodProd3"));
+		String txtNomProd3 = "";
+		double txtValProd3 = 0;
+    	int txtCantidad3 = Integer.parseInt(request.getParameter("txtCantidad3"));
+    	double iva3 = 0;
+    	double totalDetalleVenta3 = 0;
+    	
+    	double txtValorTotal3 = 0;
+    	double txtTotalIva = 0;
+    	double txtTotalVenta = 0;
+    	double txtTotalConIva = 0;
+    	
+    	double iva = 0.19;
+    	
+    	ArrayList<Clientes> lista = ClientesJSON.getJSON();
+		
+		
+		for (Clientes cliente: lista){
+			if (cliente.getCedula_clientes() == txtCedula)
+			{
+				txtCedula = cliente.getCedula_clientes();
+				txtCliente = cliente.getNombre_clientes();
+			}
+		}
+    	
+		ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
+		
+		for (Productos producto:listaProductos){
+			if (producto.getCodigo_productos() == txtCodProd1)
+			{
+				txtValProd1 = producto.getPrecio_venta_productos();
+				txtNomProd1 = producto.getNombre_productos();
+				break;
+			}
+		}
+		
+		for (Productos producto:listaProductos){
+			if (producto.getCodigo_productos() == txtCodProd2)
+			{
+				txtValProd2 = producto.getPrecio_venta_productos();
+				txtNomProd2 = producto.getNombre_productos();
+				break;
+			}
+		}
+		
+		for (Productos producto:listaProductos){
+			if (producto.getCodigo_productos() == txtCodProd3)
+			{
+				txtValProd3 = producto.getPrecio_venta_productos();
+				txtNomProd3 = producto.getNombre_productos();
+				break;
+			}
+		}
+		
+		ArrayList<Ventas> listaVentas = VentasJSON.getJSON();
+		int i = 0;
+
+		for (Ventas venta: listaVentas){
+			i++;
+			if (i == (listaVentas.size()))
+			{
+				txtConsecutivo = venta.getCodigo_ventas()+1;
+			}
+			
+		} 
+		
+		txtValorTotal1 = txtCantidad1 * txtValProd1;
+		txtValorTotal2 = txtCantidad2 * txtValProd2;
+		txtValorTotal3 = txtCantidad3 * txtValProd3;
+		txtTotalVenta = txtValorTotal1 + txtValorTotal2 + txtValorTotal3;
+		txtTotalIva = txtTotalVenta * iva;
+		txtTotalConIva = txtTotalVenta + txtTotalIva;
+		
+		iva1 = txtValorTotal1 * iva;
+		totalDetalleVenta1 = txtValorTotal1 + iva1;
+		
+		iva2 = txtValorTotal2 * iva;
+		totalDetalleVenta1 = txtValorTotal2 + iva2;
+		
+		iva3 = txtValorTotal3 * iva;
+		totalDetalleVenta3 = txtValorTotal3 + iva3;
+		
+		Ventas venta = new Ventas();
+		venta.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));
+		venta.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
+		venta.setIvaventa_ventas(txtTotalIva);
+		venta.setValor_venta_ventas(txtTotalVenta);
+		venta.setTotal_venta_ventas(txtTotalConIva);
+		int respuestaVentas = 0;
+		
+		if (txtValorTotal1 != 0) {
+			
+			DetalleVentas detalleVenta1 = new DetalleVentas();
+			//detalleVenta1.setCodigo_ventas(Long.parseLong(request.getParameter("txtCedula")));
+			detalleVenta1.setCodigo_productos(Long.parseLong(request.getParameter("txtCodProd1")));
+			detalleVenta1.setValor_venta_detalle_ventas(txtValorTotal1);
+			detalleVenta1.setValoriva_detalle_ventas(iva1);
+			detalleVenta1.setValor_total_detalle_ventas(totalDetalleVenta1);
+			int respuestaDetalleVentas1 = 0;
+			
+		}
+		
+		try {
+			respuestaVentas = VentasJSON.postJSON(venta);
+			PrintWriter writer = response.getWriter();
+			if (respuestaVentas == 200)
+			{
+				request.setAttribute("txtCedula",txtCedula);
+				request.setAttribute("txtCliente",txtCliente);
+				request.setAttribute("txtConsecutivo",txtConsecutivo);
+				
+				request.setAttribute("txtCodProd1",txtCodProd1);
+				request.setAttribute("txtNomProd1",txtNomProd1);
+				request.setAttribute("txtValProd1",txtValProd1);
+				request.setAttribute("txtCantidad1",txtCantidad1);
+				request.setAttribute("txtValorTotal1",txtValorTotal1);
+				
+				request.setAttribute("txtCodProd2",txtCodProd2);
+				request.setAttribute("txtNomProd2",txtNomProd2);
+				request.setAttribute("txtValProd2",txtValProd2);
+				request.setAttribute("txtCantidad2",txtCantidad2);
+				request.setAttribute("txtValorTotal2",txtValorTotal2);
+				
+				request.setAttribute("txtCodProd3",txtCodProd3);
+				request.setAttribute("txtNomProd3",txtNomProd3);
+				request.setAttribute("txtValProd3",txtValProd3);
+				request.setAttribute("txtCantidad3",txtCantidad3);
+				request.setAttribute("txtValorTotal3",txtValorTotal3);
+				
+				request.setAttribute("txtTotalIva",txtTotalIva);
+				request.setAttribute("txtTotalVenta",txtTotalVenta);
+				request.setAttribute("txtTotalConIva",txtTotalConIva);
+				request.getRequestDispatcher("/ventasexitosa.jsp").forward(request, response);
+			}
+			else 
+			{
+				writer.println("Error: " + respuestaVentas);
+			}
+			writer.close();
+		}catch(IOException | ServletException e){
+			e.printStackTrace();
+		}
+	}
+
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

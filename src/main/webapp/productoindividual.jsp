@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +17,12 @@
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
 		<li><a href="productos.jsp">Productos</a></li>
-		<li><a href="productoindividual.jsp" class="active">Producto
-				Individual</a></li>
+		<li><a href="productoindividual.jsp" class="active">Producto Individual</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
 	</ul>
-	<form class="formulario" method="get"
-		action="./ProductoIndividualServlet">
+	<form class="formulario" method="get" action="./ProductoIndividualServlet">
 		<div>
 			<br>
 			<h2>Producto Individual</h2>

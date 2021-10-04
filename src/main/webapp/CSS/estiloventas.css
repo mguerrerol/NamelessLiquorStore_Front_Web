@@ -54,6 +54,8 @@ body {
 	margin-left: 505px;
 }
 
+
+
 td {
 	padding: 0.2em 0.8em;
 	border: 0;
@@ -208,4 +210,15 @@ input[type=number] {
 
 #number {
 	width: 3em;
+}
+
+h2 {
+	font-weight: bold;
+	font-style: italic;
+	text-align: center;
+	color: white;
+}
+
+b{
+	color: white;
 }

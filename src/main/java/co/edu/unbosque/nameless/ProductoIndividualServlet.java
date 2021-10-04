@@ -134,11 +134,11 @@ public class ProductoIndividualServlet extends HttpServlet {
 	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			long txtCodigo = Long.parseLong(request.getParameter("txtCodigo"));
-			long txtNIT = Long.parseLong(request.getParameter("txtNIT"));
-			String txtNombre = request.getParameter("txtNombre");
-			double txtValorCompra = Double.parseDouble(request.getParameter("txtValorCompra"));
-			double txtValorVenta = Double.parseDouble(request.getParameter("txtValorVenta"));
-			double txtIVA = Double.parseDouble(request.getParameter("txtIVA"));
+			long txtNIT = 0;
+			String txtNombre = "";
+			double txtValorCompra = 0;
+			double txtValorVenta = 0;
+			double txtIVA = 0;
 			int error = 0;
 			ArrayList<Productos> lista = ProductosJSON.getJSON();
 			String pagina = "/productoindividualconsulta.jsp";

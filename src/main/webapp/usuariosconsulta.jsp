@@ -19,8 +19,8 @@
 		<li><a href="usuarios.jsp" class="active">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
-		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
+		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
@@ -136,7 +136,7 @@
 					</tr>
 				</table>
 				<h3>
-					<b>Usuario no encontrado en la base de datos</b>
+					<b>Usuario no encontrado en la base de datos.</b>
 				</h3>
 				<%
 				}

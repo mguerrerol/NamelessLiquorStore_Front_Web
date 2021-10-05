@@ -17,8 +17,8 @@
 		<li><a href="usuarios.jsp">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
-		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
+		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp" class="active">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
@@ -26,18 +26,32 @@
 	<form class=formulario method="get" action="./ReportesServlet">
 		<br>
 		<h2>Reportes</h2>
+		<br>
+		<br>
 		<center>
-			<input type="submit" name="btnListadoUsuarios" id="btnListadoUsuarios" value="Listado de Usuarios" class="button">
-			<br> 
-			<input type="submit" name="btnListadoClientes" id="btnListadoClientes" value="Listado de Clientes" class="button">
-			<br> 
-			<input type="submit" name="btnlistadoProveedores" id="btnlistadoProveedores" value="Listado de Proveedores" class="button"> 
-			<br>
-			<input type="submit" name="btnlistadoProductos" id="btnlistadoProductos" value="Listado de Productos" class="button">
-			<br>
-			<input type="submit" name="btnVentasCliente" id="btnVentasCliente" value="Ventas por Cliente" class="button">
-			<br>
-			<input type="submit" name="btnVentas" id="btnVentas" value="Listado de Ventas" class="button">
+		<table>
+			<tr>
+				<input type="submit" name="btnListadoUsuarios" id="btnListadoUsuarios" value="Listado Usuarios" class="button">
+			</tr>
+			<tr>
+				<input type="submit" name="btnListadoClientes" id="btnListadoClientes" value="Listado Clientes" class="button">
+			</tr> 
+			<tr>
+				<input type="submit" name="btnlistadoProveedores" id="btnlistadoProveedores" value="Listado Proveedores" class="button"> 
+			</tr>
+		</table>
+		<br><br>
+		<table>
+			<tr>
+				<input type="submit" name="btnlistadoProductos" id="btnlistadoProductos" value="Listado Productos" class="button">
+			</tr>
+			<tr>
+				<input type="submit" name="btnVentasCliente" id="btnVentasCliente" value="Ventas por Cliente" class="button">
+			</tr>
+			<tr>
+				<input type="submit" name="btnVentas" id="btnVentas" value="Listado Ventas" class="button">
+			</tr>
+		</table>
 		</center>
 		<br>
 		<br> <br>

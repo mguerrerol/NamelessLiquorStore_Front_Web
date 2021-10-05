@@ -82,7 +82,7 @@ public class ProveedoresServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				request.getRequestDispatcher("/proveedores.jsp").forward(request, response);
+				request.getRequestDispatcher("/proveedorescrear.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -101,7 +101,7 @@ public class ProveedoresServlet extends HttpServlet {
 		   respuesta = ProveedoresJSON.deleteJSON(id);
 		   PrintWriter write = response.getWriter();
 		   if (respuesta==200) {
-			   request.getRequestDispatcher("/proveedores.jsp").forward(request, response);
+			   request.getRequestDispatcher("/proveedoreseliminar.jsp").forward(request, response);
 		   } else {
 			write.println("Error: " +  respuesta);
 		   }
@@ -126,7 +126,7 @@ public class ProveedoresServlet extends HttpServlet {
 			PrintWriter write = response.getWriter();
 					
 			if (respuesta==200) {
-				request.getRequestDispatcher("/proveedores.jsp").forward(request, response);
+				request.getRequestDispatcher("/proveedoresactualizar.jsp").forward(request, response);
 			} else {
 				write.println("Error: " +  respuesta);
 			}

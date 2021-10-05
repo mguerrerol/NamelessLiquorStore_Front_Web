@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="co.edu.unbosque.nameless.Usuarios"%>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon" />
-<title>Nameless LS - Clientes</title>
+<title>Nameless LS - Usuarios</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 </head>
@@ -14,8 +17,8 @@
 		<img class="header" src="IMG/titulo.png" alt="Nameless Liquor Store">
 	</header>
 	<ul class="menu">
-		<li><a href="usuarios.jsp">Usuarios</a></li>
-		<li><a href="clientes.jsp" class="active">Clientes</a></li>
+		<li><a href="usuarios.jsp" class="active">Usuarios</a></li>
+		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
 		<li><a href="productos.jsp">Productos</a></li>
@@ -23,25 +26,25 @@
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
 	</ul>
-	<form class="formulario" method="get" action="./ClientesServlet">
+	<form class="formulario" method="post" action="./UsuariosServlet">
 		<div>
 			<br>
-			<h2>Clientes</h2>
+			<h2>Usuarios</h2>
 			<br>
 			<center>
 				<table border="0">
 					<tr>
 						<td>
-							<label>Cedula </label>
+							<label>Cedula</label>
 						</td>
 						<td>
-							<input type="number" name="txtCedula" id="txtCedula" maxlength="20" size="50" placeholder="Digite la cedula" required>
+							<input type="number" maxlength="20" id="txtCedula" name="txtCedula" size="50" placeholder="Digite la cedula" required>
 						</td>
 						<td>
-							<label>Teléfono </label>
+							<label>Usuario </label>
 						</td>
 						<td>
-							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" placeholder="Digite el teléfono">
+							<input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size="50" placeholder="Digite el usuario">
 						</td>
 					</tr>
 					<tr>
@@ -49,29 +52,33 @@
 							<label>Nombre Completo </label>
 						</td>
 						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre completo">
+							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre">
 						</td>
 						<td>
-							<label>Correo Electrónico </label>
+							<label>Contraseña </label>
 						</td>
 						<td>
-							<input type="email" name="txtCorreo" id="txtCorreo"	maxlength="50" size="50" placeholder="Digite el correo electrónico">
+							<input type="password" id="txtPassword" name="txtPassword" maxlength="50" size="50" placeholder="Digite la contraseña">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<label>Dirección </label>
+							<label>Correo Electrónico </label>
 						</td>
 						<td>
-							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" placeholder="Digite la dirección">
+							<input type="email" maxlength="50" id="txtCorreo" name="txtCorreo" size="50" placeholder="Digite el correo electrónico">
+						</td>
+						<td>
+						</td>
+						<td>
+							<input type="checkbox" onclick="verPassword()" class="checkbox"><label>Mostrar Contraseña</label>
 						</td>
 					</tr>
 				</table>
+				<h3>
+					<b>Usuario creado con exito.</b>
+				</h3>
 			</center>
-
-			<br>
-			<br>
-			<br>
 			<center>
 				<td>
 					<input type="submit" name="btnConsultar" id="btnConsultar" value="Consultar" class="button">
@@ -92,4 +99,5 @@
 		<img class="footer" src="IMG/footer.png" alt="Nameless Liquor Store">
 	</footer>
 </body>
+<script type="text/javascript" src="JS/funciones.js"></script>
 </html>

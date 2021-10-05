@@ -67,11 +67,10 @@
 						</td>
 					</tr>
 				</table>
+				<h3>
+					<b>Cliente creado con exito.</b>
+				</h3>
 			</center>
-
-			<br>
-			<br>
-			<br>
 			<center>
 				<td>
 					<input type="submit" name="btnConsultar" id="btnConsultar" value="Consultar" class="button">

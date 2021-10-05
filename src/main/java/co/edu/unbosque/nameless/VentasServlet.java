@@ -37,36 +37,18 @@ public class VentasServlet extends HttpServlet {
 			
 		String btnConsultarCliente = request.getParameter("btnConsultarCliente");
 		
-		String btnConsultarProducto1 = request.getParameter("btnConsultarProducto1");
-		String btnConsultarProducto2 = request.getParameter("btnConsultarProducto2");
-		String btnConsultarProducto3 = request.getParameter("btnConsultarProducto3");
+		String btnConsultarProducto = request.getParameter("btnConsultarProducto");
 	
 		String btnConfirmar = request.getParameter("btnConfirmar");
-		String btnCancelar = request.getParameter("btnCancelarr");
 		
 		if(btnConsultarCliente  != null)
 		{
 			consultaClientes(request,response);
 		}
 		
-		if(btnConsultarProducto1 != null)
+		if(btnConsultarProducto != null)
 		{
 			consultaProductos(request,response); 
-		}
-		
-		if(btnConsultarProducto2 != null)
-		{
-			consultaProductos(request, response);
-		}
-		
-		if(btnConsultarProducto3 != null)
-		{
-			consultaProductos(request, response);
-		}
-		
-		if(btnCancelar != null)
-		{
-			request.getRequestDispatcher("/ventas.jsp").forward(request, response);
 		}
 		
 		if(btnConfirmar != null)
@@ -84,6 +66,7 @@ public class VentasServlet extends HttpServlet {
 		
 	public void consultaClientes(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
+			String pagina = "/ventasconsultas.jsp";
 			long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
 			String txtCliente= "";
 			long txtConsecutivo =  0;
@@ -110,8 +93,7 @@ public class VentasServlet extends HttpServlet {
 	    	double txtTotalVenta = 0;
 	    	double txtTotalConIva = 0;
 			
-			ArrayList<Clientes> lista = ClientesJSON.getJSON();
-			String pagina = "/ventasconsultas.jsp";
+			ArrayList<Clientes> lista = ClientesJSON.getJSON();		
 			
 			for (Clientes cliente: lista){
 				if (cliente.getCedula_clientes() == txtCedula)
@@ -405,7 +387,7 @@ public class VentasServlet extends HttpServlet {
 		if (txtValorTotal1 != 0) {
 			
 			DetalleVentas detalleVenta1 = new DetalleVentas();
-			//detalleVenta1.setCodigo_ventas(Long.parseLong(request.getParameter("txtCedula")));
+			//detalleVenta1.setCodigo_ventas(Long.parseLong(request.getParameter("txtConsecutivo")));
 			detalleVenta1.setCodigo_productos(Long.parseLong(request.getParameter("txtCodProd1")));
 			detalleVenta1.setValor_venta_detalle_ventas(txtValorTotal1);
 			detalleVenta1.setValoriva_detalle_ventas(iva1);

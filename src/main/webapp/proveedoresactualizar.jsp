@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="co.edu.unbosque.nameless.Proveedores"%>
-<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +18,7 @@
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp" class="active">Proveedores</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
-		<li><a href="productos.jsp">Productos</a></li>	
+		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
@@ -28,66 +26,10 @@
 	<form class="formulario" method="get" action="./ProveedoresServlet">
 		<div>
 			<br>
-			<h2>
-				Proveedores
-			</h2>
+			<h2>Proveedores</h2>
 			<br>
 			<center>
 				<table border="0">
-					<% 
-					long txtNit = (Long) request.getAttribute("txtNit");
-					String txtNombre = (String) request.getAttribute("txtNombre");
-	      			String txtCiudad = (String) request.getAttribute("txtCiudad");
-	      			String txtTelefono = (String) request.getAttribute("txtTelefono");
-	      			String txtDireccion = (String) request.getAttribute("txtDireccion");
-	      			int error = (int) request.getAttribute("error");
-
-		      		if (error == 1)
-					{%>
-					<tr>
-						<td>
-							<label>NIT</label>
-						</td>
-						<td>
-							<input type="number" name="txtNit" id="txtNit" maxlength="20" size="50"	value=<%=txtNit%> required>
-						</td>
-						<td>
-							<label>Teléfono </label>
-						</td>
-						<td>
-							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" value=<%=txtTelefono%>>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Nombre del Proveedor </label>
-						</td>
-						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" value=<%=txtNombre%>>
-						</td>
-						<td>
-							<label>Ciudad</label>
-						</td>
-						<td>
-							<input type="text" name="txtCiudad" id="txtCiudad" maxlength="50" size="50" value=<%=txtCiudad%>>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Dirección </label>
-						</td>
-						<td>
-							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" value=<%=txtDireccion%>>
-						</td>
-					</tr>
-					</table>
-					<h3>
-						<b class="consultas">|</b>
-					</h3>
-					<%}
-		     		else
-		     		{%>
-					<table border="0">
 					<tr>
 						<td>
 							<label>NIT</label>
@@ -126,11 +68,8 @@
 					</tr>
 				</table>
 				<h3>
-					<b>Proveedor no encontrado en la base de datos.</b>
+					<b>Proveedor actualizado con exito.</b>
 				</h3>
-				<%
-				}
-				%>
 			</center>
 			<center>
 				<td>

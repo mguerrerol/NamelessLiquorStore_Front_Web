@@ -73,7 +73,7 @@ public class ClientesServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+				request.getRequestDispatcher("/clientescrear.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -92,7 +92,7 @@ public class ClientesServlet extends HttpServlet {
 		   respuesta = ClientesJSON.deleteJSON(id);
 		   PrintWriter write = response.getWriter();
 		   if (respuesta==200) {
-			   request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+			   request.getRequestDispatcher("/clienteseliminar.jsp").forward(request, response);
 		   } else {
 			write.println("Error: " +  respuesta);
 		   }
@@ -117,7 +117,7 @@ public class ClientesServlet extends HttpServlet {
 				PrintWriter write = response.getWriter();
 					
 				if (respuesta==200) {
-					request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+					request.getRequestDispatcher("/clientesactualizar.jsp").forward(request, response);
 				} else {
 					write.println("Error: " +  respuesta);
 				}

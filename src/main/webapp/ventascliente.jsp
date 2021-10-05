@@ -21,8 +21,8 @@
 		<li><a href="usuarios.jsp">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
-		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
+		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp" class="active">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
@@ -36,7 +36,7 @@
 			<h4>
 				Hora servidor: <%= new Date() %>
 			</h4>
-			
+			<table border="5">
 					<td>
 						Cedula
 					</td>
@@ -47,7 +47,7 @@
 						Valor Total Ventas
 					</td>
 				</tr>
-				<table border="5">
+				
 					<tr><% ArrayList<Ventas> listaVentas = (ArrayList<Ventas>) request.getAttribute("listaVentas");
 						double txtTotalVentas = 0;	
 						for (Ventas venta : listaVentas)
@@ -76,7 +76,7 @@
 					Total Ventas $
 				</td>
 				<td>
-					<input type="text" name="txtTotalVentas" id="txtTotalVentas" value=<%=txtTotalVentas%> maxlength="20" size="40" disabled>
+					<input type="text" name="txtTotalVentas" id="txtTotalVentas" value=<%=txtTotalVentas%> maxlength="40" size="40" disabled>
 				</td>
 			</tr>
 		</table>

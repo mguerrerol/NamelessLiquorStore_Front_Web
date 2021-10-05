@@ -17,8 +17,8 @@
 		<li><a href="usuarios.jsp">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
-		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="productoindividual.jsp">Producto Individual</a></li>
+		<li><a href="productos.jsp">Productos</a></li>		
 		<li><a href="ventas.jsp" class="active">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
@@ -60,13 +60,13 @@
 						<label>Cod. Producto</label>
 					</td>
 					<td>
+						<label>Cant.</label>
+					</td>
+					<td>
 						<label>Nombre Producto</label>
 					</td>
 					<td>
 						<label>Valor Producto</label>
-					</td>
-					<td>
-						<label>Cant.</label>
 					</td>
 					<td>
 						<label>Vlr. Total</label>
@@ -78,13 +78,13 @@
 						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
 					</td>
 					<td>
+						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" placeholder="Cantidad" disabled>
+					</td>
+					<td>
 						<input type="text" name="txtNomProd1" id="txtNomProd1" maxlength="50" size="30" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValProd1" id="txtValProd1" maxlength="50" size="6" disabled>
-					</td>
-					<td>
-						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" placeholder="Cantidad" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal1" id="txtValorTotal1" maxlength="50" size="10" disabled>
@@ -96,13 +96,13 @@
 						<input type="number" name="txtCodProd2" id="txtCodProd2" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
 					</td>
 					<td>
+						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6" placeholder="Cantidad" disabled>
+					</td>
+					<td>
 						<input type="text" name="txtNomProd2" id="txtNomProd2" maxlength="50" size="30" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValProd2" id="txtValProd2" maxlength="50" size="6" disabled>
-					</td>
-					<td>
-						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6" placeholder="Cantidad" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal2" id="txtValorTotal2" maxlength="50" size="10" disabled>
@@ -114,13 +114,13 @@
 						<input type="number" name="txtCodProd3" id="txtCodProd3" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>
 					</td>
 					<td>
+						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" placeholder="Cantidad" disabled>
+					</td>
+					<td>
 						<input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size="30" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValProd3" id="txtValProd3" maxlength="50" size="6" disabled>
-					</td>
-					<td>
-						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" placeholder="Cantidad" disabled>
 					</td>
 					<td>
 						<input type="number" name="txtValorTotal3" id="txtValorTotal3" maxlength="50" size="10" disabled>

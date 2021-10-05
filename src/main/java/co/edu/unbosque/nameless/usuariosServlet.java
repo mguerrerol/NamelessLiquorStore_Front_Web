@@ -77,11 +77,11 @@ public class UsuariosServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/usuarioscrear.jsp").forward(request, response);
 			}
 			else 
 			{
-				writer.println("Error: " + respuesta);
+				writer.println("Error: " +  respuesta);
 			}
 			writer.close();
 		}catch(IOException | ServletException e){
@@ -96,7 +96,7 @@ public class UsuariosServlet extends HttpServlet {
 			respuesta = UsuariosJSON.deleteJSON(id);
 			PrintWriter write = response.getWriter();
 			if (respuesta==200) {
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/usuarioseliminar.jsp").forward(request, response);
 				} else {
 				write.println("Error: " +  respuesta);
 				}
@@ -118,14 +118,14 @@ public class UsuariosServlet extends HttpServlet {
 		int respuesta=0;
 		try {
 			respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
-			PrintWriter write = response.getWriter();
+			PrintWriter writer = response.getWriter();
 				
 			if (respuesta==200) {
-				request.getRequestDispatcher("/usuarios.jsp").forward(request, response);
+				request.getRequestDispatcher("/usuariosactualizar.jsp").forward(request, response);
 			} else {
-				write.println("Error: " +  respuesta);
+				writer.println("Error: " +  respuesta);
 			}
-			write.close();
+			writer.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -75,7 +75,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			if (respuesta == 200)
 			{
-				request.getRequestDispatcher("/productosindividual.jsp").forward(request, response);
+				request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -94,7 +94,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 			respuesta = ProductoIndividualJSON.deleteJSON(id);
 			PrintWriter write = response.getWriter();
 			if (respuesta==200) {
-				request.getRequestDispatcher("/productos.jsp").forward(request, response);
+				request.getRequestDispatcher("/productoindividualeliminar.jsp").forward(request, response);
 				} else {
 				write.println("Error: " +  respuesta);
 				}
@@ -120,7 +120,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 			PrintWriter write = response.getWriter();
 				
 			if (respuesta==200) {
-				request.getRequestDispatcher("/productoindividual.jsp").forward(request, response);
+				request.getRequestDispatcher("/productoindividualmodificar.jsp").forward(request, response);
 			} else {
 				write.println("Error: " +  respuesta);
 			}

@@ -47,7 +47,12 @@
 						<tr>
 							<td><label>Proveedores</label></td>
 							<td><label>Permite ingresar, eliminar, modificar y
-									consular los proveedores con los que trabaja la Distribuidora.</label></td>
+									consultar los proveedores que tiene la Distribuidora.</label></td>
+						</tr>
+						<tr>
+							<td><label>Producto Individual</label></td>
+							<td><label>Permite ingresar, eliminar, modificar y
+									consultar productos que se tienen en la Distribuidora. </label></td>
 						</tr>
 						<tr>
 							<td><label>Productos</label></td>

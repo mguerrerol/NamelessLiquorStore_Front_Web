@@ -34,7 +34,7 @@
 							<label>Codigo del Producto </label>
 						</td>
 						<td>
-							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" placeholder="Digite el Codigo">
+							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" placeholder="Digite el Codigo" required>
 						</td>
 						<td>
 							<label>IVA</label>

@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon" />
-<title>Nameless LS - Productos</title>
+<title>Nameless LS - Clientes</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 </head>
@@ -14,66 +15,60 @@
 	</header>
 	<ul class="menu">
 		<li><a href="usuarios.jsp">Usuarios</a></li>
-		<li><a href="clientes.jsp">Clientes</a></li>
+		<li><a href="clientes.jsp" class="active">Clientes</a></li>
 		<li><a href="proveedores.jsp">Proveedores</a></li>
-		<li><a href="productoindividual.jsp" class="active">Producto Individual</a></li>
-		<li><a href="productos.jsp">Productos</a></li>		
+		<li><a href="productoindividual.jsp">Producto Individual</a></li>
+		<li><a href="productos.jsp">Productos</a></li>
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
 	</ul>
-	<form class="formulario" method="get" action="./ProductoIndividualServlet">
+	<form class="formulario" method="get" action="./ClientesServlet">
 		<div>
 			<br>
-			<h2>Producto Individual</h2>
+			<h2>Clientes</h2>
 			<br>
 			<center>
 				<table border="0">
 					<tr>
 						<td>
-							<label>Codigo del Producto </label>
+							<label>Cedula </label>
 						</td>
 						<td>
-							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" placeholder="Digite el Codigo" required>
+							<input type="number" name="txtCedula" id="txtCedula" maxlength="20" size="50" placeholder="Digite la cedula" required>
 						</td>
 						<td>
-							<label>IVA</label>
+							<label>Teléfono </label>
 						</td>
 						<td>
-							<input type="number" name="txtIVA" id="txtIVA" maxlength="50" size="50" placeholder="Digite el IVA">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Nombre del Producto </label>
-						</td>
-						<td>
-							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre">
-						</td>
-						<td>
-							<label>Valor Compra </label>
-						</td>
-						<td>
-							<input type="number" name="txtValorCompra" id="txtValorCompra" maxlength="50" size="50"	placeholder="Digite el valor">
+							<input type="number" name="txtTelefono" id="txtTelefono" maxlength="20" size="50" placeholder="Digite el teléfono">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<label>NIT Proveedor </label>
+							<label>Nombre Completo </label>
 						</td>
 						<td>
-							<input type="number" name="txtNIT" id="txtNIT" maxlength="50" size="50" placeholder="NIT Proveedor">
+							<input type="text" name="txtNombre" id="txtNombre" maxlength="50" size="50" placeholder="Digite el nombre completo">
 						</td>
 						<td>
-							<label>Valor Venta </label>
+							<label>Correo Electrónico </label>
 						</td>
 						<td>
-							<input type="number" name="txtValorVenta" id="txtValorVenta" maxlength="50" size="50" placeholder="Digite el valor">
+							<input type="email" name="txtCorreo" id="txtCorreo"	maxlength="50" size="50" placeholder="Digite el correo electrónico">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Dirección </label>
+						</td>
+						<td>
+							<input type="text" name="txtDireccion" id="txtDireccion" maxlength="50" size="50" placeholder="Digite la dirección">
 						</td>
 					</tr>
 				</table>
 				<h3>
-					<b>Producto creado con exito.</b>
+					<b>No se ha creado/modificado el cliente, todos los campos deben estar llenos.</b>
 				</h3>
 			</center>
 			<center>

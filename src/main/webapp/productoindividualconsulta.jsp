@@ -46,7 +46,7 @@
 							<label>Codigo del Producto </label>
 						</td>
 						<td>
-							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" value=<%=txtCodigo%>>
+							<input type="number" name="txtCodigo" id="txtCodigo" maxlength="20" size="50" value=<%=txtCodigo%> required>
 						</td>
 						<td>
 							<label>IVA</label>

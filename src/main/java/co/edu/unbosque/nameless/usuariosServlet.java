@@ -33,8 +33,6 @@ public class UsuariosServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		
 		String btnConsultar = request.getParameter("btnConsultar");	
 		String btnCrear = request.getParameter("btnCrear");	
 		String btnActualizar = request.getParameter("btnActualizar");	
@@ -64,29 +62,48 @@ public class UsuariosServlet extends HttpServlet {
 	}
 	
 	public void crearUsuario(HttpServletRequest request, HttpServletResponse response) {
-		Usuarios usuario = new Usuarios();
-		usuario.setNombre_usuarios(request.getParameter("txtNombre"));
-		usuario.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
-		usuario.setEmail_usuarios(request.getParameter("txtCorreo"));
-		usuario.setUsuario_usuarios(request.getParameter("txtUsuario"));
-		usuario.setPassword_usuarios(request.getParameter("txtPassword"));
-		int respuesta = 0;
 		
-		try {
-			respuesta = UsuariosJSON.postJSON(usuario);
-			PrintWriter writer = response.getWriter();
-			if (respuesta == 200)
-			{
-				request.getRequestDispatcher("/usuarioscrear.jsp").forward(request, response);
+		long txtCedula = Long.parseLong(request.getParameter("txtCedula")); 
+		String txtNombre = request.getParameter("txtNombre");
+		String txtCorreo = request.getParameter("txtCorreo");
+		String txtUsuario = request.getParameter("txtUsuario");
+		String txtPassword = request.getParameter("txtPassword");
+		
+		if (txtNombre != "" && txtCorreo != "" && txtUsuario != "" && txtPassword != "")
+		{
+			Usuarios usuario = new Usuarios();
+			usuario.setCedula_usuarios(txtCedula);
+			usuario.setNombre_usuarios(txtNombre);
+			usuario.setEmail_usuarios(txtCorreo);
+			usuario.setUsuario_usuarios(txtUsuario);
+			usuario.setPassword_usuarios(txtPassword);
+			int respuesta = 0;
+		
+			try {
+				respuesta = UsuariosJSON.postJSON(usuario);
+				PrintWriter writer = response.getWriter();
+				if (respuesta == 200)
+				{
+					request.getRequestDispatcher("/usuarioscrear.jsp").forward(request, response);
+				}
+				else 
+				{
+					writer.println("Error: " +  respuesta);
+				}
+				writer.close();
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
 			}
-			else 
-			{
-				writer.println("Error: " +  respuesta);
-			}
-			writer.close();
-		}catch(IOException | ServletException e){
-			e.printStackTrace();
 		}
+		else
+		{
+			try {
+				request.getRequestDispatcher("/usuarioserrorcampos.jsp").forward(request, response);
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
@@ -103,19 +120,30 @@ public class UsuariosServlet extends HttpServlet {
 			write.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+		
 	}
 	
 	public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
 		
-		Usuarios usuario = new Usuarios();
-		usuario.setNombre_usuarios(request.getParameter("txtNombre"));
-		usuario.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula")));
-		usuario.setEmail_usuarios(request.getParameter("txtCorreo"));
-		usuario.setUsuario_usuarios(request.getParameter("txtUsuario"));
-		usuario.setPassword_usuarios(request.getParameter("txtPassword"));
-
-		int respuesta=0;
+		long txtCedula = Long.parseLong(request.getParameter("txtCedula")); 
+		String txtNombre = request.getParameter("txtNombre");
+		String txtCorreo = request.getParameter("txtCorreo");
+		String txtUsuario = request.getParameter("txtUsuario");
+		String txtPassword = request.getParameter("txtPassword");
+		
+		if (txtNombre != "" && txtCorreo != "" && txtUsuario != "" && txtPassword != "")
+		{
+		
+			Usuarios usuario = new Usuarios();
+			usuario.setCedula_usuarios(txtCedula);
+			usuario.setNombre_usuarios(txtNombre);
+			usuario.setEmail_usuarios(txtCorreo);
+			usuario.setUsuario_usuarios(txtUsuario);
+			usuario.setPassword_usuarios(txtPassword);
+			int respuesta=0;
+		
+		
 		try {
 			respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
 			PrintWriter writer = response.getWriter();
@@ -129,6 +157,16 @@ public class UsuariosServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		else
+		{
+			try {
+				request.getRequestDispatcher("/usuarioserrorcampos.jsp").forward(request, response);
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	

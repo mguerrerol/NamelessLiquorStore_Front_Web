@@ -61,27 +61,42 @@ public class ProductoIndividualServlet extends HttpServlet {
 	}
 	
 	public void crearProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
-		Productos producto = new Productos();
-		producto.setCodigo_productos(Long.parseLong(request.getParameter("txtCodigo")));
-		producto.setNombre_productos(request.getParameter("txtNombre"));
-		producto.setNitproveedor_proveedores(Long.parseLong(request.getParameter("txtNIT")));
-		producto.setIvacompra_productos(Double.parseDouble(request.getParameter("txtIVA")));
-		producto.setPrecio_compra_productos(Double.parseDouble(request.getParameter("txtValorCompra")));
-		producto.setPrecio_venta_productos(Double.parseDouble(request.getParameter("txtValorVenta")));
-		int respuesta = 0;
-		
 		try {
-			respuesta = ProductoIndividualJSON.postJSON(producto);
-			PrintWriter writer = response.getWriter();
-			if (respuesta == 200)
+			String txtCodigo = request.getParameter("txtCodigo");
+			String txtNombre = request.getParameter("txtNombre");
+			String txtNIT = request.getParameter("txtNIT");
+			String txtIVA = request.getParameter("txtIVA");
+			String txtValorCompra = request.getParameter("txtValorCompra");
+			String txtValorVenta = request.getParameter("txtValorVenta");
+			
+			if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
 			{
-				request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				Productos producto = new Productos();
+				producto.setCodigo_productos(Long.parseLong(txtCodigo));
+				producto.setNombre_productos(txtNombre);
+				producto.setNitproveedor_proveedores(Long.parseLong(txtNIT));
+				producto.setIvacompra_productos(Double.parseDouble(txtIVA));
+				producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
+				producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
+				int respuesta = 0;
+				
+				respuesta = ProductoIndividualJSON.postJSON(producto);
+				PrintWriter writer = response.getWriter();
+				if (respuesta == 200)
+				{
+					request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				}
+				else 
+				{
+					request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
+				}
+				writer.close();
 			}
-			else 
+			else
 			{
-				writer.println("Error: " + respuesta);
+				request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
 			}
-			writer.close();
+			
 		}catch(IOException | ServletException e){
 			e.printStackTrace();
 		}
@@ -105,29 +120,45 @@ public class ProductoIndividualServlet extends HttpServlet {
 	}
 	
 	public void actualizarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
-		
-		Productos producto = new Productos();
-		producto.setCodigo_productos(Long.parseLong(request.getParameter("txtCodigo")));
-		producto.setNombre_productos(request.getParameter("txtNombre"));
-		producto.setNitproveedor_proveedores(Long.parseLong(request.getParameter("txtNIT")));
-		producto.setIvacompra_productos(Double.parseDouble(request.getParameter("txtIVA")));
-		producto.setPrecio_compra_productos(Double.parseDouble(request.getParameter("txtValorCompra")));
-		producto.setPrecio_venta_productos(Double.parseDouble(request.getParameter("txtValorVenta")));
-		int respuesta = 0;
-		
 		try {
-			respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
-			PrintWriter write = response.getWriter();
+			String txtCodigo = request.getParameter("txtCodigo");
+			String txtNombre = request.getParameter("txtNombre");
+			String txtNIT = request.getParameter("txtNIT");
+			String txtIVA = request.getParameter("txtIVA");
+			String txtValorCompra = request.getParameter("txtValorCompra");
+			String txtValorVenta = request.getParameter("txtValorVenta");
+			
+			if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
+			{
+				Productos producto = new Productos();
+				producto.setCodigo_productos(Long.parseLong(txtCodigo));
+				producto.setNombre_productos(txtNombre);
+				producto.setNitproveedor_proveedores(Long.parseLong(txtNIT));
+				producto.setIvacompra_productos(Double.parseDouble(txtIVA));
+				producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
+				producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
+				int respuesta = 0;
 				
-			if (respuesta==200) {
-				request.getRequestDispatcher("/productoindividualmodificar.jsp").forward(request, response);
-			} else {
-				write.println("Error: " +  respuesta);
+				respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
+				PrintWriter writer = response.getWriter();
+				if (respuesta == 200)
+				{
+					request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				}
+				else 
+				{
+					request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
+				}
+				writer.close();
 			}
-			write.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+			else
+			{
+				request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
 			}
+			
+		}catch(IOException | ServletException e){
+			e.printStackTrace();
+		}
 	}
 
 	

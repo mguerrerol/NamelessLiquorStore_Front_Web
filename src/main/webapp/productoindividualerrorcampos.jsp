@@ -73,7 +73,7 @@
 					</tr>
 				</table>
 				<h3>
-					<b>Producto creado con exito.</b>
+					<b>No se ha creado/modificado el producto, todos los campos deben estar llenos.</b>
 				</h3>
 			</center>
 			<center>

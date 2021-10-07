@@ -78,20 +78,39 @@ public class UsuariosServlet extends HttpServlet {
 			usuario.setUsuario_usuarios(txtUsuario);
 			usuario.setPassword_usuarios(txtPassword);
 			int respuesta = 0;
-		
+			int verificador = 0;
+			
 			try {
-				respuesta = UsuariosJSON.postJSON(usuario);
-				PrintWriter writer = response.getWriter();
-				if (respuesta == 200)
+				ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
+				for(Usuarios usuarioverificar : lista) {
+					if(usuarioverificar.getCedula_usuarios() == txtCedula) {
+						verificador = 1;
+						break;
+					}
+				}
+				
+				if(verificador == 0) 
 				{
-					request.getRequestDispatcher("/usuarioscrear.jsp").forward(request, response);
+					respuesta = UsuariosJSON.postJSON(usuario);
+					PrintWriter writer = response.getWriter();
+					if (respuesta == 200)
+					{
+						request.getRequestDispatcher("/usuarioscrear.jsp").forward(request, response);
+					}
+					else 
+					{
+						writer.println("Error: " +  respuesta);
+					}
+					writer.close();
 				}
 				else 
 				{
-					writer.println("Error: " +  respuesta);
+					request.getRequestDispatcher("/usuarioserrorcrear.jsp").forward(request, response);
 				}
-				writer.close();
+				
 			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
@@ -103,7 +122,6 @@ public class UsuariosServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
@@ -134,7 +152,6 @@ public class UsuariosServlet extends HttpServlet {
 		
 		if (txtNombre != "" && txtCorreo != "" && txtUsuario != "" && txtPassword != "")
 		{
-		
 			Usuarios usuario = new Usuarios();
 			usuario.setCedula_usuarios(txtCedula);
 			usuario.setNombre_usuarios(txtNombre);
@@ -142,31 +159,47 @@ public class UsuariosServlet extends HttpServlet {
 			usuario.setUsuario_usuarios(txtUsuario);
 			usuario.setPassword_usuarios(txtPassword);
 			int respuesta=0;
+			int verificador = 0;
 		
-		
-		try {
-			respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
-			PrintWriter writer = response.getWriter();
-				
-			if (respuesta==200) {
-				request.getRequestDispatcher("/usuariosactualizar.jsp").forward(request, response);
-			} else {
-				writer.println("Error: " +  respuesta);
-			}
-			writer.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {
+				ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
+				for(Usuarios usuarioverificar:lista) {
+					if(usuarioverificar.getCedula_usuarios() == txtCedula) {
+						verificador = 1;
+						break;
+					}
+				}
+				if(verificador == 1) 
+				{		
+					respuesta = UsuariosJSON.putJSON(usuario,usuario.getCedula_usuarios());
+					PrintWriter writer = response.getWriter();
+					if (respuesta==200) {
+						request.getRequestDispatcher("/usuariosactualizar.jsp").forward(request, response);
+					} 
+					else 
+					{
+						writer.println("Error: " +  respuesta);
+					}
+					writer.close();
+				}
+				else	
+				{
+					request.getRequestDispatcher("/usuarioserroractualizar.jsp").forward(request, response);
+				}
+		}catch(IOException | ServletException e){
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		else
-		{
+	}
+	else
+	{
 			try {
 				request.getRequestDispatcher("/usuarioserrorcampos.jsp").forward(request, response);
 			}catch(IOException | ServletException e){
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 	

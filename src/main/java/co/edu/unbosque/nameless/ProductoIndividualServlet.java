@@ -61,45 +61,67 @@ public class ProductoIndividualServlet extends HttpServlet {
 	}
 	
 	public void crearProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			String txtCodigo = request.getParameter("txtCodigo");
-			String txtNombre = request.getParameter("txtNombre");
-			String txtNIT = request.getParameter("txtNIT");
-			String txtIVA = request.getParameter("txtIVA");
-			String txtValorCompra = request.getParameter("txtValorCompra");
-			String txtValorVenta = request.getParameter("txtValorVenta");
-			
-			if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
-			{
-				Productos producto = new Productos();
-				producto.setCodigo_productos(Long.parseLong(txtCodigo));
-				producto.setNombre_productos(txtNombre);
-				producto.setNitproveedor_proveedores(Long.parseLong(txtNIT));
-				producto.setIvacompra_productos(Double.parseDouble(txtIVA));
-				producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
-				producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
-				int respuesta = 0;
+	
+		String txtCodigo = request.getParameter("txtCodigo");
+		String txtNombre = request.getParameter("txtNombre");
+		String txtNIT = request.getParameter("txtNIT");
+		String txtIVA = request.getParameter("txtIVA");
+		String txtValorCompra = request.getParameter("txtValorCompra");
+		String txtValorVenta = request.getParameter("txtValorVenta");
+		
+		if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
+		{
+			Productos producto = new Productos();
+			producto.setCodigo_productos(Long.parseLong(txtCodigo));
+			producto.setNombre_productos(txtNombre);
+			producto.setNitproveedor_proveedores(Long.parseLong(txtNIT));
+			producto.setIvacompra_productos(Double.parseDouble(txtIVA));
+			producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
+			producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
+			int respuesta = 0;
+			int verificador = 0;
 				
-				respuesta = ProductoIndividualJSON.postJSON(producto);
-				PrintWriter writer = response.getWriter();
-				if (respuesta == 200)
-				{
-					request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+			try {
+				ArrayList<Productos> lista = ProductosJSON.getJSON();
+				for(Productos productoverificar : lista) {
+					if(productoverificar.getCodigo_productos() == Long.parseLong(txtCodigo)) {
+						verificador = 1;
+						break;
+					}
 				}
-				else 
+					
+				if(verificador == 0) 
 				{
-					request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
+					respuesta = ProductoIndividualJSON.postJSON(producto);
+					PrintWriter writer = response.getWriter();
+					if (respuesta == 200)
+					{
+						request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+					}
+					else 
+					{
+						writer.println("Error: " + respuesta);
+					}
+					writer.close();
 				}
-				writer.close();
+				else
+				{
+					request.getRequestDispatcher("/productoindividualerrorcrear.jsp").forward(request, response);
+				}
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}catch(Exception e){
+				e.printStackTrace();
 			}
-			else
-			{
-				request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
-			}
-			
-		}catch(IOException | ServletException e){
-			e.printStackTrace();
 		}
+		else
+		{
+			try {
+				request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}		
+		}		
 	}
 	
 	public void eliminarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
@@ -120,45 +142,74 @@ public class ProductoIndividualServlet extends HttpServlet {
 	}
 	
 	public void actualizarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			String txtCodigo = request.getParameter("txtCodigo");
-			String txtNombre = request.getParameter("txtNombre");
-			String txtNIT = request.getParameter("txtNIT");
-			String txtIVA = request.getParameter("txtIVA");
-			String txtValorCompra = request.getParameter("txtValorCompra");
-			String txtValorVenta = request.getParameter("txtValorVenta");
+		
+		String txtCodigo = request.getParameter("txtCodigo");
+		String txtNombre = request.getParameter("txtNombre");
+		String txtNIT = request.getParameter("txtNIT");
+		String txtIVA = request.getParameter("txtIVA");
+		String txtValorCompra = request.getParameter("txtValorCompra");
+		String txtValorVenta = request.getParameter("txtValorVenta");
 			
-			if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
-			{
-				Productos producto = new Productos();
-				producto.setCodigo_productos(Long.parseLong(txtCodigo));
+		if (txtNombre != "" && txtNIT != "" && txtIVA != "" && txtValorCompra != "" && txtValorVenta != "")
+		{
+			Productos producto = new Productos();
+			producto.setCodigo_productos(Long.parseLong(txtCodigo));
 				producto.setNombre_productos(txtNombre);
 				producto.setNitproveedor_proveedores(Long.parseLong(txtNIT));
 				producto.setIvacompra_productos(Double.parseDouble(txtIVA));
 				producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
 				producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
 				int respuesta = 0;
+				int verificadorproducto = 0;
+				int verificadorproveedor = 0;
 				
-				respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
-				PrintWriter writer = response.getWriter();
-				if (respuesta == 200)
-				{
-					request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				try {
+					ArrayList<Productos> listaproductos = ProductosJSON.getJSON();
+					for(Productos productoverificar : listaproductos) {
+						if(productoverificar.getCodigo_productos() == Long.parseLong(txtCodigo)) {
+							verificadorproducto = 1;
+							break;
+						}
+					}
+					ArrayList<Proveedores> listaproveedores = ProveedoresJSON.getJSON();
+					for(Proveedores proveedorverificar : listaproveedores) {
+						if(proveedorverificar.getNitproveedor_proveedores() == Long.parseLong(txtNIT)) {
+							verificadorproveedor = 1;
+							break;
+						}
+					}
+					if(verificadorproducto == 1 &&  verificadorproveedor == 1) 
+					{
+						respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
+						PrintWriter writer = response.getWriter();
+						if (respuesta == 200)
+						{
+							request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+						}
+						else 
+						{
+							writer.println("Error: " + respuesta);
+						}
+						writer.close();
+					}
+					else
+					{
+						request.getRequestDispatcher("/productoindividualerroractualizar.jsp").forward(request, response);
+					}
+				}catch(IOException | ServletException e){
+					e.printStackTrace();
+				}catch(Exception e){
+					e.printStackTrace();
 				}
-				else 
-				{
-					request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
-				}
-				writer.close();
 			}
 			else
 			{
-				request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
-			}
-			
-		}catch(IOException | ServletException e){
-			e.printStackTrace();
-		}
+				try {
+					request.getRequestDispatcher("/productoindividualerrorcampos.jsp").forward(request, response);
+				}catch(IOException | ServletException e){
+					e.printStackTrace();
+				}		
+			}		
 	}
 
 	

@@ -67,7 +67,6 @@ public class ClientesServlet extends HttpServlet {
 		String txtTelefono = request.getParameter("txtTelefono");
 		String txtDireccion = request.getParameter("txtDireccion");
 		
-		
 		if (txtNombre != "" && txtCorreo != "" && txtTelefono != "" && txtDireccion != "")
 		{
 			Clientes cliente = new Clientes();
@@ -77,20 +76,39 @@ public class ClientesServlet extends HttpServlet {
 			cliente.setTelefono_clientes(txtTelefono);
 			cliente.setDireccion_clientes(txtDireccion);
 			int respuesta = 0;
+			int verificador = 0;
 		
 			try {
-				respuesta = ClientesJSON.postJSON(cliente);
-				PrintWriter writer = response.getWriter();
-				if (respuesta == 200)
+				ArrayList<Clientes> lista = ClientesJSON.getJSON();
+				for(Clientes clienteverificar : lista) {
+					if(clienteverificar.getCedula_clientes() == txtCedula) {
+						verificador = 1;
+						break;
+					}
+				}
+				
+				if(verificador == 0) 
 				{
-					request.getRequestDispatcher("/clientescrear.jsp").forward(request, response);
+					respuesta = ClientesJSON.postJSON(cliente);
+					PrintWriter writer = response.getWriter();
+					if (respuesta == 200)
+					{
+						request.getRequestDispatcher("/clientescrear.jsp").forward(request, response);
+					}
+					else 
+					{
+						writer.println("Error: " + respuesta);
+					}
+					writer.close();
 				}
 				else 
 				{
-					writer.println("Error: " + respuesta);
+					request.getRequestDispatcher("/clienteserrorcrear.jsp").forward(request, response);
 				}
-				writer.close();
+				
 			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
@@ -121,48 +139,67 @@ public class ClientesServlet extends HttpServlet {
 		   }	
 		}
 		
-		public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
+	public void actualizarUsuario(HttpServletRequest request, HttpServletResponse response) {
 			
-			long txtCedula = Long.parseLong(request.getParameter("txtCedula")); 
-			String txtNombre = request.getParameter("txtNombre");
-			String txtCorreo = request.getParameter("txtCorreo");
-			String txtTelefono = request.getParameter("txtTelefono");
-			String txtDireccion = request.getParameter("txtDireccion");
+		long txtCedula = Long.parseLong(request.getParameter("txtCedula")); 
+		String txtNombre = request.getParameter("txtNombre");
+		String txtCorreo = request.getParameter("txtCorreo");
+		String txtTelefono = request.getParameter("txtTelefono");
+		String txtDireccion = request.getParameter("txtDireccion");
 			
 			
-			if (txtNombre != "" && txtCorreo != "" && txtTelefono != "" && txtDireccion != "")
-			{
-				Clientes cliente = new Clientes();
-				cliente.setNombre_clientes(txtNombre);
-				cliente.setCedula_clientes(txtCedula);
-				cliente.setEmail_clientes(txtCorreo);
-				cliente.setTelefono_clientes(txtTelefono);
-				cliente.setDireccion_clientes(txtDireccion);
-				int respuesta = 0;
+		if (txtNombre != "" && txtCorreo != "" && txtTelefono != "" && txtDireccion != "")
+		{
+			Clientes cliente = new Clientes();
+			cliente.setNombre_clientes(txtNombre);
+			cliente.setCedula_clientes(txtCedula);
+			cliente.setEmail_clientes(txtCorreo);
+			cliente.setTelefono_clientes(txtTelefono);
+			cliente.setDireccion_clientes(txtDireccion);
+			int respuesta = 0;
+			int verificador = 0;
 			
 			try {
-				respuesta = ClientesJSON.putJSON(cliente,cliente.getCedula_clientes());
-				PrintWriter write = response.getWriter();
-					
-				if (respuesta==200) {
-					request.getRequestDispatcher("/clientesactualizar.jsp").forward(request, response);
-				} else {
-					write.println("Error: " +  respuesta);
+				ArrayList<Clientes> lista = ClientesJSON.getJSON();
+				for(Clientes clienteverificar : lista) {
+					if(clienteverificar.getCedula_clientes() == txtCedula) {
+						verificador = 1;
+						break;
+					}
 				}
-				write.close();
-				} catch (Exception e) {
-					e.printStackTrace();
+				if(verificador == 1) 
+				{		
+					respuesta = ClientesJSON.putJSON(cliente,cliente.getCedula_clientes());
+					PrintWriter write = response.getWriter();
+					if (respuesta==200) 
+					{
+						request.getRequestDispatcher("/clientesactualizar.jsp").forward(request, response);
+					} 
+					else 
+					{
+						write.println("Error: " +  respuesta);
+					}
+					write.close();
 				}
-			}
-			else
-			{
-				try {
-					request.getRequestDispatcher("/clienteserrorcampos.jsp").forward(request, response);
-				}catch(IOException | ServletException e){
-					e.printStackTrace();
+				else
+				{
+					request.getRequestDispatcher("/clienteserroractualizar.jsp").forward(request, response);
 				}
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		}
+		else
+		{
+			try {
+				request.getRequestDispatcher("/clienteserrorcampos.jsp").forward(request, response);
+			}catch(IOException | ServletException e){
+				e.printStackTrace();
+			}	
+		}
+	}
 	
 	public void listarClientes(HttpServletRequest request, HttpServletResponse response) {
 		try {

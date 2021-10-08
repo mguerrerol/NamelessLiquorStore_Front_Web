@@ -72,7 +72,9 @@
 						<label>Vlr. Total</label>
 					</td>
 				</tr>
-
+				<h3>
+					<b>El cliente no existe en la base de datos, no se le puede registrar una venta.</b>
+				</h3>
 				<tr>
 					<td>
 						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>

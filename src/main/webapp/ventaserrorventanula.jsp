@@ -72,7 +72,9 @@
 						<label>Vlr. Total</label>
 					</td>
 				</tr>
-
+				<h3>
+					<b>El valor de la venta es nulo, no se puede registrar la venta.</b>
+				</h3>
 				<tr>
 					<td>
 						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" disabled>

@@ -61,7 +61,7 @@
 						<label>Cedula</label>
 					</td>
 					<td>
-						<input type="text" maxlength="20" name="txtCedula" id="txtCedula" size="10" value=<%=txtCedula%> >
+						<input type="number" maxlength="20" name="txtCedula" id="txtCedula" size="10" value=<%=txtCedula%> >
 					</td>
 					<td>
 						<label>Cliente</label>

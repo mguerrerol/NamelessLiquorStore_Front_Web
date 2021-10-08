@@ -79,35 +79,47 @@ public class ProductoIndividualServlet extends HttpServlet {
 			producto.setPrecio_compra_productos(Double.parseDouble(txtValorCompra));
 			producto.setPrecio_venta_productos(Double.parseDouble(txtValorVenta));
 			int respuesta = 0;
-			int verificador = 0;
+			int verificadorproducto = 0;
+			int verificadorproveedor = 0;
 				
 			try {
 				ArrayList<Productos> lista = ProductosJSON.getJSON();
 				for(Productos productoverificar : lista) {
 					if(productoverificar.getCodigo_productos() == Long.parseLong(txtCodigo)) {
-						verificador = 1;
+						verificadorproducto  = 1;
 						break;
 					}
 				}
-					
-				if(verificador == 0) 
-				{
-					respuesta = ProductoIndividualJSON.postJSON(producto);
-					PrintWriter writer = response.getWriter();
-					if (respuesta == 200)
-					{
-						request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				
+				ArrayList<Proveedores> listaproveedores = ProveedoresJSON.getJSON();
+				for(Proveedores proveedorverificar : listaproveedores) {
+					if(proveedorverificar.getNitproveedor_proveedores() == Long.parseLong(txtNIT)) {
+						verificadorproveedor = 1;
+						break;
 					}
-					else 
-					{
-						writer.println("Error: " + respuesta);
-					}
-					writer.close();
 				}
-				else
+				
+				if(verificadorproducto == 1) 
 				{
 					request.getRequestDispatcher("/productoindividualerrorcrear.jsp").forward(request, response);
 				}
+				
+				if(verificadorproveedor == 0) 
+				{
+					request.getRequestDispatcher("/productoindividualerrorcrearproveedor.jsp").forward(request, response);
+				}
+					
+				respuesta = ProductoIndividualJSON.postJSON(producto);
+				PrintWriter writer = response.getWriter();
+				if (respuesta == 200)
+				{
+					request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
+				}
+				else 
+				{
+					writer.println("Error: " + respuesta);
+				}
+				writer.close();
 			}catch(IOException | ServletException e){
 				e.printStackTrace();
 			}catch(Exception e){
@@ -171,6 +183,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 							break;
 						}
 					}
+					
 					ArrayList<Proveedores> listaproveedores = ProveedoresJSON.getJSON();
 					for(Proveedores proveedorverificar : listaproveedores) {
 						if(proveedorverificar.getNitproveedor_proveedores() == Long.parseLong(txtNIT)) {
@@ -178,24 +191,28 @@ public class ProductoIndividualServlet extends HttpServlet {
 							break;
 						}
 					}
-					if(verificadorproducto == 1 &&  verificadorproveedor == 1) 
-					{
-						respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
-						PrintWriter writer = response.getWriter();
-						if (respuesta == 200)
-						{
-							request.getRequestDispatcher("/productoindividualcrear.jsp").forward(request, response);
-						}
-						else 
-						{
-							writer.println("Error: " + respuesta);
-						}
-						writer.close();
-					}
-					else
+					
+					if(verificadorproducto == 0) 
 					{
 						request.getRequestDispatcher("/productoindividualerroractualizar.jsp").forward(request, response);
 					}
+					
+					if(verificadorproveedor == 0) 
+					{
+						request.getRequestDispatcher("/productoindividualerroractualizarproveedor.jsp").forward(request, response);
+					}	
+						
+					respuesta = ProductoIndividualJSON.putJSON(producto,producto.getCodigo_productos());
+					PrintWriter writer = response.getWriter();
+					if (respuesta == 200)
+					{
+						request.getRequestDispatcher("/productoindividualactualizar.jsp").forward(request, response);
+					}
+					else 
+					{
+						writer.println("Error: " + respuesta);
+					}
+					writer.close();
 				}catch(IOException | ServletException e){
 					e.printStackTrace();
 				}catch(Exception e){
@@ -210,7 +227,7 @@ public class ProductoIndividualServlet extends HttpServlet {
 					e.printStackTrace();
 				}		
 			}		
-	}
+	}	
 
 	
 	public void listarProductos(HttpServletRequest request, HttpServletResponse response) {

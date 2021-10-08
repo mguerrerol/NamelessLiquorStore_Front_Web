@@ -127,16 +127,56 @@ public class UsuariosServlet extends HttpServlet {
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
 		Long id= Long.parseLong(request.getParameter("txtCedula"));			
 		int respuesta=0;
+		int verificadorusuario = 0;
+		int  verificadorventas = 0;
+		
 		try {
-			respuesta = UsuariosJSON.deleteJSON(id);
-			PrintWriter write = response.getWriter();
-			if (respuesta==200) {
-				request.getRequestDispatcher("/usuarioseliminar.jsp").forward(request, response);
-				} else {
-				write.println("Error: " +  respuesta);
+			ArrayList<Usuarios> listausuarios = UsuariosJSON.getJSON();
+			for(Usuarios usuarioverificar:listausuarios) {
+				if(usuarioverificar.getCedula_usuarios() == id) {
+					verificadorusuario = 1;
+					break;
 				}
-			write.close();
-		} catch (Exception e) {
+			}
+			ArrayList<Ventas> listaventas = VentasJSON.getJSON();
+			for(Ventas ventasverificar:listaventas) {
+				if(ventasverificar.getCedula_usuarios() == id) {
+					verificadorventas = 1;
+					break;
+				}
+			}
+			
+			if(verificadorusuario == 0) 
+			{	
+				request.getRequestDispatcher("/usuarioserroreliminarnoexiste.jsp").forward(request, response);	
+			}
+			
+			if(verificadorventas == 0) 
+			{		
+				respuesta = UsuariosJSON.deleteJSON(id);
+				PrintWriter write = response.getWriter();
+				if (respuesta==200) 
+				{
+					request.getRequestDispatcher("/usuarioseliminar.jsp").forward(request, response);
+				}
+				else 
+				{
+					write.println("Error: " +  respuesta);
+				}
+				write.close();
+			}
+			else 
+			{
+				request.getRequestDispatcher("/usuarioserroreliminarllaveforanea.jsp").forward(request, response);	
+			} 
+		
+		
+		
+		
+		
+		
+		
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		

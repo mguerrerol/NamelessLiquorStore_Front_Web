@@ -127,19 +127,53 @@ public class ProveedoresServlet extends HttpServlet {
 	public void eliminarProveedor(HttpServletRequest request, HttpServletResponse response) {
 		Long id= Long.parseLong(request.getParameter("txtNit"));			
 		int respuesta=0;
+		int verificadorproveedores = 0;
+		int verificadorproductos = 0;
+		
 		try {
-		   respuesta = ProveedoresJSON.deleteJSON(id);
-		   PrintWriter write = response.getWriter();
-		   if (respuesta==200) {
-			   request.getRequestDispatcher("/proveedoreseliminar.jsp").forward(request, response);
-		   } else {
-			write.println("Error: " +  respuesta);
-		   }
-		      write.close();
-		   } catch (Exception e) {
+			ArrayList<Proveedores> listaproveedores = ProveedoresJSON.getJSON();
+			for(Proveedores proveedorverificar : listaproveedores) {
+				if(proveedorverificar.getNitproveedor_proveedores() == id) {
+					verificadorproveedores = 1;
+					break;
+				}
+			}
+			
+			ArrayList<Productos> listaproductos = ProductosJSON.getJSON();
+			for(Productos productoverificar:listaproductos) {
+				if(productoverificar.getNitproveedor_proveedores() == id) {
+					verificadorproductos = 1;
+					break;
+				}
+			}
+			
+			if( verificadorproveedores == 0) 
+			{	
+				request.getRequestDispatcher("/proveedoreserroreliminarnoexiste.jsp").forward(request, response);	
+			}
+			
+			if(verificadorproductos == 0) 
+			{			
+			   respuesta = ProveedoresJSON.deleteJSON(id);
+			   PrintWriter write = response.getWriter();
+			   if (respuesta==200) 
+			   {
+				   request.getRequestDispatcher("/proveedoreseliminar.jsp").forward(request, response);
+			   }
+			   else
+			   {
+				   write.println("Error: " +  respuesta);
+			   }
+			   write.close();
+			}	
+			else 
+			{
+				request.getRequestDispatcher("/proveedoreserroreliminarllaveforanea.jsp").forward(request, response);	
+			} 
+		}catch (Exception e) {
 			e.printStackTrace();
-		   }	
-		}
+		}	
+	}
 		
 	public void actualizarProveedor(HttpServletRequest request, HttpServletResponse response) {
 			

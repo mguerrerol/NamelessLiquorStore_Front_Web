@@ -93,6 +93,8 @@ public class VentasServlet extends HttpServlet {
 	    	double txtTotalVenta = 0;
 	    	double txtTotalConIva = 0;
 			
+	    	int verificadorcliente = 0;
+	    	
 			ArrayList<Clientes> lista = ClientesJSON.getJSON();		
 			
 			for (Clientes cliente: lista){
@@ -100,8 +102,15 @@ public class VentasServlet extends HttpServlet {
 				{
 					txtCedula = cliente.getCedula_clientes();
 					txtCliente = cliente.getNombre_clientes();
+					verificadorcliente = 1;
 				}
 			}
+			
+			if(verificadorcliente == 0)
+			{
+				request.getRequestDispatcher("/ventaserrorcliente.jsp").forward(request, response);
+			}
+			
 
 			ArrayList<Ventas> listaVentas = VentasJSON.getJSON();
 			int i = 0;
@@ -238,6 +247,7 @@ public class VentasServlet extends HttpServlet {
 			txtTotalIva = txtTotalVenta * iva;
 			txtTotalConIva = txtTotalVenta + txtTotalIva;
 			
+		
 			request.setAttribute("txtCedula",txtCedula);
 			request.setAttribute("txtCliente",txtCliente);
 			request.setAttribute("txtConsecutivo",txtConsecutivo);
@@ -271,7 +281,7 @@ public class VentasServlet extends HttpServlet {
 		}
 	}
 
-	public void registrarVenta(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+	public void registrarVenta(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException, ServletException {
 		String pagina = "/ventasconsultas.jsp";
 		long txtCedula = Long.parseLong(request.getParameter("txtCedula"));
 		String txtCliente = "";
@@ -375,6 +385,12 @@ public class VentasServlet extends HttpServlet {
 		
 		iva3 = txtValorTotal3 * iva;
 		totalDetalleVenta3 = txtValorTotal3 + iva3;
+		
+		if (txtTotalVenta <= 0.0 ) 
+		{	
+			request.getRequestDispatcher("/ventaserrorventanula.jsp").forward(request, response);
+		}
+		
 		
 		Ventas venta = new Ventas();
 		venta.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));

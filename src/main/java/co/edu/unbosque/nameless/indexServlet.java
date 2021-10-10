@@ -27,8 +27,7 @@ public class IndexServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    public void validarUsuarios(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    public void validarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ArrayList<Usuarios> lista = UsuariosJSON.getJSON();
 			request.setAttribute("lista", lista);
@@ -38,6 +37,7 @@ public class IndexServlet extends HttpServlet {
 			for (Usuarios usuario : lista) {
 				if (usuario.getUsuario_usuarios().equals(usua) && usuario.getPassword_usuarios().equals(pass)) {
 					request.setAttribute("usuario", usuario);
+					//request.setAttribute("usuario", usua );
 					request.getRequestDispatcher("/menu.jsp").forward(request, response);
 					respuesta = 1;
 				}

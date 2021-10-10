@@ -32,13 +32,13 @@ public class DetalleVentasJSON {
 		while (i.hasNext()) {
 			JSONObject innerObj = (JSONObject) i.next();
 			DetalleVentas detalleVenta = new DetalleVentas();
-			detalleVenta.setCodigo_detalle_ventas(Long.parseLong(innerObj.get("codigo_detalle_ventas").toString()));
-			detalleVenta.setCodigo_ventas(Long.parseLong(innerObj.get("codigo_ventas").toString()));
+			detalleVenta.setCodigo_detalle_venta(Long.parseLong(innerObj.get("codigo_detalle_venta").toString()));
+			detalleVenta.setCantidad_producto_detalle_venta(Integer.parseInt(innerObj.get("cantidad_producto_detalle_venta").toString()));
 			detalleVenta.setCodigo_productos(Long.parseLong(innerObj.get("codigo_productos").toString()));
-			detalleVenta.setCantidad_producto_detalle_ventas(Integer.parseInt(innerObj.get("cantidad_producto_detalle_ventas").toString()));
-			detalleVenta.setValor_venta_detalle_ventas(Double.parseDouble(innerObj.get("valor_venta_detalle_ventas").toString()));
-			detalleVenta.setValoriva_detalle_ventas(Double.parseDouble(innerObj.get("valoriva_detalle_ventas").toString()));
-			detalleVenta.setValor_total_detalle_ventas(Double.parseDouble(innerObj.get("valor_total_detalle_ventas").toString()));
+			detalleVenta.setCodigo_ventas(Long.parseLong(innerObj.get("codigo_ventas").toString()));
+			detalleVenta.setValor_total_detalle_venta(Double.parseDouble(innerObj.get("valor_total_detalle_venta").toString()));
+			detalleVenta.setValor_venta_detalle_venta(Double.parseDouble(innerObj.get("valor_venta_detalle_venta").toString()));
+			detalleVenta.setValoriva_detalle_venta(Double.parseDouble(innerObj.get("valoriva_detalle_venta").toString()));
 			lista.add(detalleVenta);
 		}
 		return lista;
@@ -46,7 +46,7 @@ public class DetalleVentasJSON {
 
 	public static ArrayList<DetalleVentas> getJSON() throws IOException, ParseException{
 		
-		url = new URL(sitio+"ventas/listar");
+		url = new URL(sitio+"detalle_ventas/listar");
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();		
 		http.setRequestMethod("GET");
@@ -67,7 +67,7 @@ public class DetalleVentasJSON {
 	}
 	
 	public static int postJSON(DetalleVentas detalleVenta) throws IOException {
-		url = new URL(sitio+"ventas/guardar");
+		url = new URL(sitio+"detalle_ventas/guardar");
 		
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
@@ -84,13 +84,13 @@ public class DetalleVentasJSON {
 		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
-		+ "\"codigo_detalle_ventas\":\""+ detalleVenta.getCodigo_ventas()
-		+"\",\"codigo_ventas\": \""+detalleVenta.getCodigo_ventas()
+		+ "\"codigo_detalle_venta\":\""+ detalleVenta.getCodigo_detalle_venta()
+		+"\",\"cantidad_producto_detalle_venta\":\""+detalleVenta.getCantidad_producto_detalle_venta()
 		+"\",\"codigo_productos\": \""+detalleVenta.getCodigo_productos()
-		+"\",\"cantidad_producto_detalle_ventas\":\""+detalleVenta.getCantidad_producto_detalle_ventas()
-		+"\",\"valor_venta_detalle_ventas\":\""+detalleVenta.getValor_venta_detalle_ventas()
-		+"\",\"valoriva_detalle_ventas\":\""+detalleVenta.getValoriva_detalle_ventas()
-		+"\",\"valor_total_detalle_ventas\":\""+detalleVenta.getValor_total_detalle_ventas()
+		+"\",\"codigo_ventas\": \""+detalleVenta.getCodigo_ventas()
+		+"\",\"valor_total_detalle_venta\":\""+detalleVenta.getValor_total_detalle_venta()
+		+"\",\"valor_venta_detalle_venta\":\""+detalleVenta.getValor_venta_detalle_venta()
+		+"\",\"valoriva_detalle_venta\":\""+detalleVenta.getValoriva_detalle_venta()	
 		+ "\"}";
 		byte[] out = data.getBytes(StandardCharsets.UTF_8);
 		OutputStream stream = http.getOutputStream();

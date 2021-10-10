@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import='co.edu.unbosque.nameless.Usuarios'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,9 @@
 	<header>
 		<img class="header" src="IMG/titulo.png" alt="Nameless Liquor Store">
 	</header>
+	<% 
+	Usuarios usuario = (Usuarios) request.getAttribute("usuario");
+	%>
 	<ul class="menu">
 		<li><a href="usuarios.jsp">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>
@@ -22,12 +26,13 @@
 		<li><a href="ventas.jsp">Ventas</a></li>
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
+		<li><label>Usuario: <%=usuario.getUsuario_usuarios()%></label></li>
 	</ul>
 	<form class="formulario">
 		<br>
 		<div>
 			<h2>
-				Bienvenido al Sistema de Facturación de Nameless Liquor Store
+				Bienvenido <%=usuario.getNombre_usuarios()%> al Sistema de Facturación de Nameless Liquor Store
 				</h3>
 				<center>
 					<label>En el sistema usted podrá realizar las siguientes

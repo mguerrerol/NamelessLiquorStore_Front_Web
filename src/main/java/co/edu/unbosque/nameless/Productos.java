@@ -9,6 +9,7 @@ public class Productos {
 	private double precio_compra_productos;
 	private double precio_venta_productos;
 	
+
 	public long getCodigo_productos() {
 		return codigo_productos;
 	}

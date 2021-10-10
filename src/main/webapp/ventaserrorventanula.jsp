@@ -33,10 +33,7 @@
 						<label>Cedula</label>
 					</td>
 					<td>
-						<input type="number" maxlength="20" name="txtCedula" id="txtCedula" size="10" placeholder="Digite la cedula" required>
-					</td>
-					<td>
-						<input type="submit" name="btnConsultarCliente" id="btnConsultarCliente" value="Consultar" class="button">
+						<input type="number" maxlength="20" name="txtCedula" id="txtCedula" size="10" placeholder="Digite la cedula" required disabled>
 					</td>
 					<td>
 						<label>Cliente</label>

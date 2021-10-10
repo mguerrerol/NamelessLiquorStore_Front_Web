@@ -67,6 +67,7 @@ public class VentasJSON {
 	
 	public static int postJSON(Ventas venta) throws IOException {
 		url = new URL(sitio+"ventas/guardar");
+		
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());

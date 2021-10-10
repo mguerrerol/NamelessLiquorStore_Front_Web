@@ -23,7 +23,7 @@
 		<li><a href="reportes.jsp">Reportes</a></li>
 		<li><a href="index.jsp">Salir</a></li>
 	</ul>
-	<form class="formulario" method="get" action="./ProductosServlet"
+	<form class="formulario" method="post" action="./ProductosServlet"
 		enctype="multipart/form-data">
 		<div>
 			<br>
@@ -38,10 +38,13 @@
 			<input id="file-upload" onchange='cambiar()' type="file" style='display: none;' name="file-upload accept=".csv, .CSV"/>
 			<br>
 			<div id="info" class="info"></div>        
-			</center>
+			
 			<br>
+				<h3>
+					<b>Archivo cargado con existo.</b>
+				</h3>
 			<br>
-			<center>
+	
 				<td><input type="submit" name="btnCargar" id="btnCargar" value="Cargar" class="button"></td>
 			</center>
 		</div>

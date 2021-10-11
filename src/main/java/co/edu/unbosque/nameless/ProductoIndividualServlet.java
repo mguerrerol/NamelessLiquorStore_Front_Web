@@ -139,15 +139,51 @@ public class ProductoIndividualServlet extends HttpServlet {
 	public void eliminarProductoIndividual(HttpServletRequest request, HttpServletResponse response) {
 		Long id= Long.parseLong(request.getParameter("txtCodigo"));			
 		int respuesta=0;
+		int verificadorproducto = 0;
+		int  verificadordetalleventas = 0;
 		try {
-			respuesta = ProductoIndividualJSON.deleteJSON(id);
-			PrintWriter write = response.getWriter();
-			if (respuesta==200) {
-				request.getRequestDispatcher("/productoindividualeliminar.jsp").forward(request, response);
-				} else {
-				write.println("Error: " +  respuesta);
+			
+			ArrayList<Productos> listaproductos = ProductosJSON.getJSON();
+			for(Productos productoverificar:listaproductos) {
+				if(productoverificar.getCodigo_productos() == id) {
+					verificadorproducto = 1;
+					break;
 				}
-			write.close();
+			}
+			
+			
+			
+			ArrayList<DetalleVentas> listadetalleventas = DetalleVentasJSON.getJSON();
+			for(DetalleVentas ventasverificar:listadetalleventas) {
+				if(ventasverificar.getCodigo_productos() == id) {
+					verificadordetalleventas = 1;
+					break;
+				}
+			}
+			
+			if(verificadorproducto == 0) 
+			{	
+				request.getRequestDispatcher("/productoindividualerroreliminarnoexiste.jsp").forward(request, response);	
+			}
+			
+			if(verificadordetalleventas == 0) 
+			{	
+				respuesta = ProductoIndividualJSON.deleteJSON(id);
+				PrintWriter write = response.getWriter();
+				if (respuesta==200) 
+				{
+					request.getRequestDispatcher("/productoindividualeliminar.jsp").forward(request, response);
+				} 
+				else 
+				{
+					write.println("Error: " +  respuesta);
+				}
+				write.close();
+			}	
+			else 
+			{
+				request.getRequestDispatcher("/productoindividualerroreliminarllaveforanea.jsp").forward(request, response);	
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	

@@ -82,7 +82,7 @@
 					</tr>
 					</table>
 					<h3>
-						<b class="consultas">|</b>
+						<b>Cliente encontrado.</b>
 					</h3>
 					<%}
 		     		else

@@ -37,15 +37,8 @@ public class ProductosServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String btnCargar = request.getParameter("btnCargar");	
-		response.getWriter().append("entre al boton"+ btnCargar).append(request.getContextPath());
-
-		if(btnCargar != null)
-		{
-			response.getWriter().append("entre al boton"+ btnCargar).append(request.getContextPath());
-			importarCSV(request,response);
-		}
-		
+			importarCSV(request,response);	
+			
 	}
 	
 	public void importarCSV (HttpServletRequest request, HttpServletResponse response) {
@@ -72,36 +65,21 @@ public class ProductosServlet extends HttpServlet {
 				producto.setNombre_productos(nombre_productos);
 				producto.setPrecio_compra_productos(precio_compra_productos);
 				producto.setPrecio_venta_productos(precio_venta_productos );
+				productos.add(producto);
 				int respuesta = 0;
-				int verificador = 0;
 				
-				ArrayList<Productos> listaproductos = ProductosJSON.getJSON();
-				for(Productos productoverificar : listaproductos) {
-					if(productoverificar.getCodigo_productos() == codigo_productos) {
-						verificador = 1;
-						break;
-					}
-				}
-					
-				if(verificador == 0) 
+				respuesta = ProductosJSON.postJSON(producto);
+				PrintWriter writer = response.getWriter();
+				if (respuesta == 200)
 				{
-					respuesta = ProductosJSON.postJSON(producto);
-					PrintWriter writer = response.getWriter();
-					if (respuesta == 200)
-					{
-						request.getRequestDispatcher("/productoscargado.jsp").forward(request, response);
-					}
-					else 
-					{
-						writer.println("Error: " + respuesta);
-					}
-					writer.close();
+					request.getRequestDispatcher("/productoscargado.jsp").forward(request, response);
 				}
 				else 
 				{
-					request.getRequestDispatcher("/productoerroryaexiste.jsp").forward(request, response);
+					writer.println("Error: " + respuesta);
 				}
-			}
+				writer.close();
+				}
 			leerProductos.close();	
 		}catch(IOException | ServletException e){
 			e.printStackTrace();

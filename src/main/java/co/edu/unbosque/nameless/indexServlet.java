@@ -37,7 +37,6 @@ public class IndexServlet extends HttpServlet {
 			for (Usuarios usuario : lista) {
 				if (usuario.getUsuario_usuarios().equals(usua) && usuario.getPassword_usuarios().equals(pass)) {
 					request.setAttribute("usuario", usuario);
-					//request.setAttribute("usuario", usua );
 					request.getRequestDispatcher("/menu.jsp").forward(request, response);
 					respuesta = 1;
 				}

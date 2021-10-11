@@ -328,7 +328,7 @@ public class VentasServlet extends HttpServlet {
 			if (cliente.getCedula_clientes() == txtCedula)
 			{
 				txtCedula = cliente.getCedula_clientes();
-				txtCliente = cliente.getNombre_clientes(); //ESTO HAY QUE CAMBIARLO
+				txtCliente = cliente.getNombre_clientes(); 
 			}
 		}
 	   	
@@ -379,7 +379,7 @@ public class VentasServlet extends HttpServlet {
 			
 		Ventas venta = new Ventas();
 		venta.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));
-		venta.setCedula_usuarios(Long.parseLong(request.getParameter("txtCedula"))); //OJO ESTO HAY QUE CAMBIARLO
+		venta.setCedula_usuarios(123456); //OJO ESTO HAY QUE CAMBIARLO
 		venta.setIvaventa_ventas(txtTotalIva);
 		venta.setValor_venta_ventas(txtTotalVenta);
 		venta.setTotal_venta_ventas(txtTotalConIva);
@@ -424,10 +424,7 @@ public class VentasServlet extends HttpServlet {
 			respuestaDetalleVentas1 = DetalleVentasJSON.postJSON(detalleVenta1);
 			if (respuestaDetalleVentas1 == 200)
 			{
-				System.out.println(txtValorTotal1);
-				System.out.println(iva1);
-				System.out.println(txtCantidad1);
-				
+		
 			}
 			else 
 			{

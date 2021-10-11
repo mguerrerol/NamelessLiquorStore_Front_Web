@@ -87,7 +87,7 @@
 					</tr>
 				</table>
 				<h3>
-					<b class="consultas">|</b>
+					<b>Usuario encontrado.</b>
 				</h3>
 				<%}
 		     	else

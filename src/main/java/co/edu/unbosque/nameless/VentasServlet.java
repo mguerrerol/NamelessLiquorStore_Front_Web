@@ -200,7 +200,9 @@ public class VentasServlet extends HttpServlet {
 			}
 	    	
 			ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
-						
+			txtNomProd1 = "ERROR";
+			txtNomProd2 = "ERROR";
+			txtNomProd3 = "ERROR";
 			for (Productos producto:listaProductos){
 				if (producto.getCodigo_productos() == txtCodProd1)
 				{
@@ -331,8 +333,22 @@ public class VentasServlet extends HttpServlet {
 				txtCliente = cliente.getNombre_clientes(); 
 			}
 		}
+		
+		ArrayList<Usuarios> listausuarios = UsuariosJSON.getJSON();
+		int x = 0;
+		long cedulausuario = 0;
+		for (Usuarios usuario: listausuarios){
+			if (x == listausuarios.size()-1)
+			{
+				cedulausuario = usuario.getCedula_usuarios();
+			}
+			x++;
+		}
 	   	
 		ArrayList<Productos> listaProductos = ProductosJSON.getJSON();
+		txtNomProd1 = "-";
+		txtNomProd2 = "-";
+		txtNomProd3 = "-";
 		for (Productos producto:listaProductos){
 			if (producto.getCodigo_productos() == txtCodProd1)
 			{
@@ -379,7 +395,7 @@ public class VentasServlet extends HttpServlet {
 			
 		Ventas venta = new Ventas();
 		venta.setCedula_clientes(Long.parseLong(request.getParameter("txtCedula")));
-		venta.setCedula_usuarios(123456); //OJO ESTO HAY QUE CAMBIARLO
+		venta.setCedula_usuarios(cedulausuario); //OJO ESTO HAY QUE CAMBIARLO
 		venta.setIvaventa_ventas(txtTotalIva);
 		venta.setValor_venta_ventas(txtTotalVenta);
 		venta.setTotal_venta_ventas(txtTotalConIva);
@@ -509,7 +525,7 @@ public class VentasServlet extends HttpServlet {
 		}
 		else 
 		{
-			writer.println("Error: " + respuestaVentas);
+			request.getRequestDispatcher("/ventaserrorventanula.jsp").forward(request, response);
 		}
 		writer.close();	
 	}catch(IOException | ServletException e){

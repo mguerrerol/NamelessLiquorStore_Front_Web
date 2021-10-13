@@ -9,6 +9,20 @@ public class Productos {
 	private double precio_compra_productos;
 	private double precio_venta_productos;
 	
+	public Productos() {
+		super();
+	}
+	
+	public Productos(long codigo_productos, double ivacompra_productos, long nitproveedor_proveedores, String nombre_productos,
+			double precio_compra_productos, double precio_venta_productos) {
+		super();
+		this.codigo_productos = codigo_productos;
+		this.ivacompra_productos = ivacompra_productos;
+		this.nitproveedor_proveedores = nitproveedor_proveedores;
+		this.nombre_productos = nombre_productos;
+		this.precio_compra_productos = precio_compra_productos;
+		this.precio_venta_productos = precio_venta_productos;
+	}
 
 	public long getCodigo_productos() {
 		return codigo_productos;

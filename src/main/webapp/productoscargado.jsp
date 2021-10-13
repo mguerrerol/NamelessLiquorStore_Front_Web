@@ -35,10 +35,9 @@
 				<label for="file-upload" class="subir">
     				<i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
 				</label>
-			<input id="file-upload" onchange='cambiar()' type="file" style='display: none;' name="file-upload accept=".csv, .CSV"/>
+			<input type="file" id="archivo"  name="archivo" onchange='cambiar()'  style='display: none;' accept=".csv, .CSV"/>
 			<br>
 			<div id="info" class="info"></div>        
-			
 			<br>
 				<h3>
 					<b>Archivo cargado con existo.</b>

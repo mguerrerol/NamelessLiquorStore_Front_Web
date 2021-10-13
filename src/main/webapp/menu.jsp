@@ -17,6 +17,7 @@
 	<% 
 	Usuarios usuario = (Usuarios) request.getAttribute("usuario");
 	%>
+	<input type="hidden" value=<%=usuario%> name="usuario" >
 	<ul class="menu">
 		<li><a href="usuarios.jsp">Usuarios</a></li>
 		<li><a href="clientes.jsp">Clientes</a></li>

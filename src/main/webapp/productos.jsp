@@ -35,15 +35,17 @@
 				<label for="file-upload" class="subir">
     				<i class="fas fa-cloud-upload-alt"></i> Seleccionar archivo
 				</label>
-			<input id="file-upload" onchange='cambiar()' type="file" style='display: none;' name="file-upload accept=".csv, .CSV"/>
+			<input type="file" id="archivo"  name="archivo" onchange='cambiar()'  style='display: none;' accept=".csv, .CSV"/>
 			<br>
 			<div id="info" class="info"></div>        
 			</center>
 			<br>
 			<br>
 			<center>
-				<td><input type="submit" name="btnCargar" id="btnCargar" value="Cargar" class="button"></td>
+				<td><input type="submit" name="btnCargar" id="btnCargar" value="Cargar" class="button" onclick="cargarArchivo(archivo)"></td>
 			</center>
+			<input type="hidden" name="nombre" value="">
+			<input type="hidden" name="nombre2" value="">
 		</div>
 	</form>
 	<footer>

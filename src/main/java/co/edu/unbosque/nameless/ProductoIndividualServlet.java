@@ -151,8 +151,6 @@ public class ProductoIndividualServlet extends HttpServlet {
 				}
 			}
 			
-			
-			
 			ArrayList<DetalleVentas> listadetalleventas = DetalleVentasJSON.getJSON();
 			for(DetalleVentas ventasverificar:listadetalleventas) {
 				if(ventasverificar.getCodigo_productos() == id) {

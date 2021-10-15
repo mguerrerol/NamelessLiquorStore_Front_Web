@@ -106,7 +106,7 @@
 						<input type="number" name="txtCodProd1" id="txtCodProd1" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd1%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" value=<%=txtCantidad1%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad1" id="txtCantidad1" maxlength="8" size="6" value=<%=txtCantidad1%> placeholder="Cantidad" min="0" pattern="[0-9]+">
 					</td>
 					<td rowspan="3">
 						<input type="submit" name="btnConsultarProducto" id="btnConsultarProducto" value="Consultar" class="button1">
@@ -127,7 +127,7 @@
 						<input type="number" name="txtCodProd2" id="txtCodProd2" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd2%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6"  value=<%=txtCantidad2%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad2" id="txtCantidad2" maxlength="8" size="6"  value=<%=txtCantidad2%> placeholder="Cantidad"  min="0" pattern="[0-9]+">
 					</td>		
 					<td>
 						<input type="text" name="txtNomProd2" id="txtNomProd2" maxlength="50" size="30" disabled placeholder="Nombre del Producto" value=<%=txtNomProd2%>>
@@ -145,7 +145,7 @@
 						<input type="number" name="txtCodProd3" id="txtCodProd3" maxlength="20" size="20" placeholder="Codigo del Producto" value=<%=txtCodProd3%>>
 					</td>
 					<td>
-						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" value=<%=txtCantidad3%> placeholder="Cantidad">
+						<input type="number" name="txtCantidad3" id="txtCantidad3" maxlength="8" size="6" value=<%=txtCantidad3%> placeholder="Cantidad"  min="0" pattern="[0-9]+">
 					</td>
 					<td>
 						<input type="text" name="txtNomProd3" id="txtNomProd3" maxlength="50" size="30" disabled placeholder="Nombre del Producto" value=<%=txtNomProd3%>>

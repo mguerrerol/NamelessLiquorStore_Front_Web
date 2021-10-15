@@ -47,10 +47,10 @@
 							<label>Cedula </label>
 						</td>
 						<td>
-							<input type="number" maxlength="20" id="txtCedula" name="txtCedula" size="50" value=<%=txtCedula%> required>
+							<input type="number" maxlength="20" id="txtCedula" name="txtCedula" size="50"  value=<%=txtCedula%> required>
 						</td>
 						<td>
-							<label>Usuario </label>
+							<label>Usuario</label>
 						</td>
 						<td>
 							<input type="text" id="txtUsuario" name="txtUsuario" maxlength="50" size="50" value=<%=txtUsuario%>>
@@ -61,9 +61,8 @@
 							<label>Nombre Completo </label>
 						</td>
 						<td>
-							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" value=<%=txtNombre%>>
+							<input type="text" id="txtNombre" name="txtNombre" maxlength="50" size="50" value=${txtNombre}>
 						</td>
-
 						<td>
 							<label>Contraseña </label>
 						</td>

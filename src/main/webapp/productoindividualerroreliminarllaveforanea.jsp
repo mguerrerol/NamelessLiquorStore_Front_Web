@@ -40,7 +40,7 @@
 							<label>IVA</label>
 						</td>
 						<td>
-							<input type="number" name="txtIVA" id="txtIVA" maxlength="50" size="50" placeholder="Digite el IVA">
+							<input type="number" name="txtIVA" id="txtIVA" maxlength="50" size="50" placeholder="Digite el IVA" min="0" pattern="[0-9]+">
 						</td>
 					</tr>
 					<tr>
@@ -54,7 +54,7 @@
 							<label>Valor Compra </label>
 						</td>
 						<td>
-							<input type="number" name="txtValorCompra" id="txtValorCompra" maxlength="50" size="50"	placeholder="Digite el valor">
+							<input type="number" name="txtValorCompra" id="txtValorCompra" maxlength="50" size="50"	placeholder="Digite el valor" min="0" pattern="[0-9]+">
 						</td>
 					</tr>
 					<tr>
@@ -68,7 +68,7 @@
 							<label>Valor Venta </label>
 						</td>
 						<td>
-							<input type="number" name="txtValorVenta" id="txtValorVenta" maxlength="50" size="50" placeholder="Digite el valor">
+							<input type="number" name="txtValorVenta" id="txtValorVenta" maxlength="50" size="50" placeholder="Digite el valor" min="0" pattern="[0-9]+">
 						</td>
 					</tr>
 				</table>

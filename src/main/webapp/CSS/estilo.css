@@ -255,6 +255,14 @@ label {
 	padding: 0px;
 }
 
+.const {
+	display: block;
+	margin: 0 auto 0 auto;
+	width: 1100px;
+	height: 450px;
+	padding: 0px;
+}
+
 .tablaMenu {
 	margin-left: 30px;
 	align: center;

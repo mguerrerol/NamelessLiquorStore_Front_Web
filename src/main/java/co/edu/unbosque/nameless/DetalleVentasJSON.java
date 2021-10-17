@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 public class DetalleVentasJSON {
 	
 	private static URL url;
-	private static String sitio = "http://localhost:5000/";
+	private static String sitio = "http://localhost:8080/NamelessBackWEB-0.0.1-SNAPSHOT/";
 
 	public static ArrayList<DetalleVentas> parsingDetalleVentas (String json) throws ParseException {
 		
@@ -46,12 +46,10 @@ public class DetalleVentasJSON {
 
 	public static ArrayList<DetalleVentas> getJSON() throws IOException, ParseException{
 		
-		url = new URL(sitio+"detalle_ventas/listar");
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
+		url = new URL(sitio+"detalle_ventas/listar");	
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();		
 		http.setRequestMethod("GET");
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		InputStream respuesta = http.getInputStream();
 		byte[] inp = respuesta.readAllBytes();
 		String json = "";
@@ -71,7 +69,6 @@ public class DetalleVentasJSON {
 		
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		
 		try {
 			http.setRequestMethod("POST");
@@ -81,7 +78,6 @@ public class DetalleVentasJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
 		+ "\"codigo_detalle_venta\":\""+ detalleVenta.getCodigo_detalle_venta()

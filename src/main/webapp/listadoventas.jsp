@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="IMG/favicon.png" type="image/x-icon" />
-<title>Nameless LS - Listado Clientes</title>
+<title>Nameless LS - Listado Ventas</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="CSS/estiloreportes.css">
 </head>

@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 public class ProductosJSON {
 	
 	private static URL url;
-	private static String sitio = "http://localhost:5000/";
+	private static String sitio = "http://localhost:8080/NamelessBackWEB-0.0.1-SNAPSHOT/";
 
 	public static ArrayList<Productos> parsingProductos (String json) throws ParseException {
 		
@@ -46,13 +46,11 @@ public class ProductosJSON {
 	public static ArrayList<Productos> getJSON() throws IOException, ParseException{
 		
 		url = new URL(sitio+"productos/listar");
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();		
 		
 		http.setRequestMethod("GET");
 		http.setRequestProperty("Accept", "application/json");
 		
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		InputStream respuesta = http.getInputStream();
 		byte[] inp = respuesta.readAllBytes();
 		String json = "";
@@ -72,7 +70,6 @@ public class ProductosJSON {
 		
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		
 		try {
 			http.setRequestMethod("POST");
@@ -82,7 +79,6 @@ public class ProductosJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
 		+ "\"codigo_productos\":\""+ producto.getCodigo_productos()

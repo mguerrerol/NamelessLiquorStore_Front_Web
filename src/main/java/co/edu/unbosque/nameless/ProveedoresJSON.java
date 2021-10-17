@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 public class ProveedoresJSON {
 	
 	private static URL url;
-	private static String sitio = "http://localhost:5000/";
+	private static String sitio = "http://localhost:8080/NamelessBackWEB-0.0.1-SNAPSHOT/";
 
 	public static ArrayList<Proveedores> parsingProveedores (String json) throws ParseException {
 		
@@ -45,11 +45,9 @@ public class ProveedoresJSON {
 	public static ArrayList<Proveedores> getJSON() throws IOException, ParseException{
 		
 		url = new URL(sitio+"proveedores/listar");
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http = (HttpURLConnection)url.openConnection();
 		http.setRequestMethod("GET");
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		InputStream respuesta = http.getInputStream();
 		byte[] inp = respuesta.readAllBytes();
 		String json = "";
@@ -68,7 +66,6 @@ public class ProveedoresJSON {
 		url = new URL(sitio+"proveedores/guardar");
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		
 		try {
 			http.setRequestMethod("POST");
@@ -78,7 +75,6 @@ public class ProveedoresJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		String data = "{"
 		+ "\"nitproveedor_proveedores\":\""+ proveedor.getNitproveedor_proveedores()
@@ -98,7 +94,6 @@ public class ProveedoresJSON {
 	public static int putJSON(Proveedores proveedor, Long id) throws IOException {
 		
 		url = new URL(sitio+"proveedores/actualizar");
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 		try {
@@ -109,7 +104,6 @@ public class ProveedoresJSON {
 		
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 		
 		String data = "{"
@@ -132,7 +126,6 @@ public class ProveedoresJSON {
 	public static int deleteJSON(Long id) throws IOException {
 	
 		url = new URL(sitio+"proveedores/eliminar/" + id);
-		String authStr = Base64.getEncoder().encodeToString("usuario:tiendagenerica".getBytes());
 		HttpURLConnection http;
 		http = (HttpURLConnection)url.openConnection();
 	
@@ -144,7 +137,6 @@ public class ProveedoresJSON {
 	
 		http.setDoOutput(true);
 		http.setRequestProperty("Accept", "application/json");
-		http.setRequestProperty("Autorization", "Basic" + authStr);
 		http.setRequestProperty("Content-Type", "application/json");
 	
 		int respuesta = http.getResponseCode();

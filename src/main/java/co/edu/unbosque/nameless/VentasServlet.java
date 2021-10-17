@@ -415,15 +415,12 @@ public class VentasServlet extends HttpServlet {
 			
 			
 		if(txtTotalVenta > 0.0) 
-		{
-			if(txtCantidad1 >= 0.0 && txtCantidad2 >= 0.0 && txtCantidad3 >= 0.0) 
-			{
+		{		
 				respuestaVentas = VentasJSON.postJSON(venta);
-			}
-			else 
-			{
+		}
+		else 
+		{
 				request.getRequestDispatcher("/ventaserrorventanula.jsp").forward(request, response);
-			}
 		}
 		
 		if(txtCantidad1 > 0.0) 
@@ -525,7 +522,7 @@ public class VentasServlet extends HttpServlet {
 		}
 		else 
 		{
-			request.getRequestDispatcher("/ventaserrorventanula.jsp").forward(request, response);
+			writer.println("Error Respuesta ventas: " + respuestaVentas);
 		}
 		writer.close();	
 	}catch(IOException | ServletException e){
